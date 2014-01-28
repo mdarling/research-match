@@ -1,0 +1,31 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  description: MyText
+  gpa: MyString
+  project_survey_id: 1
+  record_begin: 2014-01-27
+  record_end: 2014-01-27
+  skills: MyText
+  standing: MyString
+  work_period: MyString
+  payment: MyString
+  is_undergrad: false
+  is_grad: false
+  is_phd: false
+  is_highschool: false
+
+two:
+  description: MyText
+  gpa: MyString
+  project_survey_id: 1
+  record_begin: 2014-01-27
+  record_end: 2014-01-27
+  skills: MyText
+  standing: MyString
+  work_period: MyString
+  payment: MyString
+  is_undergrad: false
+  is_grad: false
+  is_phd: false
+  is_highschool: false

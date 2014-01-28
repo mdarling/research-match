@@ -1,0 +1,51 @@
+<h1>Listing positions</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Description</th>
+      <th>Gpa</th>
+      <th>Project survey</th>
+      <th>Record begin</th>
+      <th>Record end</th>
+      <th>Skills</th>
+      <th>Standing</th>
+      <th>Work period</th>
+      <th>Payment</th>
+      <th>Is undergrad</th>
+      <th>Is grad</th>
+      <th>Is phd</th>
+      <th>Is highschool</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @positions.each do |position| %>
+      <tr>
+        <td><%= position.description %></td>
+        <td><%= position.gpa %></td>
+        <td><%= position.project_survey_id %></td>
+        <td><%= position.record_begin %></td>
+        <td><%= position.record_end %></td>
+        <td><%= position.skills %></td>
+        <td><%= position.standing %></td>
+        <td><%= position.work_period %></td>
+        <td><%= position.payment %></td>
+        <td><%= position.is_undergrad %></td>
+        <td><%= position.is_grad %></td>
+        <td><%= position.is_phd %></td>
+        <td><%= position.is_highschool %></td>
+        <td><%= link_to 'Show', position %></td>
+        <td><%= link_to 'Edit', edit_position_path(position) %></td>
+        <td><%= link_to 'Destroy', position, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Position', new_position_path %>

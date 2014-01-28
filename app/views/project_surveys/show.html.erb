@@ -1,0 +1,54 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Department:</strong>
+  <%= @project_survey.department_id %>
+</p>
+
+<p>
+  <strong>Department:</strong>
+  <%= @project_survey.department %>
+</p>
+
+<p>
+  <strong>Email:</strong>
+  <%= @project_survey.email %>
+</p>
+
+<p>
+  <strong>Phone:</strong>
+  <%= @project_survey.phone %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @project_survey.description %>
+</p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @project_survey.title %>
+</p>
+
+<p>
+  <strong>Keywords:</strong>
+  <%= @project_survey.keywords %>
+</p>
+
+<p>
+  <strong>Researcher:</strong>
+  <%= @project_survey.researcher %>
+</p>
+
+<p>
+  <strong>Contact:</strong>
+  <%= @project_survey.contact %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @project_survey.user_id %>
+</p>
+
+<%= link_to 'Edit', edit_project_survey_path(@project_survey) %> |
+<%= link_to 'Back', project_surveys_path %>

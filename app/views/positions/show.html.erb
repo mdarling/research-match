@@ -1,0 +1,69 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @position.description %>
+</p>
+
+<p>
+  <strong>Gpa:</strong>
+  <%= @position.gpa %>
+</p>
+
+<p>
+  <strong>Project survey:</strong>
+  <%= @position.project_survey_id %>
+</p>
+
+<p>
+  <strong>Record begin:</strong>
+  <%= @position.record_begin %>
+</p>
+
+<p>
+  <strong>Record end:</strong>
+  <%= @position.record_end %>
+</p>
+
+<p>
+  <strong>Skills:</strong>
+  <%= @position.skills %>
+</p>
+
+<p>
+  <strong>Standing:</strong>
+  <%= @position.standing %>
+</p>
+
+<p>
+  <strong>Work period:</strong>
+  <%= @position.work_period %>
+</p>
+
+<p>
+  <strong>Payment:</strong>
+  <%= @position.payment %>
+</p>
+
+<p>
+  <strong>Is undergrad:</strong>
+  <%= @position.is_undergrad %>
+</p>
+
+<p>
+  <strong>Is grad:</strong>
+  <%= @position.is_grad %>
+</p>
+
+<p>
+  <strong>Is phd:</strong>
+  <%= @position.is_phd %>
+</p>
+
+<p>
+  <strong>Is highschool:</strong>
+  <%= @position.is_highschool %>
+</p>
+
+<%= link_to 'Edit', edit_position_path(@position) %> |
+<%= link_to 'Back', positions_path %>

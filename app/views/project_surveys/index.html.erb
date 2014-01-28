@@ -1,0 +1,45 @@
+<h1>Listing project_surveys</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Department</th>
+      <th>Department</th>
+      <th>Email</th>
+      <th>Phone</th>
+      <th>Description</th>
+      <th>Title</th>
+      <th>Keywords</th>
+      <th>Researcher</th>
+      <th>Contact</th>
+      <th>User</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @project_surveys.each do |project_survey| %>
+      <tr>
+        <td><%= project_survey.department_id %></td>
+        <td><%= project_survey.department %></td>
+        <td><%= project_survey.email %></td>
+        <td><%= project_survey.phone %></td>
+        <td><%= project_survey.description %></td>
+        <td><%= project_survey.title %></td>
+        <td><%= project_survey.keywords %></td>
+        <td><%= project_survey.researcher %></td>
+        <td><%= project_survey.contact %></td>
+        <td><%= project_survey.user_id %></td>
+        <td><%= link_to 'Show', project_survey %></td>
+        <td><%= link_to 'Edit', edit_project_survey_path(project_survey) %></td>
+        <td><%= link_to 'Destroy', project_survey, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Project survey', new_project_survey_path %>
