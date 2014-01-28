@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140128034950) do
+ActiveRecord::Schema.define(version: 20140128050828) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -33,6 +33,13 @@ ActiveRecord::Schema.define(version: 20140128034950) do
 
   add_index "admins", ["email"], name: "index_admins_on_email", unique: true, using: :btree
   add_index "admins", ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true, using: :btree
+
+  create_table "departments", force: true do |t|
+    t.string   "name"
+    t.string   "shortname"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "positions", force: true do |t|
     t.text     "description"
@@ -86,6 +93,22 @@ ActiveRecord::Schema.define(version: 20140128034950) do
 
   add_index "research_users", ["email"], name: "index_research_users_on_email", unique: true, using: :btree
   add_index "research_users", ["reset_password_token"], name: "index_research_users_on_reset_password_token", unique: true, using: :btree
+
+  create_table "student_profiles", force: true do |t|
+    t.string   "academic_level"
+    t.string   "email"
+    t.date     "expected_graduation"
+    t.string   "first_name"
+    t.text     "interests"
+    t.string   "last_name"
+    t.text     "major"
+    t.text     "minor"
+    t.string   "department"
+    t.text     "experience"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false

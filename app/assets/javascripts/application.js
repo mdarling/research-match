@@ -14,3 +14,46 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require_tree .
+//= require project_survey.validations
+//= require multistep
+
+$(function(){  // $(document).ready shorthand
+	$('#content').animate({opacity: 1}, 1000);
+	
+	//$("#project_survey_unpaid_undergrads_needed").attr("checked",true);
+  //$('#content').css('visibility','visible').hide().fadeIn('slow');
+
+ //$("#project_survey_paid_undergrads_needed").attr('checked', false)
+
+ $("#project_survey_unpaid_undergrads_needed").change(function()
+  {
+ 		this.checked ? $('#unpaidUnderGrad').slideDown() : $('#unpaidUnderGrad').slideUp();
+  });
+  
+  $("#project_survey_paid_undergrads_needed").change(function()
+  {
+ 		this.checked ? $('#paidUnderGrad').slideDown() : $('#paidUnderGrad').slideUp();
+  });
+  
+  $("#project_survey_unpaid_grads_needed").change(function()
+  {
+ 		this.checked ? $('#unpaidGrad').slideDown() : $('#unpaidGrad').slideUp();
+  });s
+  
+  $("#project_survey_paid_grads_needed").change(function()
+  {
+ 		this.checked ? $('#paidGrad').slideDown() : $('#paidGrad').slideUp();
+  });
+  
+   $("#project_survey_post_docs_needed").change(function()
+  {
+ 		this.checked ? $('#postdoc').slideDown() : $('#postdoc').slideUp();
+  });
+  
+	
+ $('.projectTitle').click(function() {
+    $('.editProjectSurvey').slideToggle();
+	});
+	
+
+});

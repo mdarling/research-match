@@ -1,10 +1,29 @@
 Matcher::Application.routes.draw do
+
+  root :to => 'home#index', :as => 'home'
+  
+  resources :student_profiles
+
+  resources :departments, only: [:show], defaults: {format: :json}
+
   devise_for :admins
   devise_for :research_users
   devise_for :users
   resources :positions
 
   resources :project_surveys
+
+  get "home/index"
+  
+  get "home/multistep"
+
+  get "home/researchers"
+  
+  get "home/students"
+  
+  get "home/projects"
+  
+  get "home/positions"
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
