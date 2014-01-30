@@ -1,47 +1,61 @@
-<h1>Listing student_profiles</h1>
+<% breadcrumb :student_profiles %>
 
-<table>
-  <thead>
-    <tr>
-      <th>Academic level</th>
-      <th>Email</th>
-      <th>Expected graduation</th>
-      <th>First name</th>
-      <th>Interests</th>
-      <th>Last name</th>
-      <th>Major</th>
-      <th>Minor</th>
-      <th>Department</th>
-      <th>Experience</th>
-      <th>User</th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
+<%= search_form_for @search do |f| %>
+  <div class="field">
+    <%= f.label :department_cont, "Department" %><br /> 
+    <%= f.select :department_cont, options_from_collection_for_select(Department.all, "name", "name", @searched), :style => "width:100px;", :include_blank => "All Departments" , :selected => nil %>
 
-  <tbody>
-    <% @student_profiles.each do |student_profile| %>
-      <tr>
-        <td><%= student_profile.academic_level %></td>
-        <td><%= student_profile.email %></td>
-        <td><%= student_profile.expected_graduation %></td>
-        <td><%= student_profile.first_name %></td>
-        <td><%= student_profile.interests %></td>
-        <td><%= student_profile.last_name %></td>
-        <td><%= student_profile.major %></td>
-        <td><%= student_profile.minor %></td>
-        <td><%= student_profile.department %></td>
-        <td><%= student_profile.experience %></td>
-        <td><%= student_profile.user_id %></td>
-        <td><%= link_to 'Show', student_profile %></td>
-        <td><%= link_to 'Edit', edit_student_profile_path(student_profile) %></td>
-        <td><%= link_to 'Destroy', student_profile, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
+  </div>
+  <div class="actions">
+  <%= f.submit "Search" %>
+  </div>
+<% end %>
+
+<% if @searched %>
+  <h1> Listing Student Profiles for <%= @searched %></h1>
+<% else %>
+  <h1>Listing Student Profiles</h1>
+<% end %>
+
+<hr>
+<% if @student_profiles.length != 0 %>
+  <% @student_profiles.each do |student_profile| %>
+    <p>
+      <b>First Name:</b>
+      <%= student_profile.first_name %>
+    </p>
+
+    <p>
+      <b>Last Name:</b>
+      <%= student_profile.last_name %>
+    </p>
+
+    <p>
+      <b>Academic Standing:</b>
+      <%= student_profile.academic_level %>
+    </p>
+
+    <p>
+      <b>Major:</b>
+      <%= student_profile.major %>
+    </p>
+
+    <p>
+      <b>Research Interests:</b>
+      <%= student_profile.interests %>
+    </p>
+    
+    <%= link_to 'View Profile',student_profile %> <br /> 
+    
+    <% if admin_signed_in? %>
+      <td><%= link_to 'Edit', edit_student_profile_path(student_profile) %></td>
+      <td><%= link_to 'Destroy', student_profile, method: :delete, data: { confirm: 'Are you sure?' } %></td> 
     <% end %>
-  </tbody>
-</table>
+ <hr>
+<% end %>
 
-<br>
+<% else %>
+    <h5>There are currently no undergraduate applicants this department. </h5>
+    <hr>
+<% end %>
 
-<%= link_to 'New Student profile', new_student_profile_path %>

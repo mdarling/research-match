@@ -57,8 +57,8 @@
 
 			<% @project_surveys.each do |project_survey| %>
 				<tr>
-					<td><%= project_survey.project_title %></td>
-					<td><%= project_survey.project_description %></td>
+					<td><%= project_survey.title %></td>
+					<td><%= project_survey.description %></td>
 					<td><%= link_to 'Show', project_survey_path(project_survey) %></td>
 					<td><%= link_to 'Edit', edit_project_survey_path(project_survey) %></td>
 					<td><%= link_to 'Destroy', project_survey, method: :delete, data: { confirm: 'Are you sure?' } %></td>
@@ -122,16 +122,6 @@
 				</p>
 
 				<p>
-					<b>Banner ID:</b>
-					<%= @student_profile.unm_id %>
-				</p>
-
-				<p>
-					<b>Phone Number:</b>
-					<%= @student_profile.phone_number %>
-				</p>
-
-				<p>
 					<b>Academic Standing:</b>
 					<%= @student_profile.academic_level %>
 				</p>
@@ -182,4 +172,4 @@
 		</div>
 	<% end %> <!-- End "if research_user_signed_in?" -->
 	
-</div> <!-- end of "wrap"-->
+</div> <!-- end of "wrap"-->	

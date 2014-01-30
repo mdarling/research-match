@@ -18,8 +18,8 @@
 //= require multistep
 
 $(function(){  // $(document).ready shorthand
-	$('#content').animate({opacity: 1}, 1000);
 	
+	contentFadeIn();
 	//$("#project_survey_unpaid_undergrads_needed").attr("checked",true);
   //$('#content').css('visibility','visible').hide().fadeIn('slow');
 
@@ -57,3 +57,11 @@ $(function(){  // $(document).ready shorthand
 	
 
 });
+
+
+$(document).on('page:load', contentFadeIn); //This makes turbo links runs the function when the page is loaded
+
+function contentFadeIn()
+{
+  $('#content').animate({opacity: 1}, 1000);
+}

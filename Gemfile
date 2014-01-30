@@ -38,6 +38,9 @@ end
 #For Breadcrumbs
 gem 'gretel'
 
+#For searching
+gem 'ransack'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.1.2'
 

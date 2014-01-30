@@ -25,6 +25,11 @@ class ProjectSurveysController < ApplicationController
   # POST /project_surveys.json
   def create
     @project_survey = ProjectSurvey.new(project_survey_params)
+    @user = current_research_user
+
+    @project_survey.research_user_id = @user.id
+    department = Department.where( :name => @project_survey.department )
+    @project_survey.department_id = department.first.id
 
     respond_to do |format|
       if @project_survey.save
