@@ -102,6 +102,7 @@ class StudentProfilesController < ApplicationController
   def destroy
     if admin_signed_in?
      current_user.student_profile.destroy
+   end
     respond_to do |format|
       format.html { redirect_to student_profiles_url }
       format.json { head :no_content }
@@ -120,12 +121,12 @@ class StudentProfilesController < ApplicationController
     end
 
     def check_edit_access
-        if user_signed_in? 
-      if @student_profile != current_user.student_profile
-        redirect_to :home, notice: 'Access Denied.' 
-      end
-    else
-      redirect_to :home, notice: 'Access Denied.'
+      if user_signed_in? 
+        if @student_profile != current_user.student_profile
+          redirect_to :home, notice: 'Access Denied.' 
+        end
+      else
+        redirect_to :home, notice: 'Access Denied.'
     end
   end
 end
