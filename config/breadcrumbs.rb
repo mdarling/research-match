@@ -23,7 +23,7 @@ crumb :project_surveys do
 end
 
 crumb :project_survey do |project|
-  link project.project_title, project_surveys_path(project)
+  link project.title, project_surveys_path(project)
   parent :project_surveys 
 end
 

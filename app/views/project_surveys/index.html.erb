@@ -1,45 +1,67 @@
-<h1>Listing project_surveys</h1>
+<% breadcrumb :project_surveys %>
+<h1>Search for Available Research Positions</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th>Department</th>
-      <th>Department</th>
-      <th>Email</th>
-      <th>Phone</th>
-      <th>Description</th>
-      <th>Title</th>
-      <th>Keywords</th>
-      <th>Researcher</th>
-      <th>Contact</th>
-      <th>User</th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
+  <%= search_form_for @search do |f| %>
+  <div class="field">
+    <%= f.label :department_cont, "Department" %><br /> 
+    <%= f.select :department_cont, options_from_collection_for_select(Department.find(:all, :order => "name"), "name", "name", @searched), :style => "width:100px;", :include_blank => "All Departments" , :selected => nil %>
 
-  <tbody>
-    <% @project_surveys.each do |project_survey| %>
-      <tr>
-        <td><%= project_survey.department_id %></td>
-        <td><%= project_survey.department %></td>
-        <td><%= project_survey.email %></td>
-        <td><%= project_survey.phone %></td>
-        <td><%= project_survey.description %></td>
-        <td><%= project_survey.title %></td>
-        <td><%= project_survey.keywords %></td>
-        <td><%= project_survey.researcher %></td>
-        <td><%= project_survey.contact %></td>
-        <td><%= project_survey.user_id %></td>
-        <td><%= link_to 'Show', project_survey %></td>
-        <td><%= link_to 'Edit', edit_project_survey_path(project_survey) %></td>
-        <td><%= link_to 'Destroy', project_survey, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+  </div>
+  <div class="actions">
+  <%= f.submit "Search" %> 
+  
+  </div>
+<% end %>
 
-<br>
 
-<%= link_to 'New Project survey', new_project_survey_path %>
+<% if @searched %>
+  <h2><%= @searched %> Department Search</h2>
+<% end %>
+<% if !user_signed_in? && !admin_signed_in? && !research_user_signed_in? %>
+  <h5>To view more information about these projects, please <%= link_to "login", new_user_session_path %> or <%= link_to "sign up", new_user_registration_path %></h5>
+<% end %>
+<% if admin_signed_in? || research_user_signed_in? %>
+
+  <%= link_to 'Submit New Project', new_project_survey_path %>
+<% end %>
+<hr>
+<% if @project_surveys.length != 0 %>
+
+  <% @project_surveys.each do |project_survey| %>
+
+        <p>
+        <b>Project Title:</b>
+        <%= project_survey.title %>
+      </p>
+
+      <p>
+        <b>Research Area:</b>
+        <%= project_survey.keywords %>
+      </p>
+
+      <p>
+        <b>Project Description:</b>
+        <%= project_survey.description %>
+      </p>
+        
+      <% if user_signed_in? || admin_signed_in? || research_user_signed_in? %>
+        <% if project_survet.positions %>
+
+          <%= link_to 'Project Information and Available Positions', project_survey_path(project_survey.id) %> <br />
+        <% end %>
+      <% end %>
+      <% if admin_signed_in? %>
+      <td><%= link_to 'Edit', edit_project_survey_path(project_survey) %></td>
+      <td><%= link_to 'Destroy', project_survey, method: :delete, data: { confirm: 'Are you sure?' } %></td> 
+      <% end %>
+      <hr>
+
+  <% end %>
+
+<% else %>
+    <h5>There are currently no ungdergraduate research positions in this department. </h5>
+    <hr>
+<% end %>
+
+
+

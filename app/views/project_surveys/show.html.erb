@@ -1,54 +1,143 @@
-<p id="notice"><%= notice %></p>
+<% breadcrumb :project_survey, @project_survey %>
+<div id="projectWrap">
 
-<p>
-  <strong>Department:</strong>
-  <%= @project_survey.department_id %>
-</p>
+  <div id="nav">
+    <h1><%= @project_survey.title %></h1>
+    <h3><%= @project_survey.department %></h3>
+  </div> <!-- End of nav div -->
+    <hr>
+  <div id="projectMain" >
+      <p>
+      <b>Research Area: </b><br /><%= @project_survey.keywords%>
+    </p>
+    
+        
+  </div> <!-- End of projectMain div -->
+  
+  <div id="projectSidebar">
+    <div id="projectLeft">
+      <p>
+        
+      <b>Contact:</b>
+      <% if @project_survey.researcher != "" %>
+        <%= @project_survey.researcher %>
+      <% else %>
+        <%= @project_survey.contact %>
+      <% end %>
+      </p>
+      
+      <b>Email:</b>
+      <%= @project_survey.email %>
+      
 
-<p>
-  <strong>Department:</strong>
-  <%= @project_survey.department %>
-</p>
+    </div>
+    <div id="projectRight">
+        <% if @project_survey.phone != "" %>
+        <p>
+        <b>Phone:</b>
+        <%= @project_survey.phone %>
+        </p>
+    <% end %>
+  </div>
+  </div>    
+  <div id="projectBottom">
+    <b>Project Description: </b><br /><%= @project_survey.description %>
+  <hr>
+  </div>
 
-<p>
-  <strong>Email:</strong>
-  <%= @project_survey.email %>
-</p>
+</div><br />
 
-<p>
-  <strong>Phone:</strong>
-  <%= @project_survey.phone %>
-</p>
+<div id = "projectBaja">
+  <h1>Available Positions</h1>
+  <% @project_survey.positions.each do |position| %>
 
-<p>
-  <strong>Description:</strong>
-  <%= @project_survey.description %>
-</p>
+ <div id="nav">
+   
 
-<p>
-  <strong>Title:</strong>
-  <%= @project_survey.title %>
-</p>
+  </div> <!-- End of nav div -->
+    <hr>
+  <div id="projectMain" >
 
-<p>
-  <strong>Keywords:</strong>
-  <%= @project_survey.keywords %>
-</p>
+      <p>
+      <b>Description: </b><br /><%= position.description %>
+      </p>
+    
+        
+  </div> <!-- End of projectMain div -->
+  
+  <div id="projectSidebar">
+    <div id="projectLeft">
+      
+      <% if position.work_period != "" %>
+        <p>  
+          <b>Work Period:</b>
+          <%= position.work_period %>
+        </p>
+      <% end %></p>      
+      
+    </div>
+    <div id="projectRight">
+      <p>
+        <b>Seeking students who are current enrolled, or interested in enrolling in <% position.major %>.</b>
+      </p>
 
-<p>
-  <strong>Researcher:</strong>
-  <%= @project_survey.researcher %>
-</p>
+      <p>
+        <b>Students should apply if they will of the following standing by the start of the work period:</b>
+        <ul>
+          <% if position.is_undergrad == true %><l1>Undergraduate</li><% end %>
+          <% if position.is_grad == true %><l1>Graduate</li><% end %>
+          <% if position.is_phd == true %><l1>PhD/li><% end %>
+          <% if position.is_highschool == true %><l1>Highschool</li><% end %>
+        </ul>
+      </p>
 
-<p>
-  <strong>Contact:</strong>
-  <%= @project_survey.contact %>
-</p>
+      <% if position.standing != "" %>
+        <p>  
+          <b>Undergraduate students should be at least a <%= position.standing %> at the start of the work period.</b>    
+        </p>
+      <% end %>
 
-<p>
-  <strong>User:</strong>
-  <%= @project_survey.user_id %>
-</p>
 
-<%= link_to 'Edit', edit_project_survey_path(@project_survey) %> |
-<%= link_to 'Back', project_surveys_path %>
+      <% if position.skills != "" %>
+      <p>
+        <b>Desired Skills:</b>
+        <%= position.skills %>
+      </p>
+      <% end %>
+
+      <% if position.gpa != "" %>
+      <p>
+        <b>Minimum required GPA:</b> <%= position.gpa %>
+        
+      </p>
+      <% end %>
+
+      <% if position.payment != "" %>
+      <p>
+        <b>Compensation:</b> <%= position.payment %>
+        
+      </p>
+      <% end %>
+
+      <% if position.payment != "" %>
+      <p>
+        <b>Application Deadline:</b> <%= position.record_end %>
+        
+      </p>
+      <% end %>
+
+  </div>
+  </div>    
+  <hr>
+</div><br />
+
+  <% end %>
+</div>
+<div id="projectBaja">
+<hr>
+
+  <% if admin_signed_in? %>
+    <%= link_to 'Edit', edit_project_survey_path(@project_survey) %> |
+
+  <% end %>
+  </div>

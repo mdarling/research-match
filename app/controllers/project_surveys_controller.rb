@@ -4,12 +4,30 @@ class ProjectSurveysController < ApplicationController
   # GET /project_surveys
   # GET /project_surveys.json
   def index
-    @project_surveys = ProjectSurvey.all
+    #@project_surveys = ProjecstSurvey.all
+    @search = ProjectSurvey.search(params[:q])
+    @project_surveys = @search.result
+    if params[:q]
+      @searched = params[:q]["department_cont"]
+    end
+    @departments = Department.all
+    respond_to do |format|
+      format.html # index.html.erb
+      format.json { render json: @project_surveys }
+    end
   end
 
   # GET /project_surveys/1
   # GET /project_surveys/1.json
   def show
+    if signed_in?
+      respond_to do |format|
+        format.html # show.html.erb
+        format.json { render json: @project_survey }
+      end
+    else
+      redirect_to :home, notice: 'Please sign in to view project details.'
+    end
   end
 
   # GET /project_surveys/new
@@ -75,6 +93,6 @@ class ProjectSurveysController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def project_survey_params
       params.require(:project_survey).permit(:department_id, :department, :email, :phone, :description, :title, :keywords, :researcher, :contact, :user_id, 
-            positions_attributes: [:id, :description, :gpa, :project_survey_id, :record_begin, :record_end, :skills, :standing, :work_period, :payment, :is_undergrad, :is_grad, :is_phd, :is_highschool] )
+            positions_attributes: [:id, :description, :major, :gpa, :project_survey_id, :record_begin, :record_end, :skills, :standing, :work_period, :payment, :is_undergrad, :is_grad, :is_phd, :is_highschool] )
     end
 end
