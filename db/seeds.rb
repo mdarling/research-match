@@ -5,7 +5,41 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+users = 
+[
+	{ email: 'michael@unm.edu', password: 'password', password_confirmation: 'password' }
+]
 
+researchers = 
+[
+	{ email: 'michael@unm.edu', password: 'password', password_confirmation: 'password', first_name: 'michael', last_name: 'darling' }
+]
+
+admins = 
+[
+	{ email: 'michael@unm.edu', password: 'password', password_confirmation: 'password' }
+]
+
+User.delete_all
+ResearchUser.delete_all
+Admin.delete_all
+
+research_user_refs = {}
+researchers.each do |researcher|
+  research_user_refs[researcher[:email]] = ResearchUser.create researcher
+  research_user_refs[researcher[:email]].skip_confirmation!
+  research_user_refs[researcher[:email]].save!
+end 
+
+admin_refs = {}
+admins.each do |admin|
+  admin_refs[admin[:email]] = Admin.create admin
+end 
+
+user_refs = {}
+users.each do |user|
+  user_refs[user[:email]] = User.create user
+end 
 
 departments =
 [
