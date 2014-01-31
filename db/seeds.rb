@@ -26,9 +26,11 @@ Admin.delete_all
 
 research_user_refs = {}
 researchers.each do |researcher|
-  research_user_refs[researcher[:email]] = ResearchUser.create researcher
-  research_user_refs[researcher[:email]].skip_confirmation!
-  research_user_refs[researcher[:email]].save!
+  r = ResearchUser.create researcher
+  r.skip_confirmation!
+  r.save!
+  research_user_refs[researcher[:email]] = r
+
 end 
 
 admin_refs = {}
