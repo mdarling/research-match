@@ -37,7 +37,7 @@
         <b>Phone:</b>
         <%= @project_survey.phone %>
         </p>
-    <% end %>
+        <% end %>
   </div>
   </div>    
   <div id="projectBottom">
@@ -49,89 +49,80 @@
 
 <div id = "projectBaja">
   <h1>Available Positions</h1>
+
   <% @project_survey.positions.each do |position| %>
 
- <div id="nav">
-   
 
-  </div> <!-- End of nav div -->
-    <hr>
-  <div id="projectMain" >
-
-      <p>
+    <p>
       <b>Description: </b><br /><%= position.description %>
-      </p>
-    
-        
-  </div> <!-- End of projectMain div -->
+    </p>
   
-  <div id="projectSidebar">
-    <div id="projectLeft">
+    <div id = "projectBaja">
+      <div id="nav"></div> <!-- End of nav div -->
+
+      <div id="projectLeft">
       
-      <% if position.work_period != "" %>
-        <p>  
-          <b>Work Period:</b>
-          <%= position.work_period %>
+        <% if position.work_period != "" %>
+          <p>  
+            <b>Work Period:</b>
+            <%= position.work_period %>
+          </p>
+        <% end %></p>      
+
+      </div> <!-- End Project Left -->
+
+      <div id="projectRight">
+        <p>
+          <b>Seeking students who are current enrolled, or interested in enrolling in <% position.major %>.</b>
         </p>
-      <% end %></p>      
-      
-    </div>
-    <div id="projectRight">
-      <p>
-        <b>Seeking students who are current enrolled, or interested in enrolling in <% position.major %>.</b>
-      </p>
 
-      <p>
-        <b>Students should apply if they will of the following standing by the start of the work period:</b>
-        <ul>
-          <% if position.is_undergrad == true %><l1>Undergraduate</li><% end %>
-          <% if position.is_grad == true %><l1>Graduate</li><% end %>
-          <% if position.is_phd == true %><l1>PhD/li><% end %>
-          <% if position.is_highschool == true %><l1>Highschool</li><% end %>
-        </ul>
-      </p>
-
-      <% if position.standing != "" %>
-        <p>  
-          <b>Undergraduate students should be at least a <%= position.standing %> at the start of the work period.</b>    
+        <p>
+          <b>Students should apply if they will of the following standing by the start of the work period:</b>
+          <ul>
+            <% if position.is_undergrad == true %><l1>Undergraduate</li><% end %>
+            <% if position.is_grad == true %><l1>Graduate</li><% end %>
+            <% if position.is_phd == true %><l1>PhD/li><% end %>
+            <% if position.is_highschool == true %><l1>Highschool</li><% end %>
+          </ul>
         </p>
-      <% end %>
 
+        <% if position.standing != "" %>
+          <p>  
+            <b>Undergraduate students should be at least a <%= position.standing %> at the start of the work period.</b>    
+          </p>
+        <% end %>
 
-      <% if position.skills != "" %>
-      <p>
-        <b>Desired Skills:</b>
-        <%= position.skills %>
-      </p>
-      <% end %>
+        <% if position.skills != "" %>
+        <p>
+          <b>Desired Skills:</b>
+          <%= position.skills %>
+        </p>
+        <% end %>
 
-      <% if position.gpa != "" %>
-      <p>
-        <b>Minimum required GPA:</b> <%= position.gpa %>
-        
-      </p>
-      <% end %>
+        <% if position.gpa != "" %>
+        <p>
+          <b>Minimum required GPA:</b> <%= position.gpa %>
+        </p>
+        <% end %>
 
-      <% if position.payment != "" %>
-      <p>
-        <b>Compensation:</b> <%= position.payment %>
-        
-      </p>
-      <% end %>
+        <% if position.payment != "" %>
+        <p>
+          <b>Compensation:</b> <%= position.payment %>
+        </p>
+        <% end %>
 
-      <% if position.payment != "" %>
-      <p>
-        <b>Application Deadline:</b> <%= position.record_end %>
-        
-      </p>
-      <% end %>
+        <% if position.payment != "" %>
+        <p>
+          <b>Application Deadline:</b> <%= position.record_end %>
+        </p>
+        <% end %>
 
-  </div>
-  </div>    
+      </div> <!-- End Project Right -->
+    </div> <!-- End project baja -->   
   <hr>
+  <% end %> 
 </div><br />
-
-  <% end %>
+  
 </div>
 <div id="projectBaja">
 <hr>
