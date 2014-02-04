@@ -17,11 +17,11 @@ $(function(){  // $(document).ready shorthand
 		if( validateForm() != true ) 
 		{
 
-    }
-    else
-    {			    
+    	}
+    	else
+    	{			    
 			$('#projectForm').hide();
-    	$('#positionForm').fadeIn();
+    		$('#positionForm').fadeIn();
 		}
     
 	});
@@ -36,31 +36,6 @@ $(function(){  // $(document).ready shorthand
 	{
 		$('#positionForm').hide();
     $('#gradForm').fadeIn();
-	});
-	
-	  $('.remove_fields').click(function(event)
-		{
-			$(this).prev('input[type=hidden]').val('1')
-			$(this).closest('fieldset').hide()
-			event.preventDefault();
-
-		});
-
-	
-	$('.add_fields').click(function(event)
-	{
-		 time = new Date().getTime()
-    regexp = new RegExp($(this).data('id'), 'g')
-    $(this).before($(this).data('fields').replace(regexp, time))	
-    event.preventDefault();
-    
-    $('.remove_fields').click(function(event)
-		{
-			$(this).prev('input[type=hidden]').val('1')
-			$(this).closest('fieldset').hide()
-			event.preventDefault();
-
-		});
-	});
+	});	
 	
 });

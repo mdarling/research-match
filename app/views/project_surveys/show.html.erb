@@ -42,7 +42,7 @@
   </div>    
   <div id="projectBottom">
     <b>Project Description: </b><br /><%= @project_survey.description %>
-  <hr>
+
   </div>
 
 </div><br />
@@ -60,37 +60,41 @@
     <div id = "projectBaja">
       <div id="nav"></div> <!-- End of nav div -->
 
-      <div id="projectLeft">
+      <div id="left">
       
-        <% if position.work_period != "" %>
-          <p>  
-            <b>Work Period:</b>
-            <%= position.work_period %>
-          </p>
-        <% end %></p>      
 
-      </div> <!-- End Project Left -->
-
-      <div id="projectRight">
-        <p>
-          <b>Seeking students who are current enrolled, or interested in enrolling in <% position.major %>.</b>
-        </p>
 
         <p>
           <b>Students should apply if they will of the following standing by the start of the work period:</b>
-          <ul>
-            <% if position.is_undergrad %><l1>Undergraduate</li><% end %>
-            <% if position.is_grad %><l1>Graduate</li><% end %>
-            <% if position.is_phd  %><l1>PhD</li><% end %>
-            <% if position.is_highschool  %><l1>Highschool</li><% end %>
-          </ul>
-        </p>
+            <br />
+            <% if position.is_undergrad %>&#8226; Undergraduate<br /><% end %>
+            <% if position.is_grad %>&#8226; Graduate<br /><% end %>
+            <% if position.is_phd  %>&#8226; PhD <br /><% end %>
+            <% if position.is_highschool  %>&#8226; Highschool <br /><% end %>
+
+        </p>  
 
         <% if position.standing != "" %>
           <p>  
             <b>Undergraduate students should be at least a <%= position.standing %> at the start of the work period.</b>    
           </p>
-        <% end %>
+        <% end %>    
+
+      </div> <!-- End Project Left -->
+
+      <div id="right">
+        <p>
+          <b>Seeking students who are currently enrolled, or interested in enrolling in <%= position.major %>.</b>
+        </p>
+
+        <% if position.work_period != "" %>
+          <p>  
+            <b>Work Period:</b>
+            <%= position.work_period %>
+          </p>
+        <% end %></p>
+
+
 
         <% if position.skills != "" %>
         <p>
@@ -119,7 +123,7 @@
 
       </div> <!-- End Project Right -->
     </div> <!-- End project baja -->   
-  <hr>
+
   <% end %> 
 </div><br />
   
