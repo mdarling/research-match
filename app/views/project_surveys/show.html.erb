@@ -42,13 +42,13 @@
   </div>    
   <div id="projectBottom">
     <b>Project Description: </b><br /><%= @project_survey.description %>
-
+    <hr>
   </div>
 
 </div><br />
 
 <div id = "projectBaja">
-  <div id="left">
+  <div id="positionBox">
   <h1>Available Positions</h1>
 
   <% @project_survey.positions.each do |position| %>
@@ -57,11 +57,11 @@
     <p>
       <b>Description: </b><br /><%= position.description %>
     </p>
-  </div>
+
     <div id = "projectBaja">
       <div id="nav"></div> <!-- End of nav div -->
 
-      <div id="left">
+
       
 
 
@@ -81,10 +81,7 @@
           </p>
         <% end %>    
 
-      </div> <!-- End Project Left -->
-
-      <div id="right">
-        <p>
+               <p>
           <b>Seeking students who are currently enrolled, or interested in enrolling in <%= position.major %>.</b>
         </p>
 
@@ -122,7 +119,7 @@
         </p>
         <% end %>
 
-      </div> <!-- End Project Right -->
+      </div>  <!-- end positon box div -->
     </div> <!-- End project baja -->   
 
   <% end %> 
