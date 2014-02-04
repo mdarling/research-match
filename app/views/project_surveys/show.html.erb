@@ -48,7 +48,7 @@
 </div><br />
 
 <div id = "projectBaja">
-  <div id="positionBox">
+
   <h1>Available Positions</h1>
 
   <% @project_survey.positions.each do |position| %>
@@ -59,11 +59,6 @@
     </p>
 
     <div id = "projectBaja">
-      <div id="nav"></div> <!-- End of nav div -->
-
-
-      
-
 
         <p>
           <b>Students should apply if they will of the following standing by the start of the work period:</b>
@@ -118,8 +113,7 @@
           <b>Application Deadline:</b> <%= position.record_end %>
         </p>
         <% end %>
-
-      </div>  <!-- end positon box div -->
+        <hr>
     </div> <!-- End project baja -->   
 
   <% end %> 
