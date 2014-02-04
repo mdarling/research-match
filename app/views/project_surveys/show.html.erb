@@ -42,7 +42,7 @@
   </div>    
   <div id="projectBottom">
     <b>Project Description: </b><br /><%= @project_survey.description %>
-    <hr>
+
   </div>
 
 </div><br />
@@ -53,7 +53,7 @@
 
   <% @project_survey.positions.each do |position| %>
 
-
+    <hr>
     <p>
       <b>Description: </b><br /><%= position.description %>
     </p>
@@ -121,7 +121,6 @@
   
 </div>
 <div id="projectBaja">
-<hr>
 
   <% if admin_signed_in? %>
     <%= link_to 'Edit', edit_project_survey_path(@project_survey) %> |
