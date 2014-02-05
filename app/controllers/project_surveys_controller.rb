@@ -33,6 +33,7 @@ class ProjectSurveysController < ApplicationController
   # GET /project_surveys/new
   def new
     @project_survey = ProjectSurvey.new
+    position = @project_survey.positions.build
   end
 
   # GET /project_surveys/1/edit
