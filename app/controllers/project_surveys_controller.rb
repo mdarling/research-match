@@ -34,6 +34,15 @@ class ProjectSurveysController < ApplicationController
   def new
     @project_survey = ProjectSurvey.new
     position = @project_survey.positions.build
+    @departments = Department.all(:order => "name")
+        i = 0 
+    @positions = []
+    @project_survey.positions.each do |p|
+      @positions << p
+      i = i + 1
+    end
+
+    @positions_index = -1
   end
 
   # GET /project_surveys/1/edit
