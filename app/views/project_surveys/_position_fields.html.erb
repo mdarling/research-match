@@ -16,10 +16,8 @@
   </div>
   <div class="field">
     <%= f.label "Preferred Major"%><br>
-    
-    <%= f.select :major,  options_from_collection_for_select(Department.all(:order => "name"), "name", "name", @positions[@positions_index].major), :style => 
+      <%= f.select :major,  options_from_collection_for_select(@departments, "name", "name", @positions[@positions_index].major ), :style => 
       "width:100px;", :include_blank => true , :selected => nil %>
-      
   </div>
 <div id="main">
 

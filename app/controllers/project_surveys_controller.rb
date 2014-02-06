@@ -39,6 +39,7 @@ class ProjectSurveysController < ApplicationController
   # GET /project_surveys/1/edit
   def edit
     @project_survey = ProjectSurvey.find(params[:id])
+    @departments = Department.all(:order => "name")
     i = 0 
     @positions = []
     @project_survey.positions.each do |p|
