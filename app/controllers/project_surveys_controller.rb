@@ -39,7 +39,7 @@ class ProjectSurveysController < ApplicationController
   # GET /project_surveys/1/edit
   def edit
     @project_survey = ProjectSurvey.find(params[:id])
-    i = 0
+    i = 0 
     @positions = []
     @project_survey.positions.each do |p|
       @positions << p
@@ -110,6 +110,6 @@ class ProjectSurveysController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def project_survey_params
       params.require(:project_survey).permit(:department_id, :department, :email, :phone, :description, :title, :keywords, :researcher, :contact, :user_id, 
-            positions_attributes: [:id, :description, :major, :gpa, :project_survey_id, :record_begin, :record_end, :skills, :standing, :work_period, :payment, :is_undergrad, :is_grad, :is_phd, :is_highschool] )
+            positions_attributes: [:id, :description, :major, :gpa, :project_survey_id, :record_begin, :record_end, :skills, :standing, :work_period, :payment, :is_undergrad, :is_grad, :is_phd, :is_highschool, :_destroy] )
     end
 end
