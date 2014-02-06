@@ -51,7 +51,8 @@
     </div>
     <div class="field">
    <%= f.label "Department" %><br />
-      <%= f.select :department,  options_from_collection_for_select(Department.find(:all, :order => "name"), "name", "name", @project_survey.department ), :style => "width:100px;", :include_blank => true , :selected => nil%>
+      <%= f.select :department,  options_from_collection_for_select(Department.find(:all, :order => "name"), "name", "name", @project_survey.department ), :style => 
+      "width:100px;", :include_blank => true , :selected => nil %>
     </div>
 
   </div>
@@ -79,18 +80,15 @@
   
   <div id="bottom">
   
-    <h5>What type of student researchers will you require for this 
-    project?</h5>
-  
     <div id="lowerBottom"></div>
        <%= f.fields_for :positions do |builder| %>
-    <%= render 'position_fields', f: builder %>
-  <% end %>
-  <%= link_to_add_fields "Add Position", f, :positions %>
+        <%= render 'position_fields', f: builder %>
+      <% end %>
+      <%= link_to_add_fields "Add Additional Position", f, :positions %>
 
   </div>
       <div class="baja">
-      <hr>
+      
 
       <div id="error_explanation" style="display:none;float:right;">
 </div>
@@ -100,9 +98,5 @@
       </div>
     </div>
 
-
-  <div class="actions">
-    <%= f.submit %>
-  </div>
 <% end %>
 </wrap> <!-- end wrap div -->

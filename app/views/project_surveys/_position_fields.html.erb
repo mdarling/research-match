@@ -1,56 +1,67 @@
 <fieldset>
- <div class="field">
-    <%= f.label :description %><br>
-    <%= f.text_area :description %>
+      <h5>What type of students will you require for this 
+    position? (Check all that apply).</h5><br>
+  <div class="field">
+    <%= f.check_box :is_undergrad %>
+    <%= f.label "Undergraduate" %>
+    <b>|</b>
+    <%= f.check_box :is_grad %>
+    <%= f.label "Graduate"%>
+    <b>|</b>
+    <%= f.check_box :is_phd %>
+    <%= f.label "PhD"%>
+    <b>|</b>
+    <%= f.check_box :is_highschool %>
+    <%= f.label "Highschool" %>
   </div>
   <div class="field">
-    <%= f.label :gpa %><br>
-    <%= f.text_field :gpa %>
+    <%= f.label :major %><br>
+    
+    <%= f.select "Preferred Major",  options_from_collection_for_select(Department.find(:all, :order => "name"), "name", "name", @positions[@positions_index].major), :style => 
+      "width:100px;", :include_blank => true , :selected => nil %>
+      
+  </div>
+<div id="main">
+
+  <div class="field">
+    <%= f.label "Description of Position" %><br>
+    <%= f.text_area :description, :class => 'textArea' %>
+  </div>
+  <div class="field">
+    Minimum required GPA<%= f.label " " %><br>
+    <%= f.text_field :gpa, :class => 'textField' %>
   </div>
     <div class="field">
-    <%= f.label :major %><br>
-    <%= f.text_field :major %>
+    Work Period<%= f.label " " %><br>
+    <%= f.text_field :work_period, :class => 'textField' %>
   </div>
   <div class="field">
-    <%= f.label :record_begin %><br>
+    <%= f.label "Will this position provide compensation?" %><br>
+    <%= f.text_field :payment, :class => 'textField' %>
+  </div>
+     <%= f.hidden_field :_destroy %>
+     <%= link_to "Remove this Position", '#', class: "remove_fields" %>
+</div><!-- End Main div -->
+<div id="sidebar">
+
+  <div class="field">
+    <%= f.label "Additional skills" %><br>
+    <%= f.text_area :skills, :class => 'textArea' %>
+  </div>
+  <div class="field">
+    <%= f.label "Preferred standing for undergraduates" %><br>
+    <%= f.select :standing, options_for_select([["Select One", ""], "Freshman", "Sophomore", "Junior", "Senior"], @positions[@positions_index].standing) %>
+    <% @positions_index = @positions_index + 1 %>
+    <div class="field">
+    <%= f.label "When should this position be posted?" %><br>
     <%= f.date_select :record_begin %>
   </div>
   <div class="field">
-    <%= f.label :record_end %><br>
+    <%= f.label "What is the deadline for this position?" %><br>
     <%= f.date_select :record_end %>
-  </div>
-  <div class="field">
-    <%= f.label :skills %><br>
-    <%= f.text_area :skills %>
-  </div>
-  <div class="field">
-    <%= f.label :standing %><br>
-    <%= f.text_field :standing %>
-  </div>
-  <div class="field">
-    <%= f.label :work_period %><br>
-    <%= f.text_field :work_period %>
-  </div>
-  <div class="field">
-    <%= f.label :payment %><br>
-    <%= f.text_field :payment %>
-  </div>
-  <div class="field">
-    <%= f.label :is_undergrad %><br>
-    <%= f.check_box :is_undergrad %>
-  </div>
-  <div class="field">
-    <%= f.label :is_grad %><br>
-    <%= f.check_box :is_grad %>
-  </div>
-  <div class="field">
-    <%= f.label :is_phd %><br>
-    <%= f.check_box :is_phd %>
-  </div>
-  <div class="field">
-    <%= f.label :is_highschool %><br>
-    <%= f.check_box :is_highschool %>
-  </div>
-   <%= f.hidden_field :_destroy %>
-   <%= link_to "remove", '#', class: "remove_fields" %>
+  </div>  
+
+</div><!-- end sidebar div -->
+
 </fieldset>
+<hr>

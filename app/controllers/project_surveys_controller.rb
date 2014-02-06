@@ -38,6 +38,22 @@ class ProjectSurveysController < ApplicationController
 
   # GET /project_surveys/1/edit
   def edit
+    @project_survey = ProjectSurvey.find(params[:id])
+    i = 0
+    @positions = []
+    @project_survey.positions.each do |p|
+      @positions << p
+      i = i + 1
+    end
+
+    @positions_index = -1
+    if research_user_signed_in?
+      if !current_research_user.project_surveys.include?(@project_survey)
+        redirect_to :home, notice: 'Access Denied.' 
+      end
+    else
+      redirect_to :home, notice: 'Access Denied.' 
+    end
   end
 
   # POST /project_surveys
