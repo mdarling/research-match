@@ -2,8 +2,6 @@
 <h3>The following information will be added to a searchable database.  Students interested in your job postings will contact you based on the information you provide.</h3>
 <hr>
 
-<div id="wrap">
-
 <%= form_for(@project_survey) do |f| %>
   <% if @project_survey.errors.any? %>
     <div id="error_explanation">
@@ -16,6 +14,10 @@
       </ul>
     </div>
   <% end %>
+
+<div id="wrap">
+
+
 
 <% if f.object.new_record? %>
 <%= javascript_tag do %>

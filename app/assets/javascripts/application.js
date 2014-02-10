@@ -38,7 +38,7 @@ $(function(){  // $(document).ready shorthand
   $("#project_survey_unpaid_grads_needed").change(function()
   {
  		this.checked ? $('#unpaidGrad').slideDown() : $('#unpaidGrad').slideUp();
-  });s
+  });
   
   $("#project_survey_paid_grads_needed").change(function()
   {
@@ -58,10 +58,39 @@ $(function(){  // $(document).ready shorthand
 
 });
 
+$(function(){  // $(document).ready shorthand 
+ 
+ 
+  $('.remove_fields').click(function(event)
+  {
+    $(this).prev('input[type=hidden]').val('1')
+    $(this).closest('fieldset').hide()
+    event.preventDefault();
+  });
+  
+  $('.add_fields').click(function(event)
+  {
+    time = new Date().getTime();
+    regexp = new RegExp($(this).data('id'), 'g');
+    $(this).before($(this).data('fields').replace(regexp, time));
+    event.preventDefault();
+
+    $('.remove_fields').click(function(event)
+    {
+      $(this).prev('input[type=hidden]').val('1')
+      $(this).closest('fieldset').hide()
+      event.preventDefault();
+    });
+  });
+  
+});
+
 
 $(document).on('page:load', contentFadeIn); //This makes turbo links runs the function when the page is loaded
 
 function contentFadeIn()
 {
   $('#content').animate({opacity: 1}, 1000);
+
 }
+
