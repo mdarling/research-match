@@ -1,59 +1,51 @@
-<p id="notice"><%= notice %></p>
+<% breadcrumb :student_profile, @student_profile %>
 
 <p>
-  <strong>Academic level:</strong>
-  <%= @student_profile.academic_level %>
-</p>
-
-<p>
-  <strong>Email:</strong>
-  <%= @student_profile.email %>
-</p>
-
-<p>
-  <strong>Expected graduation:</strong>
-  <%= @student_profile.expected_graduation %>
-</p>
-
-<p>
-  <strong>First name:</strong>
+  <b>First Name:</b>
   <%= @student_profile.first_name %>
 </p>
 
 <p>
-  <strong>Interests:</strong>
-  <%= @student_profile.interests %>
-</p>
-
-<p>
-  <strong>Last name:</strong>
+  <b>Last Name:</b>
   <%= @student_profile.last_name %>
 </p>
+<p>
+  <b>Email:</b>
+  <%= @student_profile.email %>
+</p>
+<p>
+  <b>Department:</b>
+  <%= @student_profile.department %>
+</p>
+<p>
+  <b>Academic Standing:</b>
+  <%= @student_profile.academic_level %>
+</p>
 
 <p>
-  <strong>Major:</strong>
+  <b>Major:</b>
   <%= @student_profile.major %>
 </p>
 
+<% if @student_profile.minor != "" %>
 <p>
-  <strong>Minor:</strong>
+  <b>Minor:</b>
   <%= @student_profile.minor %>
 </p>
-
+<% end %>
 <p>
-  <strong>Department:</strong>
-  <%= @student_profile.department %>
+  <b>Expected Graduation:</b>
+  <%= @student_profile.expected_graduation.strftime("%m-%d-%Y") %>
 </p>
 
 <p>
-  <strong>Experience:</strong>
+  <b>Interests:</b>
+  <%= @student_profile.interests %>
+</p>
+
+<% if @student_profile.minor != "" %>
+<p>
+  <b>Experience:</b>
   <%= @student_profile.experience %>
 </p>
-
-<p>
-  <strong>User:</strong>
-  <%= @student_profile.user_id %>
-</p>
-
-<%= link_to 'Edit', edit_student_profile_path(@student_profile) %> |
-<%= link_to 'Back', student_profiles_path %>
+<% end %>

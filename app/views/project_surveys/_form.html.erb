@@ -1,8 +1,5 @@
-<hr>
-<h3>The following information will be added to a searchable database.  Students interested in your job postings will contact you based on the information you provide.</h3>
-<hr>
-
-<%= form_for(@project_survey) do |f| %>
+<div id = "projectFormIntro">
+  <%= form_for(@project_survey) do |f| %>
   <% if @project_survey.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@project_survey.errors.count, "error") %> prohibited this project from being saved:</h2>
@@ -14,6 +11,27 @@
       </ul>
     </div>
   <% end %>
+  
+  <h3>This form will guide you to to set up a project for the database.</h3>
+  <hr>
+
+  There are two configurations for the system.  The first configuration allows students to contact you in they are interested in your project.  The second configuration notifies you when qualified students match your project, but does not allow students to contact you.  Therefore, you would be able to those students who you are interested in hiring.
+  <br />
+  <br />
+  <div class="field">
+    <%= f.radio_button :is_contactable, true, :checked => (@project_survey.is_contactable), :value => true %>
+    <%= f.label :is_contactable, "Yes, I want interested students to contact me." %>
+  </div>
+  <div class="field"> 
+    <%= f.radio_button :is_contactable, false, :checked => (@project_survey.is_contactable == false ), :value => false %>
+    <%= f.label :is_contactable, "No, I want only want the system to notify me of qualified students.", :checked => (@project_survey.is_contactable == false ) %>
+  </div>
+  <hr>
+  <div class="button" id ="introButton" style="">Next</div>
+</div><!-- End Project Form Intro Div -->
+<div id="error_explanation" style="display:none;"></div>  
+<div id = "projectForm">
+
 
 <div id="wrap">
 
@@ -33,30 +51,18 @@
     <h5> General Project information </h5>
     <br />
     <div class="field">
-      <%= f.label "Lead Researcher" %><br />
-      <%= f.text_field :researcher, :class => 'textField' %>
+      <span style="font-size:15px;color:#b80030">*</span><%= f.label "Lead Researcher" %><br />
+      <%= f.text_field :researcher, :class => 'textField', :value => current_research_user.first_name + " " + current_research_user.last_name%>
     </div>
     
     <div class="field">
-      <%= f.label "Title of Project" %><br />
+      <span style="font-size:15px;color:#b80030">*</span><%= f.label "Title of Project" %><br />
       <%= f.text_field :title, :class => 'textField' %>
     </div>
     
     <div class="field">
-      <%= f.label "Research Keywords" %><br />
+      <span style="font-size:15px;color:#b80030">*</span><%= f.label "Keywords (separated by commas)" %><br />
       <%= f.text_field :keywords, :class => 'textField' %>
-    </div>
-    
-    <div class="field">
-      <%= f.label "General Description of Project" %><br />
-      <%= f.text_area :description, :class => 'textArea' %>
-    </div>
-    <div class="field">
-
-   <%= f.label "Department" %><br />
-      <%= f.select :department,  options_from_collection_for_select(@departments, "name", "name", @project_survey.department), :style => 
-      "width:100px;", :include_blank => true , :selected => nil %>
-
     </div>
 
   </div>
@@ -70,37 +76,54 @@
       <%= f.text_field :contact, :class => 'textField' %>
     </div>
     <div class="field">
-      <%= f.label "Email address" %><br />
-      <%= f.text_field :email, :class => 'textField' %>
+      <span style="font-size:15px;color:#b80030">*</span><%= f.label "Email address" %><br />
+      <%= f.text_field :email, :class => 'textField', :value => current_research_user.email %>
     </div>
     <div class="field">
       <%= f.label "Phone Number (optional)" %><br />
       <%= f.text_field :phone, :class => 'textField' %>
     </div>
 
-    <br />
-
   </div> <!-- End of sidebar -->
   
   <div id="bottom">
-  
+    <div class="field">
+      <span style="font-size:15px;color:#b80030">*</span><%= f.label "General Description of Project" %><br />
+      <%= f.text_area :description, :class => 'projectDesc' %>
+    </div>
+    <div class="field">
+
+   <span style="font-size:15px;color:#b80030">*</span><%= f.label "Department" %><br />
+      <%= f.select :department,  options_from_collection_for_select(@departments, "name", "name", @project_survey.department), :style => 
+      "width:100px;", :include_blank => "Select Department" , :selected => nil %>
+
+    </div>
+    <span style="color:#b80030;font-weight:bold;font-size:12px;">*denotes required field.</span>
+    <br />
+    <br />
+    <div class="button" id="formNextButton">Next</div>  
+</div> <!-- End Project FOrm div -->
+</div>
+</div>
+<div id = "positionForm" >
     <div id="lowerBottom"></div>
        <%= f.fields_for :positions do |builder| %>
         <%= render 'position_fields', f: builder %>
       <% end %>
       <%= link_to_add_fields "Add Additional Position", f, :positions %>
-
-  </div>
       <div class="baja">
-      
-
-      <div id="error_explanation" style="display:none;float:right;">
-</div>
-      <div id="actions" style="float:right;",  >
+        <br> 
+        <div id="error_explanation" style="display:none;float:right;"></div>
+          <div id="actions" style="float:left;">
+            <div class="button" id="positionBackButton">Back</div>
+          </div> 
+          <div id="actions" style="float:right;",  >
         
-        <%= f.submit "Post this Project", :onclick => "return validateForm()" %>
+           <%= f.submit "Post this Project", :onclick => "return validateForm()" %>
       </div>
     </div>
+  </div>
+
 
 <% end %>
-</wrap> <!-- end wrap div -->
+

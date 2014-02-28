@@ -14,11 +14,11 @@ $(function(){  // $(document).ready shorthand
 	
 	$('#formNextButton').click(function() 
 	{
-		if( validateForm() != true ) 
+		//if( validateForm() != true ) 
 		{
 
     	}
-    	else
+    	//else
     	{			    
 			$('#projectForm').hide();
     		$('#positionForm').fadeIn();

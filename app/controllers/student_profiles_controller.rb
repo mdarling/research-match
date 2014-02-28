@@ -37,7 +37,7 @@ class StudentProfilesController < ApplicationController
         format.json { render json: @student_profile }
       end
     else
-      redirect_to :home, alert: 'You must sign in to continue.' 
+      redirect_to :home, alert: 'You must signed in to continue.' 
     end
   end
 
@@ -45,7 +45,7 @@ class StudentProfilesController < ApplicationController
   def new
       if user_signed_in?
       if current_user.student_profile == nil 
-        @student_profile = current_user.student_profile.new
+        @student_profile = StudentProfile.new
     
         respond_to do |format|
         format.html # new.html.erb
@@ -74,7 +74,7 @@ class StudentProfilesController < ApplicationController
 
     respond_to do |format|
       if @student_profile.save
-        format.html { redirect_to @student_profile, notice: 'Student profile was successfully created.' }
+        format.html { redirect_to @student_profile, notice: 'Congratulations! Your profile has been subimitted to the database.  You will be notified when the system matches you to an open position.' }
         format.json { render action: 'show', status: :created, location: @student_profile }
       else
         format.html { render action: 'new' }

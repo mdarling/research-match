@@ -72,9 +72,9 @@
 
 	<% elsif user_signed_in? %>
 		<% if current_user.student_profile %>
-			<h1>Welcome <%= current_user.student_profile.first_name %> <%= current_user.student_profile.last_name %> </h1>
+			<h1><%= current_user.student_profile.first_name %> <%= current_user.student_profile.last_name %>` </h1>
 		<% else %>
-			<h1>Welcome New User, create a profile.</h1>
+			<h1>Welcome New User!  The next step is to create a profile.</h1>
 		<% end %>
 		<div id="lcell">
 			<% if current_user.student_profile %>
@@ -152,6 +152,10 @@
 	<% else %>
 		<h1>UNM's Research Opportunity Database.</h1>
 		<h4>Connecting students to research opportunities.</h4>
+		<p>
+			Welcome to UNM Research Matching Database! This database is designed to connect students who are looking for research opportunities and UNM faculty who seek student assistants in their research projects. The purpose of this program is to encourage current UNM students to engage in research, and to connect prospective students to research opportunities available to them at UNM.
+		</p>
+		<hr>
 		<div id="lcell">
 		<%= button_to "Researcher Sign Up", new_research_user_registration_path, :method => "get", :style => width %>
 			<%= button_to "Student Sign Up", new_user_registration_path, :method => "get", :style => width %>

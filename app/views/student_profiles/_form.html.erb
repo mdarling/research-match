@@ -1,58 +1,83 @@
-<%= form_for(@student_profile) do |f| %>
-  <% if @student_profile.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@student_profile.errors.count, "error") %> prohibited this student_profile from being saved:</h2>
+<div id="wrap">
+  <h1>Editing Profile</h1>
 
-      <ul>
-      <% @student_profile.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
+  <div id="header">
+    <%= form_for @student_profile, :validate => true do |f| %>
+        <% if @student_profile.errors.any? %>
+          <div id="error_explanation">
+              <h2><%= pluralize(@student_profile.errors.count, "error") %> prohibited this student profile from being saved:</h2>
+              <ul>
+            <% @student_profile.errors.full_messages.each do |msg| %>
+                <li><%= msg %></li>
+              <% end %>
+              </ul>
+          </div>
+        <% end %> <!-- End If -->
+  </div> <!-- End of header div -->
+  
+  <div id="nav">
+  </div>
+  
+  <div id="main">
+
+    <div class="field">
+      <span style="font-size:15px;color:#b80030">*</span>First Name<%= f.label " " %><br />
+      <%= f.text_field :first_name, :class => 'textField' %>
     </div>
-  <% end %>
+    <div class="field">
+      <span style="font-size:15px;color:#b80030">*</span>Last Name<%= f.label " " %><br />
+      <%= f.text_field :last_name, :class => 'textField' %>
+    </div>
+    <div class="field">
+      <span style="font-size:15px;color:#b80030">*</span><%= f.label :email %><br />
+      <%= f.text_field :email, :class => 'textField', :value => current_user.email %>
+    </div>
+    <div class="field">
+      <span style="font-size:15px;color:#b80030">*</span>Expected Graduation<%= f.label " " %><br />
+      <%= f.date_select :expected_graduation, :discard_day => true %>
+    </div>
+    <div class="field"> 
+      <span style="font-size:15px;color:#b80030">*</span>Academic Standing<%= f.label " " %><br />
+      <%= f.select :academic_level, options_for_select([["Select One", ""], "Freshman", "Sophomore", "Junior", "Senior", "Master's", "PhD", "Postdoc", "Highschool"], 
+      @student_profile.academic_level) %> 
+    </div>
+    <div class="field">
+      <span style="font-size:15px;color:#b80030">*</span><%= f.label "Department" %><br />
+      <%= f.select :department,  options_from_collection_for_select(Department.find(:all, :order => "name"), "name", "name",  @student_profile.department), :style => "width:100px;", :include_blank => true , :selected => nil %>
 
-  <div class="field">
-    <%= f.label :academic_level %><br>
-    <%= f.text_field :academic_level %>
-  </div>
-  <div class="field">
-    <%= f.label :email %><br>
-    <%= f.text_field :email %>
-  </div>
-  <div class="field">
-    <%= f.label :expected_graduation %><br>
-    <%= f.date_select :expected_graduation %>
-  </div>
-  <div class="field">
-    <%= f.label :first_name %><br>
-    <%= f.text_field :first_name %>
-  </div>
-  <div class="field">
-    <%= f.label :interests %><br>
-    <%= f.text_area :interests %>
-  </div>
-  <div class="field">
-    <%= f.label :last_name %><br>
-    <%= f.text_field :last_name %>
-  </div>
-  <div class="field">
-    <%= f.label :major %><br>
-    <%= f.text_area :major %>
-  </div>
-  <div class="field">
-    <%= f.label :minor %><br>
-    <%= f.text_area :minor %>
-  </div>
-  <div class="field">
-    <%= f.label :department %><br>
-    <%= f.text_field :department %>
-  </div>
-  <div class="field">
-    <%= f.label :experience %><br>
-    <%= f.text_area :experience %>
-  </div>
+    </div>
+    
+  </div> <!-- End of main div -->
+  
+  <div id="sidebar">
+      <div class="field">
+      <span style="font-size:15px;color:#b80030">*</span><%= f.label :major %><br />
+      <%= f.text_field :major, :class => 'textField' %>
+    </div>
+    <div class="field">
+      <%= f.label :minor %><br />
+      <%= f.text_field :minor, :class => 'textField' %>
+    </div>
+    <div class="field">
+       <span style="font-size:15px;color:#b80030">**</span><%= f.label "Research Interest Keywords (Separated by commas)" %><br />
+       <%= f.text_area :interests, :class => 'textArea' %>
+    </div>
+        <div class="field">
+       Previous Research Experience<%= f.label " " %><br />
+       <%= f.text_area :experience, :class => 'textArea' %>
+    </div>
 
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+
+    
+  </div> <!-- End of sidebar div -->
+
+  <div id="bottom">
+      <span style="color:#b80030;font-weight:bold;font-size:12px;">*</span>denotes required field.<br />
+   <span style="color:#b80030;font-weight:bold;font-size:12px;">**</span>  Recommended: By listing research interests you will guide the system to match you to a preferred project.  Furthermore, researchers will be more likely to hire you if you show interest in their field.  For keyword ideas view the list of <%= link_to "current projects", project_surveys_path, :target => "_blank" %>.
+   <hr>
+    <%= f.submit "Update Profile" %>
+  </div> <!-- End of bottom div -->
+  
+</div> <!-- End of wrapper class -->
 <% end %>
+

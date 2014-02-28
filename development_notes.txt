@@ -15,6 +15,9 @@ postgres=# \password
 postgres=# create user guy_on_stackoverflow with password 'keepitonthedl';
 postgres=# create database dcaclab_development owner guy_on_stackoverflow;
 
+Start PG Server on mac: 
+pg_ctl -D /usr/local/var/postgres -l /usr/local/var/postgres/server.log start
+
 Heroku Setup:
 https://devcenter.heroku.com/articles/getting-started-with-rails4
 
