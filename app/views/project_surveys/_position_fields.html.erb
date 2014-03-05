@@ -3,16 +3,16 @@
         <h5><span style="font-size:15px;color:#b80030">*</span>What type of students will you require for this 
       position? (Check all that apply).</h5><br>
     <div class="field">
-      <%= f.check_box :is_undergrad %>
+      <%= f.check_box :is_undergrad, {}, '1', '0' %>
       <%= f.label "Undergraduate" %>
       <b>|</b>
-      <%= f.check_box :is_grad %>
+      <%= f.check_box :is_grad, {}, '1', '0' %>
       <%= f.label "Graduate"%>
       <b>|</b>
-      <%= f.check_box :is_phd %>
-      PhD<%= f.label " "%>
+      <%= f.check_box :is_postdoc, {}, '1', '0' %>
+      <%= f.label "Postdoc"%>
       <b>|</b>
-      <%= f.check_box :is_highschool %>
+      <%= f.check_box :is_highschool, {}, '1', '0' %>
       <%= f.label "Highschool" %>
     </div>
     <div class="field">

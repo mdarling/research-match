@@ -10,5 +10,6 @@ class StudentProfile < ActiveRecord::Base
 	validates_presence_of :email
 	
 	belongs_to :user
+	has_many :matched_students
 	
 end
