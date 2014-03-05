@@ -1,5 +1,5 @@
 class ResearchererMailer < ActionMailer::Base
-  default :from => "ryan@railscasts.com"
+  default :from => "research-match.unm.edu"
 
   def matched_students_notification(project_survey)
   	@project_survey = project_survey
