@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140228211716) do
+ActiveRecord::Schema.define(version: 20140306013924) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -46,6 +46,7 @@ ActiveRecord::Schema.define(version: 20140228211716) do
     t.datetime "updated_at"
     t.integer  "student_profile_id"
     t.integer  "position_id"
+    t.boolean  "was_emailed",        default: false
   end
 
   create_table "positions", force: true do |t|

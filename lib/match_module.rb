@@ -1,5 +1,12 @@
 module MatchModule
-	#This function iterates over all projects and matches qualified students
+	
+  #This function looks in the matched students table for users that need to be emailed.  This function is called by the heroku shceduler.
+  def email_researchers
+    puts "hello world"
+  end
+
+
+  #This function iterates over all projects and matches qualified students
   def student_match
 
   	@projects = ProjectSurvey.all
@@ -73,7 +80,7 @@ module MatchModule
 
   			if MatchedStudents.where( :position_id => position.id, :student_profile_id => student.id ).blank?
   				match = MatchedStudents.new( position: position, student_profile: student ).save
-  				ResearchererMailer.matched_students_notification(position.project_survey).deliver
+  				ResearchererMailer.matchhed_students_notification(position.project_survey, student).deliver
   			end
   				
   				#match.position = position
@@ -86,4 +93,4 @@ module MatchModule
   	end #end project.each do
 
   end #student_match method
-end
+end #end module
