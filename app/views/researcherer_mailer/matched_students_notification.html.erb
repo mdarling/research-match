@@ -1,0 +1,28 @@
+
+
+<%= @contact %>,
+
+
+The following students matched to your project(s):
+
+
+<h1>Matched Students:</h1>
+<table>
+	<tr>
+		<th>Project Title</th>
+		<th>Student Name</th>
+		<th>Student's Profile</th>
+	</tr>
+
+	<% @student_matches.each do |match| %>
+	<tr>
+		<% position = Position.find(match.position_id) %>
+		<% student = StudentProfile.find(match.student_profile_id) %>
+		<td><%= position.project_survey %></td>
+		<td><%= student.first_name + " " + student.last_name %></td>
+		<td> <%= link_to "Profile", student_profile_url(student), :confirm => "Are you sure?", :method => :delete %></td>
+	</tr>
+	<% end %>
+</table>
+
+Please email these student if you'd like to hire them.

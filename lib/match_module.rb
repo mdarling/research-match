@@ -4,22 +4,31 @@ module MatchModule
   def email_researchers
     puts "hello world"
 
-    matched_students = MatchedStudents.where( :was_emailed => false )
+    researchers = ResearchUser.all
 
-    matched_students.each do |matched_student|
-      position = Position.find( matched_student.position_id )
-      student = StudentProfile.where( matched_student.student_profile_id )
+    researchers.each do |researcher|
+      research_user_positions = []
+      student_matches = []
+      projects = researcher.project_surveys
 
-      ResearchererMailer.matched_students_notification(position.project_survey, student).deliver
-      matched_student.was_emailed = true
-      matched_student.save
-    end #matched_students each do
+      projects.each do |project|
+        research_user_positions += project.positions #this array will be the collection of all positions that belong to a particular research user
 
+        research_user_positions.each do |research_user_position|
+          student_matches += MatchedStudents.where( :position_id => research_user_position.id, :was_emailed => false ) #This array contains all the student matches that have positions that belong to this researcher
 
-
-
-    ResearchererMailer.matched_students_notification(position.project_survey, student).deliver
-  end
+          student_matches.each do |matched_student|
+            matched_student.was_emailed = true
+            matched_student.save
+          end #end student matches each do
+        end #end research_user_positions each do
+      end#end projects each do
+     
+      if student_matches
+        ResearchererMailer.matched_students_notification(student_matches).deliver
+      end #if student_matches
+    end#end researchers each do
+  end#email_researchers function
 
 
   #This function iterates over all projects and matches qualified students
