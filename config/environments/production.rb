@@ -49,7 +49,7 @@ Matcher::Application.configure do
   # config.log_tags = [ :subdomain, :uuid ]
 
   # Added as per devise install instructions
-  config.action_mailer.default_url_options = { :host => 'fierce-shore-9463.herokuapp.com' }
+  config.action_mailer.default_url_options = { :host => 'unm-research-match.herokuapp.com' }
 
   # Use a different logger for distributed setups.
   # config.logger = ActiveSupport::TaggedLogging.new(SyslogLogger.new)
