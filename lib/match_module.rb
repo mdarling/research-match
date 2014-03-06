@@ -3,6 +3,22 @@ module MatchModule
   #This function looks in the matched students table for users that need to be emailed.  This function is called by the heroku shceduler.
   def email_researchers
     puts "hello world"
+
+    matched_students = MatchedStudents.where( :was_emailed => false )
+
+    matched_students.each do |matched_student|
+      position = Position.find( matched_student.position_id )
+      student = StudentProfile.where( matched_student.student_profile_id )
+
+      ResearchererMailer.matched_students_notification(position.project_survey, student).deliver
+      matched_student.was_emailed = true
+      matched_student.save
+    end #matched_students each do
+
+
+
+
+    ResearchererMailer.matched_students_notification(position.project_survey, student).deliver
   end
 
 
@@ -80,7 +96,7 @@ module MatchModule
 
   			if MatchedStudents.where( :position_id => position.id, :student_profile_id => student.id ).blank?
   				match = MatchedStudents.new( position: position, student_profile: student ).save
-  				ResearchererMailer.matchhed_students_notification(position.project_survey, student).deliver
+  				
   			end
   				
   				#match.position = position
