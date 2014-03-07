@@ -25,7 +25,7 @@ module MatchModule
       end#end projects each do
      
       if student_matches.any?
-        ResearchererMailer.matched_students_notification(student_matches).deliver
+        ResearchererMailer.matched_students_notification(researcher, student_matches).deliver
       end #if student_matches
     end#end researchers each do
   end#email_researchers function

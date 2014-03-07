@@ -1,7 +1,7 @@
 class ResearchererMailer < ActionMailer::Base
   default :from => "research-match.unm.edu"
 
-  def matched_students_notification(student_matches)
+  def matched_students_notification(research_user, student_matches)
    	@student_matches = student_matches
 
     @contact = ""
@@ -12,7 +12,7 @@ class ResearchererMailer < ActionMailer::Base
     # 	@contact = project_survey.researcher
     # end
     # contact = @contact
-    email = "amrit914@gmail.com"
+    email = researcher_user.email
     mail(:to => email, :subject => "Students Matched To Your Project")
   end
 
