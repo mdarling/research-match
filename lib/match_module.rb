@@ -24,7 +24,7 @@ module MatchModule
         end #end research_user_positions each do
       end#end projects each do
      
-      if student_matches.empty?
+      if student_matches.any?
         ResearchererMailer.matched_students_notification(student_matches).deliver
       end #if student_matches
     end#end researchers each do
