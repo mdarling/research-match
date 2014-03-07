@@ -33,7 +33,7 @@ class ProjectSurveysController < ApplicationController
   # GET /project_surveys/new
   def new
     @project_survey = ProjectSurvey.new
-    position = @project_survey.positions.build
+    #position = @project_survey.positions.build
     @departments = Department.all(:order => "name")
         i = 0 
     @positions = []
@@ -41,7 +41,9 @@ class ProjectSurveysController < ApplicationController
       @positions << p
       i = i + 1
     end
-
+    if @positions.empty?
+      @positions = nil
+    end
     @positions_index = -1
   end
 
@@ -75,6 +77,12 @@ class ProjectSurveysController < ApplicationController
     @project_survey.research_user_id = @user.id
     department = Department.where( :name => @project_survey.department )
     @project_survey.department_id = department.first.id
+
+    positions = @project_survey.positions
+
+    positions.each do |position|
+      position.research_user_id = @user.id
+    end
 
     respond_to do |format|
       if @project_survey.save
@@ -120,6 +128,7 @@ class ProjectSurveysController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def project_survey_params
       params.require(:project_survey).permit(:department_id, :department, :email, :phone, :description, :title, :keywords, :researcher, :contact, :user_id, :is_contactable,
-            positions_attributes: [:id, :description, :major, :gpa, :project_survey_id, :record_begin, :record_end, :skills, :standing, :work_period, :payment, :is_undergrad, :is_grad, :is_postdoc, :is_highschool, :_destroy] )
+            :positions_attributes [:id, :description, :major, :gpa, :project_survey_id, :record_begin, :record_end, :skills, :standing, :work_period, :payment, 
+              :is_undergrad, :is_grad, :is_postdoc, :is_highschool, :_destroy, :research_user_id] )
     end
 end

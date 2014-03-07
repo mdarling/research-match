@@ -15,10 +15,16 @@
       <%= f.check_box :is_highschool, {}, '1', '0' %>
       <%= f.label "Highschool" %>
     </div>
+
     <div class="field">
       <span style="font-size:15px;color:#b80030">*</span><%= f.label "Preferred Major"%><br>
+      <% if @positions != nil %>
         <%= f.select :major,  options_from_collection_for_select(@departments, "name", "name", @positions[@positions_index].major ), :style => 
         "width:100px;", :include_blank => "Select Department" , :selected => nil %>
+      <% else %>
+        <%= f.select :major,  options_from_collection_for_select(@departments, "name", "name"), :style => 
+        "width:100px;", :include_blank => "Select Department" , :selected => nil %>
+      <% end %>
     </div>
   <div id="main">
 
@@ -48,9 +54,14 @@
       <%= f.text_area :skills, :class => 'textArea' %>
     </div>
     <div class="field">
+      <% if @positions != nil %>
       <span style="font-size:15px;color:#b80030">*</span><%= f.label "Preferred standing for undergraduates" %><br>
-      <%= f.select :standing, options_for_select([["Select One", ""], "Freshman", "Sophomore", "Junior", "Senior"], @positions[@positions_index].standing) %>
-      <% @positions_index = @positions_index + 1 %>
+        <%= f.select :standing, options_for_select([["Select One", ""], "Freshman", "Sophomore", "Junior", "Senior"], @positions[@positions_index].standing) %>
+        <% @positions_index = @positions_index + 1 %>
+      <% else %>
+        <span style="font-size:15px;color:#b80030">*</span><%= f.label "Preferred standing for undergraduates" %><br>
+        <%= f.select :standing, options_for_select([["Select One", ""], "Freshman", "Sophomore", "Junior", "Senior"]) %>
+      <% end%>
       <div class="field">
       <span style="font-size:15px;color:#b80030">*</span><%= f.label "When should this position be posted?" %><br>
       <%= f.date_select :record_begin %>

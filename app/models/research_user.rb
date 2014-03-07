@@ -13,4 +13,5 @@ class ResearchUser < ActiveRecord::Base
   validates_format_of :email, :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+unm.edu)|unm.edu\Z/i, :message => "must be a valid UNM address."
     
   has_many :project_surveys
+  has_many :positions
 end
