@@ -12,10 +12,10 @@
     </div>
   <% end %>
   
-  <h3>This form will guide you to to set up a project for the database.</h3>
+  <h3>This form will guide you to set up a project for the database.</h3>
   <hr>
 
-  There are two configurations for the system.  The first configuration allows students to contact you in they are interested in your project.  The second configuration notifies you when qualified students match your project, but does not allow students to contact you.  Therefore, you would be able to those students who you are interested in hiring.
+  There are two configurations for the system.  The first configuration allows students to contact you in they are interested in your project.  The second configuration notifies you when qualified students match your project, but does not allow students to contact you.  Therefore, you would be able to contact those students who you are interested in hiring.
   <br />
   <br />
   <div class="field">
@@ -24,7 +24,7 @@
   </div>
   <div class="field"> 
     <%= f.radio_button :is_contactable, false, :checked => (@project_survey.is_contactable == false ), :value => false %>
-    <%= f.label :is_contactable, "No, I want only want the system to notify me of qualified students.", :checked => (@project_survey.is_contactable == false ) %>
+    <%= f.label :is_contactable, "No, I only want the system to notify me of qualified students.", :checked => (@project_survey.is_contactable == false ) %>
   </div>
   <hr>
   <div class="button" id ="introButton" style="">Next</div>
