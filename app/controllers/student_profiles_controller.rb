@@ -117,7 +117,7 @@ class StudentProfilesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def student_profile_params
-      params.require(:student_profile).permit(:academic_level, :email, :expected_graduation, :first_name, :interests, :last_name, :major, :minor, :department, :experience, :user_id)
+      params.require(:student_profile).permit(:academic_level, :email, :expected_graduation, :first_name, :interests, :last_name, :major, :minor, :department, :experience, :user_id, :is_enrolled)
     end
 
     def check_edit_access

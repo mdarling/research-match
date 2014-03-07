@@ -42,6 +42,10 @@
       @student_profile.academic_level) %> 
     </div>
     <div class="field">
+      <span style="font-size:15px;color:#b80030">*</span><%= f.label :gpa %><br />
+      <%= f.text_field :gpa, :class => 'gpaField' %>
+    </div>
+    <div class="field">
       <span style="font-size:15px;color:#b80030">*</span><%= f.label "Department" %><br />
       <%= f.select :department,  options_from_collection_for_select(Department.find(:all, :order => "name"), "name", "name",  @student_profile.department), :style => "width:100px;", :include_blank => true , :selected => nil %>
 
@@ -58,17 +62,23 @@
       <%= f.label :minor %><br />
       <%= f.text_field :minor, :class => 'textField' %>
     </div>
+
     <div class="field">
-       <span style="font-size:15px;color:#b80030">**</span><%= f.label "Research Interest Keywords (Separated by commas)" %><br />
+       <span style="font-size:15px;color:#b80030">**</span><%= f.label "Research Interest Keywords" %><br /> (Separated by commas)
        <%= f.text_area :interests, :class => 'textArea' %>
     </div>
         <div class="field">
        Previous Research Experience<%= f.label " " %><br />
        <%= f.text_area :experience, :class => 'textArea' %>
     </div>
+    <span style="font-size:15px;color:#b80030">*</span><b>Are you currently enrolled at UNM?</b>
+    <div class="field">
+      <%= f.radio_button :is_enrolled, true, :checked => (@student_profile.is_enrolled == true), :value => true %>
+      <%= f.label :is_contactable, "Yes" %>
+      <%= f.radio_button :is_enrolled, false, :checked => (@student_profile.is_enrolled == false ), :value => false %>
+      <%= f.label :is_enrolled, "No" %>
+    </div>
 
-
-    
   </div> <!-- End of sidebar div -->
 
   <div id="bottom">

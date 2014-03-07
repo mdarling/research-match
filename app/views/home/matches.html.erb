@@ -1,30 +1,48 @@
 <% if @project_surveys.length > 0 %>
 		<div id="bottom">
-					
-		<h1>Your Current Projects:</h1>
-		<hr>
 
 			<% @project_surveys.each do |project_survey| %>
-				<table>
-				<tr>
-					<th>Project Title</th>
-					<th>Project Description</th>
+				
+				<% positions = project_survey.positions %>
+				<% matched_students = [] %>
+				<% positions.each do |position| %>
+					<% matched_students += MatchedStudents.where( :position_id => position.id ) %>
+				<% end %> <!--positions each do -->
+				<% if matched_students %>
+					
+					<table>
+					<tr><h2 style="color:#b80030">Students who have matched to <%=  project_survey.title %><h2></tr>
+					<tr>
+						<th>Name</th>
+						<th>Major</th>
+						<th>GPA</th>
+						<th>View Profile</th>	
+						<th>Reject</th>
+					</tr>
+					
+				<% end %> <!-- if positions each do -->
+				<% matched_students.each do |matched_student| %>
+					<% student = StudentProfile.find(matched_student.student_profile_id)%>
+					
+					<tr>
+						<td><%= student.first_name + " " + student.last_name %></td>
+						<td><%= student.major %></td>
+						<td><%= student.gpa %></td>
+						<td><%= link_to 'Profile', student_profile_path(student) %></td>
+						<td>Reject</td>
+					</tr>
 
-					<th>Show</th>
-					<th>Edit</th>	
-					<th>Destroy</th>
-				</tr>
-				<tr>
-					<td><%= project_survey.title %></td>
-					<td><%= project_survey.description %></td>
-					<td><%= link_to 'Show', project_survey_path(project_survey) %></td>
-					<td><%= link_to 'Edit', edit_project_survey_path(project_survey) %></td>
-					<td><%= link_to 'Destroy', project_survey, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-				</tr>
+				<% end %> <!-- matched students each do -->
 				</table>
 				<br />
-			<% end %>
-
+				<td><%= link_to 'View Project Page', project_survey_path(project_survey) %></td>
+				<td><%= link_to 'Edit Project', edit_project_survey_path(project_survey) %></td>
+				<td><%= link_to 'Destory Project', project_survey, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+				<br />
+				<hr>
+				<br />
+			<% end %><!-- project each do -->
+			
 			<br />
 		</div><!--div id = bottom -->
 <% end %> <!-- if @project_surveys -->

@@ -4,8 +4,12 @@ class HomeController < ApplicationController
 
   end
   def matches
-  	@project_surveys = ProjectSurvey.where( :research_user_id => current_research_user )
-  	
+  	if research_user_signed_in?
+  		@project_surveys = ProjectSurvey.where( :research_user_id => current_research_user )
+
+  	else
+  		redirect_to :home, notice: 'Access Denied.' 
+  	end
   end
   
   def researchers

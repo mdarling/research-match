@@ -1,7 +1,7 @@
 <fieldset>
   <div id = "wrap">  
         <h5><span style="font-size:15px;color:#b80030">*</span>What type of students will you require for this 
-      position? (Check all that apply).</h5><br>
+      position? (Check all that apply).</h5>
     <div class="field">
       <%= f.check_box :is_undergrad, {}, '1', '0' %>
       <%= f.label "Undergraduate" %>
@@ -15,7 +15,7 @@
       <%= f.check_box :is_highschool, {}, '1', '0' %>
       <%= f.label "Highschool" %>
     </div>
-
+    <br />
     <div class="field">
       <span style="font-size:15px;color:#b80030">*</span><%= f.label "Preferred Major"%><br>
       <% if @positions != nil %>
@@ -44,6 +44,15 @@
       <%= f.label "Will this position provide compensation?" %><br>
       <%= f.text_field :payment, :class => 'textField' %>
     </div>
+    <div class="field">
+      <% if @positions != nil %>
+      <span style="font-size:15px;color:#b80030">*</span><%= f.label "Is this a paid position?" %><br>
+        <%= f.select :payment, options_for_select([["Select One", ""], "Yes", "No", "Academic Credit"], @positions[@positions_index].payment) %>
+      <% else %>
+        <span style="font-size:15px;color:#b80030">*</span><%= f.label "Is this a paid position?" %><br>
+        <%= f.select :payment, options_for_select([["Select One", ""], "Yes", "No", "Academic Credit"]) %>
+      <% end%>
+    </div>
        <%= f.hidden_field :_destroy %>
        <%= link_to "Remove this Position", '#', class: "remove_fields" %>
   </div><!-- End Main div -->
@@ -62,6 +71,7 @@
         <span style="font-size:15px;color:#b80030">*</span><%= f.label "Preferred standing for undergraduates" %><br>
         <%= f.select :standing, options_for_select([["Select One", ""], "Freshman", "Sophomore", "Junior", "Senior"]) %>
       <% end%>
+    </div>
       <div class="field">
       <span style="font-size:15px;color:#b80030">*</span><%= f.label "When should this position be posted?" %><br>
       <%= f.date_select :record_begin %>

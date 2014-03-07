@@ -48,4 +48,13 @@
   <b>Experience:</b>
   <%= @student_profile.experience %>
 </p>
+
 <% end %>
+<p>
+  <b>Currently Enrolled at UNM:</b> 
+  <% if @student_profile.is_enrolled %>
+    Yes
+  <% else %>
+    No
+  <% end %>
+</p>

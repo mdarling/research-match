@@ -20,7 +20,7 @@
 	<% elsif research_user_signed_in? %>
 
 				<div id="lcell">
-					<%= button_to "View Matches", student_profiles_path, :method => "get", :style => width %>
+					<%= button_to "View Matches", home_matches_path, :method => "get", :style => width %>
 					<%= button_to "View All Scholars' Profiles", student_profiles_path, :method => "get", :style => width %>
 					<%= button_to "View All Projects", project_surveys_path, :method => "get", :style => width %>
 					<%= button_to "Submit New Project", new_project_survey_path, :method => "get", :style => width %>
@@ -45,12 +45,39 @@
 						<h5>End this session.</h5> 
 					</div>
 				</div>
-	
+				<% if @project_surveys.length > 0 %>
+				<div id="bottom">
+					<hr>
+					<h1>Your Current Projects:</h1>
+					<table>
+				<tr>
+					<th>Project Title</th>
+					<th>Project Description</th>
+
+					<th>Show</th>
+					<th>Edit</th>
+					<th>Destroy</th>
+				</tr>
+
+			<% @project_surveys.each do |project_survey| %>
+				<tr>
+					<td><%= project_survey.title %></td>
+					<td><%= project_survey.description %></td>
+					<td><%= link_to 'Show', project_survey_path(project_survey) %></td>
+					<td><%= link_to 'Edit', edit_project_survey_path(project_survey) %></td>
+					<td><%= link_to 'Destroy', project_survey, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+				</tr>
+			<% end %>
+			</table>
+
+			<br />
+				</div>
+			<% end %> <!-- if @project_surveys -->
 			
 
 	<% elsif user_signed_in? %>
 		<% if current_user.student_profile %>
-			<h1><%= current_user.student_profile.first_name %> <%= current_user.student_profile.last_name %>` </h1>
+			<h1><%= current_user.student_profile.first_name %> <%= current_user.student_profile.last_name %> </h1>
 		<% else %>
 			<h1>Welcome New User!  The next step is to create a profile.</h1>
 		<% end %>
@@ -104,6 +131,7 @@
 					<%= @student_profile.academic_level %>
 				</p>
 
+
 				<p>
 					<b>Major:</b>
 					<%= @student_profile.major %>
@@ -122,6 +150,18 @@
 				<p>
 					<b>Interests:</b>
 					<%= @student_profile.interests %>
+				</p>
+				<p>
+					<b>GPA:</b>
+					<%= @student_profile.gpa %>
+				</p>
+				<p>
+					<b>Currently Enrolled at UNM:</b>	
+					<% if @student_profile.is_enrolled %>
+						Yes
+					<% else %>
+						No
+					<% end %>
 				</p>
 				<hr>
 			</div>

@@ -33,7 +33,7 @@ class ProjectSurveysController < ApplicationController
   # GET /project_surveys/new
   def new
     @project_survey = ProjectSurvey.new
-    #position = @project_survey.positions.build
+    position = @project_survey.positions.build
     @departments = Department.all(:order => "name")
         i = 0 
     @positions = []
@@ -114,7 +114,7 @@ class ProjectSurveysController < ApplicationController
   def destroy
     @project_survey.destroy
     respond_to do |format|
-      format.html { redirect_to project_surveys_url }
+      format.html { redirect_to home_matches_url }
       format.json { head :no_content }
     end
   end
