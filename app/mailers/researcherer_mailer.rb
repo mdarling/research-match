@@ -12,7 +12,7 @@ class ResearchererMailer < ActionMailer::Base
     # 	@contact = project_survey.researcher
     # end
     # contact = @contact
-    email = researcher_user.email
+    email = research_user.email
     mail(:to => email, :subject => "Students Matched To Your Project")
   end
 
