@@ -54,7 +54,8 @@ gem 'devise'
 gem 'rails_12factor', group: :production
 
 #For using CSS in HTML Emails
-gem 'roadie'
+
+gem 'premailer-rails'
 
 # Use Capistrano for deployment
 # gem 'capistrano', group: :development
