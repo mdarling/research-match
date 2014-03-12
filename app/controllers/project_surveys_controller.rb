@@ -34,6 +34,7 @@ class ProjectSurveysController < ApplicationController
   def new
     @project_survey = ProjectSurvey.new
     position = @project_survey.positions.build
+
     @departments = Department.all(:order => "name")
         i = 0 
     @positions = []

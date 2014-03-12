@@ -53,6 +53,9 @@ gem 'devise'
 #Essential Heroku features
 gem 'rails_12factor', group: :production
 
+#For using CSS in HTML Emails
+gem 'roadie'
+
 # Use Capistrano for deployment
 # gem 'capistrano', group: :development
 
