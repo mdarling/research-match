@@ -14,5 +14,3 @@ ActionMailer::Base.smtp_settings = {
   :enable_starttls_auto => true
 }
 
-config.action_controller.asset_host =
-config.action_mailer.asset_host     = 'http://your.asset.host.com'
