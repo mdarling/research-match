@@ -50,12 +50,14 @@ gem 'unicorn'
 #Devise plugin for user model
 gem 'devise'
 
-#Essential Heroku features
-gem 'rails_12factor', group: :production
-
 #For using CSS in HTML Emails
 gem 'hpricot'
 gem 'premailer-rails'
+
+#Essential Heroku features
+gem 'rails_12factor', group: :production
+
+
 
 # Use Capistrano for deployment
 # gem 'capistrano', group: :development
