@@ -1,5 +1,5 @@
 class ResearchererMailer < ActionMailer::Base
-  default :from => "research-match.unm.edu"
+  default :from => "research-match@unm.edu"
 
   def matched_students_notification(research_user, student_matches)
    	@student_matches = student_matches
