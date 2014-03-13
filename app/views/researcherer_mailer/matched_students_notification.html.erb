@@ -1,20 +1,16 @@
+<link href="https://webcore.unm.edu/v1/css/styles.php" media="screen" rel="stylesheet" 			type="text/css" />
 
-	<link href="https://webcore.unm.edu/v1/css/styles.php" media="screen" rel="stylesheet" 			type="text/css" />
+<%= link_to image_tag('unm-logo.gif'), 'http://research-match.unm.edu' %>
+<h1>Research-Match@UNM<h1>
 
+<h2>Good morning <%= @contact %>, The following students matched to your project(s):<h2>
 
-
-<%= @contact %>,
-
-
-The following students matched to your project(s):
-
-
-<h1>Matched Students:</h1>
+<h2>Matched Students:</h2>
 <table>
 	<tr>
-		<th>Project Title</th>
-		<th>Student Name</th>
-		<th>Student's Profile</th>
+		<td><b>Project Title</b></td>
+		<td><b>Student Name</b></td>
+		<td><b>Student's Profile></b></td>
 	</tr>
 
 	<% @student_matches.each do |match| %>
@@ -28,4 +24,4 @@ The following students matched to your project(s):
 	<% end %>
 </table>
 
-Please email these student if you'd like to hire them.
+<h3>Please contact these students if you're interested in hiring them.</h3>
