@@ -98,5 +98,13 @@ function contentFadeIn()
 
 }
 
-$(document).on( 'page:change', facebox.settings.inited = true)
+$(document).on('page:change', faceboxInit);
+
+function faceboxInit()
+{
+  
+  $('.facebox').settings.inited = false;
+
+}
+
 
