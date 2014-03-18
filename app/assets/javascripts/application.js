@@ -103,7 +103,7 @@ $(document).on('page:change', faceboxInit);
 function faceboxInit()
 {
   
-  $('.facebox').settings.inited = false;
+  $.facebox.settings.inited = false;
 
 }
 
