@@ -98,5 +98,5 @@ function contentFadeIn()
 
 }
 
-$(document).on( 'page:change', facebox.settings.inited = false)
+$(document).on( 'page:load', facebox.settings.inited = false)
 
