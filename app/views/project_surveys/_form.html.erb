@@ -107,7 +107,9 @@
 </div>
 </div>
 <div id = "positionForm" >
+          <p>Below is a form to specify what kinds of students you would like to hire for your project.  You can be as general or specific as you like.  The more general your specifications are, the more likely it is that the system will match students to your project.  If you are more particular about your needs, the system is more likely to find the "perfect" student for you.  If you need to identify more than one specific position, you can click on the "add aditional position" link.</p>
     <div id="lowerBottom"></div>
+
        <%= f.fields_for :positions do |builder| %>
         <%= render 'position_fields', f: builder %>
       <% end %>

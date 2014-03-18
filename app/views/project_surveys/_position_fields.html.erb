@@ -1,6 +1,6 @@
 <fieldset>
   <div id = "wrap">  
-        <p>Below is a form to specify what kinds of students you would like to hire for your project.  You can be as general or specific as you like.  The more general your specifications are, the more likely it is that the system will match students to your project.  If you are more particular about your needs, the system is more likely to find the "perfect" student for you.  If you need to identify more than one specific position, you can click on the "add aditional position" link.</p>
+
        <b> What type of students will you require for this 
       position? (Check all that apply).<%= link_to image_tag('question.png'), '#student_type_help', :rel => "facebox"  %><br>
       <div id="student_type_help" style="display:none;"><h4>Student Types</h4>The system will restrict matches to the types of students you select here.  If you don't select any, the system will match all students, of any standing, who have interests in your area.</div></b>
@@ -74,11 +74,11 @@
       <% if @positions != nil %>
       <%= f.label "Preferred standing for undergraduates" %><%= link_to image_tag('question.png'), '#undergrad_help', :rel => "facebox"  %><br>
       <div id="undergrad_help" style="display:none;"><h4>Undergraduate Standing</h4>If you haven't clicked the undergraduate checkbox, there's no need to change this selection.</div>
-        <%= f.select :standing, options_for_select([["Select One"],"Freshman", "Sophomore", "Junior", "Senior"], @positions[@positions_index].standing) %>
+        <%= f.select :standing, options_for_select([["Select One", ""],"Freshman", "Sophomore", "Junior", "Senior"], @positions[@positions_index].standing) %>
         <% @positions_index = @positions_index + 1 %>
       <% else %>
         <span style="font-size:15px;color:#b80030">*</span><%= f.label "Preferred standing for undergraduates" %><br>
-        <%= f.select :standing, options_for_select([["Select One"],"Freshman", "Sophomore", "Junior", "Senior"]) %>
+        <%= f.select :standing, options_for_select([["Select One", ""],"Freshman", "Sophomore", "Junior", "Senior"]) %>
       <% end%>
     </div>
       <div class="field">
