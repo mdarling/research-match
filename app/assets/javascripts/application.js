@@ -16,6 +16,7 @@
 //= require_tree .
 //= require project_survey.validations
 //= require multistep
+//= require facebox
 
 $(function(){  // $(document).ready shorthand
 	
@@ -51,10 +52,12 @@ $(function(){  // $(document).ready shorthand
   });
   
 	
- $('.projectTitle').click(function() {
+  $('.projectTitle').click(function() {
     $('.editProjectSurvey').slideToggle();
 	});
-	
+
+ $('a[rel*=facebox]').facebox()
+
 
 });
 
@@ -83,6 +86,7 @@ $(function(){  // $(document).ready shorthand
     });
   });
   
+
 });
 
 
@@ -93,4 +97,6 @@ function contentFadeIn()
   $('#content').animate({opacity: 1}, 1000);
 
 }
+
+$(document).on( 'page:change', facebox.settings.inited = false)
 

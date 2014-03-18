@@ -57,7 +57,8 @@ gem 'premailer-rails'
 #Essential Heroku features
 gem 'rails_12factor', group: :production
 
-
+#Pop help
+gem 'facebox-rails'
 
 # Use Capistrano for deployment
 # gem 'capistrano', group: :development

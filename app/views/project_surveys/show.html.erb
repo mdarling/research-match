@@ -3,7 +3,11 @@
 
   <div id="nav">
     <h1><%= @project_survey.title %></h1>
+
     <h3><%= @project_survey.department %></h3>
+        <% if research_user_signed_in? && @project_survey.research_user_id = current_research_user.id %>
+    <%= link_to 'Edit This Project', edit_project_survey_path(@project_survey) %>  
+  <% end %>
   </div> <!-- End of nav div -->
     <hr>
   <div id="projectMain" >
@@ -51,7 +55,7 @@
   <br />
   <br />
   
-  <h1 style="font-size:130%">Available Positions</h1>
+  <h1 style="font-size:130%">Summary of Position Positings</h1>
 
   <% @project_survey.positions.each do |position| %>
 
@@ -63,23 +67,23 @@
     <div id = "projectBaja">
 
         <p>
-          <b>Students should apply if they will of the following standing by the start of the work period:</b>
+          Students should should have the following standing(s).
             <br />
-            <% if position.is_undergrad %>&#8226; Undergraduate<br /><% end %>
-            <% if position.is_grad %>&#8226; Graduate<br /><% end %>
-            <% if position.is_postdoc  %>&#8226; Postdoc <br /><% end %>
-            <% if position.is_highschool  %>&#8226; Highschool <br /><% end %>
+            <% if position.is_undergrad %>&#8226; <b>Undergraduate</b><br /><% end %>
+            <% if position.is_grad %>&#8226; <b>Graduate<</b>br /><% end %>
+            <% if position.is_postdoc  %>&#8226; <b>Postdoc</b> <br /><% end %>
+            <% if position.is_highschool  %>&#8226; <b>Highschool</b> <br /><% end %>
 
         </p>  
 
         <% if position.standing != "" %>
           <p>  
-            <b>Undergraduate students should be at least a <%= position.standing %> at the start of the work period.</b>    
+            Undergraduate students should be at least a <b><%= position.standing %></b> at the start of the work period.  
           </p>
         <% end %>    
 
                <p>
-          <b>Seeking students who are currently enrolled, or interested in enrolling in <%= position.major %>.</b>
+          Seeking students who are currently enrolled, or interested in enrolling in <b><%= position.major %>.</b>
         </p>
 
         <% if position.work_period != "" %>
@@ -120,12 +124,16 @@
 
   <% end %> 
 </div><br />
-  
+
 </div>
 <div id="projectBaja">
 
   <% if admin_signed_in? %>
-    <%= link_to 'Edit', edit_project_survey_path(@project_survey) %> |
+    <%= link_to 'Edit', edit_project_survey_path(@project_survey) %> 
 
   <% end %>
+
+
   </div>
+
+

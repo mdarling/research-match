@@ -1,7 +1,9 @@
 <fieldset>
   <div id = "wrap">  
-        <h5><span style="font-size:15px;color:#b80030">*</span>What type of students will you require for this 
-      position? (Check all that apply).</h5>
+        <p>Below is a form to specify what kinds of students you would like to hire for your project.  You can be as general or specific as you like.  The more general your specifications are, the more likely it is that the system will match students to your project.  If you are more particular about your needs, the system is more likely to find the "perfect" student for you.  If you need to identify more than one specific position, you can click on the "add aditional position" link.</p>
+       <b> What type of students will you require for this 
+      position? (Check all that apply).<%= link_to image_tag('question.png'), '#student_type_help', :rel => "facebox"  %><br>
+      <div id="student_type_help" style="display:none;"><h4>Student Types</h4>The system will restrict matches to the types of students you select here.  If you don't select any, the system will match all students, of any standing, who have interests in your area.</div></b>
     <div class="field">
       <%= f.check_box :is_undergrad, {}, '1', '0' %>
       <%= f.label "Undergraduate" %>
@@ -17,13 +19,13 @@
     </div>
     <br />
     <div class="field">
-      <span style="font-size:15px;color:#b80030">*</span><%= f.label "Preferred Major"%><br>
+      <%= f.label "Preferred Major"%><br>
       <% if @positions != nil %>
         <%= f.select :major,  options_from_collection_for_select(@departments, "name", "name", @positions[@positions_index].major ), :style => 
-        "width:100px;", :include_blank => "Select Department" , :selected => nil %>
+        "width:100px;", :include_blank => "Any" , :selected => nil %>
       <% else %>
         <%= f.select :major,  options_from_collection_for_select(@departments, "name", "name"), :style => 
-        "width:100px;", :include_blank => "Select Department" , :selected => nil %>
+        "width:100px;", :include_blank => "Any" , :selected => nil %>
       <% end %>
     </div>
   <div id="main">
@@ -32,26 +34,32 @@
       <%= f.label "Description of Position" %><br>
       <%= f.text_area :description, :class => 'textArea' %>
     </div>
-    <div class="field">
-      Minimum required GPA<%= f.label " " %><br>
-      <%= f.text_field :gpa, :class => 'textField' %>
-    </div>
       <div class="field">
-      Work Period<%= f.label " " %><br>
+      Work Period<%= f.label " " %><%= link_to image_tag('question.png'), '#help', :rel => "facebox"  %><br>
+      <div id="help" style="display:none;"><h4>Work Period</h4>Specify when you will be needing the work done.<br> (e.g. "Jan - May 2014" or "Spring 2014", etc.)</div>
       <%= f.text_field :work_period, :class => 'textField' %>
     </div>
     <div class="field">
-      <%= f.label "Will this position provide compensation?" %><br>
-      <%= f.text_field :payment, :class => 'textField' %>
+      <% if @positions != nil %>
+      <%= f.label "Will the student earn academic credit?"%><br>
+        <%= f.select :credit, options_for_select([["Select One", ""], "Yes", "No", "Possibly"], @positions[@positions_index].credit) %>
+      <% else %>
+        <%= f.label "Will the student earn academic credit?" %><br>
+        <%= f.select :credit, options_for_select([["Select One", ""], "Yes", "No", "Possibly"]) %>
+      <% end%>
     </div>
     <div class="field">
       <% if @positions != nil %>
-      <span style="font-size:15px;color:#b80030">*</span><%= f.label "Is this a paid position?" %><br>
-        <%= f.select :payment, options_for_select([["Select One", ""], "Yes", "No", "Academic Credit"], @positions[@positions_index].payment) %>
+      <%= f.label "Is this a paid position?" %><br>
+        <%= f.select :payment, options_for_select([["Select One", ""], "Yes", "No", "Possibly"], @positions[@positions_index].payment) %>
       <% else %>
-        <span style="font-size:15px;color:#b80030">*</span><%= f.label "Is this a paid position?" %><br>
-        <%= f.select :payment, options_for_select([["Select One", ""], "Yes", "No", "Academic Credit"]) %>
+        <%= f.label "Is this a paid position?" %><br>
+        <%= f.select :payment, options_for_select([["Select One", ""], "Yes", "No", "Possibly"]) %>
       <% end%>
+    </div>
+    <div class="field">
+      Minimum required GPA<%= f.label " " %><br>
+      <%= f.text_field :gpa, :class => 'gpaField', :value => "3.0" %>
     </div>
        <%= f.hidden_field :_destroy %>
        <%= link_to "Remove this Position", '#', class: "remove_fields" %>
@@ -64,12 +72,13 @@
     </div>
     <div class="field">
       <% if @positions != nil %>
-      <span style="font-size:15px;color:#b80030">*</span><%= f.label "Preferred standing for undergraduates" %><br>
-        <%= f.select :standing, options_for_select([["Select One", ""], "Freshman", "Sophomore", "Junior", "Senior"], @positions[@positions_index].standing) %>
+      <%= f.label "Preferred standing for undergraduates" %><%= link_to image_tag('question.png'), '#undergrad_help', :rel => "facebox"  %><br>
+      <div id="undergrad_help" style="display:none;"><h4>Undergraduate Standing</h4>If you haven't clicked the undergraduate checkbox, there's no need to change this selection.</div>
+        <%= f.select :standing, options_for_select([["Select One"],"Freshman", "Sophomore", "Junior", "Senior"], @positions[@positions_index].standing) %>
         <% @positions_index = @positions_index + 1 %>
       <% else %>
         <span style="font-size:15px;color:#b80030">*</span><%= f.label "Preferred standing for undergraduates" %><br>
-        <%= f.select :standing, options_for_select([["Select One", ""], "Freshman", "Sophomore", "Junior", "Senior"]) %>
+        <%= f.select :standing, options_for_select([["Select One"],"Freshman", "Sophomore", "Junior", "Senior"]) %>
       <% end%>
     </div>
       <div class="field">
@@ -77,11 +86,12 @@
       <%= f.date_select :record_begin %>
     </div>
     <div class="field">
-     <span style="font-size:15px;color:#b80030">*</span> <%= f.label "What is the deadline for this position?" %><br>
+     <span style="font-size:15px;color:#b80030">*</span> <%= f.label "When should this posting be removed?" %><br>
       <%= f.date_select :record_end %>
     </div>  
 
     </div><!-- end sidebar div -->
+    <span style="color:#b80030;font-weight:bold;font-size:12px;">*denotes required field.</span>
   </div><!-- end wrap div -->
 
 </fieldset>
