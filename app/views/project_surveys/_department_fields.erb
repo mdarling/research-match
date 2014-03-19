@@ -1,0 +1,11 @@
+    <fieldset>
+    
+    	<select department="position[department_id]">
+    <% Department.all.each do |department| %>
+        <option value="<%= department.id %>"><%= department.name %></option>
+    <% end %>
+</select>
+       
+    </fieldset>
+
+    

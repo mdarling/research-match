@@ -105,7 +105,7 @@ module MatchModule
 
   			if MatchedStudents.where( :position_id => position.id, :student_profile_id => student.id ).blank?
   				match = MatchedStudents.new( position: position, student_profile: student ).save
-  				
+  				email_researchers 
   			end
   				
   				#match.position = position

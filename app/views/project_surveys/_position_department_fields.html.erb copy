@@ -1,0 +1,6 @@
+    <fieldset>
+    	<%= f.select :department,  options_from_collection_for_select(@departments, "name", "name"), :style => 
+        "width:100px;", :include_blank => "Any" , :selected => nil %>
+    </fieldset>
+
+    
