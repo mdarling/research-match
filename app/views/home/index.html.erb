@@ -138,9 +138,11 @@
 				</p>
 
 				<p>
+				<% if @student_profile.minor  != "" %>
 					<b>Minor:</b>
 					<%= @student_profile.minor %>
 				</p>
+				<% end %>
 
 				<p>
 					<b>Expected Graduation:</b>
@@ -161,6 +163,13 @@
 						Yes
 					<% else %>
 						No
+					<% end %>
+				</p>
+				<p>
+					<% if @student_profile.is_enrolled  == false %>
+						<% if @student_profile.expected_enrollment %>
+							<b>Expected Enrollment: </b><%= @student_profile.expected_enrollment.strftime("%d-%d-%Y") %>
+						<% end %>
 					<% end %>
 				</p>
 				<hr>

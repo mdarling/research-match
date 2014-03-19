@@ -57,4 +57,11 @@
   <% else %>
     No
   <% end %>
+          <p>
+          <% if @student_profile.is_enrolled  == false %>
+            <% if @student_profile.expected_enrollment %>
+              <b>Expected Enrollment: </b><%= @student_profile.expected_enrollment.strftime("%d-%d-%Y") %>
+            <% end %>
+          <% end %>
+        </p>
 </p>

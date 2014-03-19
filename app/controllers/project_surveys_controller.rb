@@ -129,6 +129,6 @@ class ProjectSurveysController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def project_survey_params
       params.require(:project_survey).permit(:department_id, :department, :email, :phone, :description, :title, :keywords, :researcher, :contact, :user_id, :is_contactable,
-            positions_attributes: [:id, :description, :departments, :gpa, :project_survey_id, :record_begin, :record_end, :skills, :standing, :work_period, :payment, :is_undergrad, :is_grad, :is_postdoc, :is_highschool, :_destroy, :research_user_id] )
+            positions_attributes: [:id, :description, :departments, :gpa, :project_survey_id, :record_begin, :record_end, :skills, :standing, :work_period, :payment, :credit, :is_undergrad, :is_grad, :is_postdoc, :is_highschool, :_destroy, :research_user_id] )
     end
 end

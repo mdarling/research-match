@@ -1,3 +1,4 @@
+
 <div id="wrap">
   <h1>Editing Profile</h1>
 
@@ -16,6 +17,12 @@
   </div> <!-- End of header div -->
   
   <div id="nav">
+        <div class="field">
+      <span style="font-size:15px;color:#b80030">*</span><%= f.label "Department" %><%= link_to image_tag('question.png'), '#department_help', :rel => "facebox"  %><br>
+      <div id="department_help" style="display:none;"><h4>Department</h4>If you haven't yet been accepted to a department, select the department that you are planning to apply to. </div>
+      <%= f.select :department,  options_from_collection_for_select(Department.find(:all, :order => "name"), "name", "name",  @student_profile.department), :style => "width:100px;", :include_blank => true , :selected => nil %>
+
+    </div>
   </div>
   
   <div id="main">
@@ -33,57 +40,64 @@
       <%= f.text_field :email, :class => 'textField', :value => current_user.email %>
     </div>
     <div class="field">
-      <span style="font-size:15px;color:#b80030">*</span>Expected Graduation<%= f.label " " %><br />
-      <%= f.date_select :expected_graduation, :discard_day => true %>
+       <span style="font-size:15px;color:#b80030">*</span><%= f.label "Research Interest Keywords" %><br>(Separated by commas)<%= link_to image_tag('question.png'), '#keyword_help', :rel => "facebox"  %><br>
+      <div id="keyword_help" style="display:none;"><h4>Research Keywords</h4> By listing research interests you will guide the system to match you to a preferred project.  Furthermore, researchers will be more likely to hire you if you show interest in their field.  For keyword ideas view the list of <%= link_to "current projects", project_surveys_path, :target => "_blank" %>.  Seperate keywords with commas (",").</div>
+       <%= f.text_area :interests, :class => 'textArea' %>
     </div>
-    <div class="field"> 
-      <span style="font-size:15px;color:#b80030">*</span>Academic Standing<%= f.label " " %><br />
-      <%= f.select :academic_level, options_for_select([["Select One", ""], "Freshman", "Sophomore", "Junior", "Senior", "Master's", "PhD", "Postdoc", "Highschool"], 
-      @student_profile.academic_level) %> 
+        <div class="field">
+       Previous Research Experience<%= f.label " " %><%= link_to image_tag('question.png'), '#experience_help', :rel => "facebox"  %><br>
+      <div id="experience_help" style="display:none;"><h4>Previous Research Experience</h4>If you don't have any previous experience, don't worry, most students do not. You can leave this field blank.</div>
+       <%= f.text_area :experience, :class => 'textArea' %>
     </div>
-    <div class="field">
-      <span style="font-size:15px;color:#b80030">*</span><%= f.label :gpa %><br />
-      <%= f.text_field :gpa, :class => 'gpaField' %>
-    </div>
-    <div class="field">
-      <span style="font-size:15px;color:#b80030">*</span><%= f.label "Department" %><br />
-      <%= f.select :department,  options_from_collection_for_select(Department.find(:all, :order => "name"), "name", "name",  @student_profile.department), :style => "width:100px;", :include_blank => true , :selected => nil %>
+   
 
-    </div>
     
   </div> <!-- End of main div -->
   
   <div id="sidebar">
       <div class="field">
-      <span style="font-size:15px;color:#b80030">*</span><%= f.label :major %><br />
+      <span style="font-size:15px;color:#b80030">*</span><%= f.label :major %><%= link_to image_tag('question.png'), '#major_help', :rel => "facebox"  %><br>
+      <div id="major_help" style="display:none;"><h4>Major</h4>If you haven't yet chosen a major, select the major(s) that you are planning for.  If you are undecided then write "Undecided". </div>      
       <%= f.text_field :major, :class => 'textField' %>
     </div>
     <div class="field">
-      <%= f.label :minor %><br />
+      <%= f.label :minor %><%= link_to image_tag('question.png'), '#minor_help', :rel => "facebox"  %><br>
+      <div id="minor_help" style="display:none;"><h4>Minor</h4>If you aren't planning to pursue a minor, leave this field blank. </div>
       <%= f.text_field :minor, :class => 'textField' %>
     </div>
+    <div class="field" style="float:left;"> 
+      <span style="font-size:15px;color:#b80030">*</span>Academic Standing<%= f.label " " %><%= link_to image_tag('question.png'), '#gpa_help', :rel => "facebox"  %><br>
+      <div id="gpa_help" style="display:none;"><h4>Academic Standing</h4>If you are not yet enrolled at UNM, select the your expected academic standing upon enrollment.</div>
+      <%= f.select :academic_level, options_for_select([["Select One", ""], "Freshman", "Sophomore", "Junior", "Senior", "Master's", "PhD", "Postdoc", "Highschool"], 
+      @student_profile.academic_level) %> 
+    </div>
+    <div class="field" style="float:right;margin-right:8em;">
+      <span style="font-size:15px;color:#b80030">*</span>GPA<%= f.label " " %><%= link_to image_tag('question.png'), '#gpa_help', :rel => "facebox"  %><br>
+      <div id="gpa_help" style="display:none;"><h4>GPA</h4>This is your Grade Point Average.  If you aren't yet enrolled at UNM, fill in the GPA from your previous school.</div>
+      <%= f.text_field :gpa, :class => 'gpaField' %>
+    </div>
 
-    <div class="field">
-       <span style="font-size:15px;color:#b80030">**</span><%= f.label "Research Interest Keywords" %><br /> (Separated by commas)
-       <%= f.text_area :interests, :class => 'textArea' %>
-    </div>
-        <div class="field">
-       Previous Research Experience<%= f.label " " %><br />
-       <%= f.text_area :experience, :class => 'textArea' %>
-    </div>
-    <span style="font-size:15px;color:#b80030">*</span><b>Are you currently enrolled at UNM?</b>
+    <div style="clear:both;"><span style="font-size:15px;color:#b80030;">*</span>Are you currently enrolled at UNM?</div>
     <div class="field">
       <%= f.radio_button :is_enrolled, true, :checked => (@student_profile.is_enrolled == true), :value => true %>
       <%= f.label :is_contactable, "Yes" %>
       <%= f.radio_button :is_enrolled, false, :checked => (@student_profile.is_enrolled == false ), :value => false %>
       <%= f.label :is_enrolled, "No" %>
     </div>
+    <br>
+    <div class="field">
+      <%= f.label "When do you expect to be enrolled?" %><br>
+      <%= f.date_select :expected_enrollment %>
+    </div>  
+    <div class="field">
+      <span style="font-size:15px;color:#b80030">*</span>Expected Graduation<%= f.label " " %><br />
+      <%= f.date_select :expected_graduation, :discard_day => true %>
+    </div>
 
   </div> <!-- End of sidebar div -->
 
   <div id="bottom">
       <span style="color:#b80030;font-weight:bold;font-size:12px;">*</span>denotes required field.<br />
-   <span style="color:#b80030;font-weight:bold;font-size:12px;">**</span>  Recommended: By listing research interests you will guide the system to match you to a preferred project.  Furthermore, researchers will be more likely to hire you if you show interest in their field.  For keyword ideas view the list of <%= link_to "current projects", project_surveys_path, :target => "_blank" %>.
    <hr>
     <%= f.submit "Update Profile" %>
   </div> <!-- End of bottom div -->
