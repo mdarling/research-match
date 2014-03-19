@@ -1,4 +1,4 @@
-<% if @project_surveys.length > 0 %>
+	<% if @project_surveys.length > 0 %>
 		<div id="bottom">
 
 			<% @project_surveys.each do |project_survey| %>
@@ -24,18 +24,20 @@
 					
 				<% end %> <!-- if positions each do -->
 				<% matched_students.each do |matched_student| %>
+					<% if matched_student.is_rejected == false %>
 					<% student = StudentProfile.find(matched_student.student_profile_id)%>
-					
-					<tr>
-						<td><%= student.first_name + " " + student.last_name %></td>
-						<td><%= student.major %></td>
-						<td><%= student.academic_level %></td>
-						<td><%= student.gpa %></td>
-						<td><%= student.interests %></td>
-						<td><%= link_to 'Profile', student_profile_path(student) %></td>
-						<td>Reject</td>
-					</tr>
-
+						
+						<tr>
+							<td><%= student.first_name + " " + student.last_name %></td>
+							<td><%= student.major %></td>
+							<td><%= student.academic_level %></td>
+							<td><%= student.gpa %></td>
+							<td><%= student.interests %></td>
+							<td><%= link_to 'Profile', student_profile_path(student) %></td>
+							<td><%= link_to 'Reject', reject_matched_students_path(:id => matched_student.id), remote: true, :class => "remove_match" %> </td> 
+						</tr>
+				
+					<% end %>
 				<% end %> <!-- matched students each do -->
 				</table>
 				<br />

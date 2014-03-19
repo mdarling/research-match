@@ -85,6 +85,12 @@ $(function(){  // $(document).ready shorthand
     });
   });
   
+  $('.remove_match').click(function(event)
+  {
+
+    $(this).closest('tr').hide()
+    
+  });
 
 });
 
