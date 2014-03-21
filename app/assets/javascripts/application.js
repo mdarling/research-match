@@ -57,6 +57,17 @@ $(function(){  // $(document).ready shorthand
 
  $('a[rel*=facebox]').facebox()
 
+  $('#how_this_works').click(function(event) {
+    event.preventDefault();
+
+    $('#howItWorks').slideToggle();
+  });
+
+  $(".dead_link").click(function(event) {
+    event.preventDefault();
+
+  });
+
 
 });
 

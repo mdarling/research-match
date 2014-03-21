@@ -75,10 +75,17 @@
       <div class="content">
 
                   <div id="how_this_works" style="float:left;padding-left:5px;">
-                    <%= link_to 'How It Works', image_path("steps.png"), :rel => "facebox" %>
+                    <%= link_to 'How It Works' %>
+                    <div id="howItWorks">
+                      <p>&#8226; <%= link_to "If you're a student", "#student_steps", :rel => "facebox" %></p>
+                        <div id="student_steps" style="display:none;"><%= render 'home/student_steps' %></div>
+                     <p>&#8226; <%= link_to "If you're a professor/researcher", "#researcher_steps", :rel => "facebox" %></p>
+                        <div id="researcher_steps" style="display:none;"><%= render 'home/researcher_steps' %></div>
+                      <div style="margin-left:5em;"><%= link_to image_tag('up.png'), :class => "dead_link" %></div>
+                    </div>
                   </div>
-                              <div id="bc" style="float:left;margin-left:1em;"> 
-        <%= breadcrumbs :pretext => "",:separator => " &rsaquo; " %>
+                  <div id="bc" style="float:left;margin-left:1em;"> 
+                    <%= breadcrumbs :pretext => "",:separator => " &rsaquo; " %>
                   </div>
             			<div id="user_info" style="float:right;padding-right:20px;padding-bottom:2px;">
             			
