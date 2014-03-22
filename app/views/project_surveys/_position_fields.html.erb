@@ -19,14 +19,9 @@
     </div>
     <br />
     <div class="field">
-      <%= f.label "Preferred Major"%><br>
-      <% if @positions != nil %>
-        <%= f.select :major,  options_from_collection_for_select(@departments, "name", "name", @positions[@positions_index].major ), :style => 
-        "width:100px;", :include_blank => "Any" , :selected => nil %>
-      <% else %>
-        <%= f.select :major,  options_from_collection_for_select(@departments, "name", "name"), :style => 
-        "width:100px;", :include_blank => "Any" , :selected => nil %>
-      <% end %>
+        Prederred Department(s) (select as many as you like)<%= f.label " " %><br>
+        <%= render 'department_fields', f: f %>
+
     </div>
   <div id="main">
 
