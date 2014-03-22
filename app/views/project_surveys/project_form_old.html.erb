@@ -1,4 +1,4 @@
-
+<div id = "projectFormIntro">
   <%= form_for(@project_survey) do |f| %>
   <% if @project_survey.errors.any? %>
     <div id="error_explanation">
@@ -11,24 +11,17 @@
       </ul>
     </div>
   <% end %>
-  <div id = "projectFormIntro">
+  
   <h3>This form will guide you to set up a project for the database.</h3>
   <hr>
 
   There are two configurations for the system.  The first configuration allows students to contact you if they are interested in your project.  The second configuration notifies you when qualified students match your project, but does not allow students to contact you.  Therefore, you would be able to contact those students who you are interested in hiring.
   <br />
   <br />
-  <div class="field">
-    <%= f.radio_button :is_contactable, true, :checked => (@project_survey.is_contactable), :value => true %>
-    <%= f.label :is_contactable, "Yes, I want interested students to contact me." %>
-  </div>
-  <div class="field"> 
-    <%= f.radio_button :is_contactable, false, :checked => (@project_survey.is_contactable == false ), :value => false %>
-    <%= f.label :is_contactable, "No, I want the system to notify me of qualified students who I can contact." %>
-  </div>
+
   <hr>
   <div class="button" id ="introButton" style="">Next</div>
-</div><!-- End Project Form Intro Div -->
+</div> <!-- <div id = "projectFormIntro"> -->
 <div id="error_explanation" style="display:none;"></div>  
 <div id = "projectForm">
 
@@ -129,3 +122,4 @@
 
 
 <% end %>
+
