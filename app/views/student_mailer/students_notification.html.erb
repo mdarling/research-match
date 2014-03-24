@@ -4,7 +4,7 @@
 <h1 style="margin-left:5em">Research-Match@UNM</h1>
 <br />
 <h3>Dear <%= @contact %>,</h3>
-<% unless @contactable_projects.empty? %>
+<% unless @contactable_matches.empty? %>
 	<h3>You profile matched to the following project(s):</h3>
 
 	<table>
@@ -25,15 +25,15 @@
 		<% end %>
 	</table>
 	<br>
-	<% unless @non_contactable_projects_empty? %>
-		In addition to the projects listed above, under consideration for <% @non_contactable_projects.size %> other projects.  You'll be contacted by the researchers of those projects if you're the right match.
+	<% unless @non_contactable_matches.empty? %>
+		In addition to the projects listed above, under consideration for <% @non_contactable_matches.size %> other projects.  You'll be contacted by the researchers of those projects if you're the right match.
 	<% end %>
 <% else %>
-	<% unless @non_contactable_projects.empty? %>
-		<h3>You profile matched to <% @non_contactable_projects.size %> project(s).</h3>
-		<p>Expected to be contacted by researchers of those projects if you're the right match.</p>
-		<% end% %>
-	<% end %>
+		<% unless @non_contactable_matches.empty? %>
+			<h3>You profile matched to <% @non_contactable_matches.size %> project(s).</h3>
+			<p>Expected to be contacted by researchers of those projects if you're the right match.</p>
+		<% end %>
+	
 <% end %>
 <br>
 Have a nice day,

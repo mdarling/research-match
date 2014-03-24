@@ -2,7 +2,7 @@ class StudentMailer < ActionMailer::Base
   default :from => "research-match@unm.edu"
 
   def students_notification(student, contactable_matches, non_contactable_matches)
-   	@matches = matches
+
     @contactable_matches = contactable_matches
     @non_contactable_matches = non_contactable_matches
     @contact = student.first_name.titleize + " " + student.last_name.titleize

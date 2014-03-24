@@ -6,9 +6,10 @@
 
     students = StudentProfile.all
 
-    students.each do |student|
 
-      matches = student.matched_students.where( :student_was_emailed => false )
+    students.each do |student|
+      student_matches = MatchedStudents.where( :student_profile_id => student.id )
+      matches = student_matches.where( :student_was_emailed => false )
 
       contactable_matches = []
       non_contactable_matches = []
@@ -21,8 +22,8 @@
         end#end if contactable
       end #end matches each do 
 
-      StudentMailer.students_notifiction(student, contactable_matches, non_contactable_matches).deliver
-
+      StudentMailer.students_notification(student, contactable_matches, non_contactable_matches).deliver
+                    
     end #end students each do
   end #email students function
 	
@@ -145,7 +146,8 @@
 
   			if MatchedStudents.where( :position_id => position.id, :student_profile_id => student.id ).blank?
   				match = MatchedStudents.new( position: position, student_profile: student ).save
-  				email_researchers 
+  				ProjectSurvey.email_researchers 
+          ProjectSurvey.email_students
   			end
   				
   				#match.position = position

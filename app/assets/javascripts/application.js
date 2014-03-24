@@ -69,11 +69,11 @@ $(function(){  // $(document).ready shorthand
   });
 
 $(".not_enrolled").on("change", function(){
-  $("#expected_enrollment").slideToggle();
+  $("#expected_enrollment").slideDown();
 });
 
 $(".enrolled").on("change", function(){
-  $("#expected_enrollment").slideToggle();
+  $("#expected_enrollment").slideUp();
 });
 
 
