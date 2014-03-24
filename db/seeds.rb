@@ -1,3 +1,6 @@
+
+require "#{File.dirname(__FILE__)}/old_research_data.rb"
+require "#{File.dirname(__FILE__)}/old_student_data.rb"
 # This file should contain all the record creation needed to seed the database with its default values.
 # The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
 #
@@ -106,6 +109,10 @@ department_refs = {}
 departments.each do |department|
   department_refs[department[:name]] = Department.create department
 end 
+
+old_research
+old_student
+
 
 # colleges = 
 # [

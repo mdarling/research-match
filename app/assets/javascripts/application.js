@@ -75,8 +75,11 @@ $(".not_enrolled").on("change", function(){
 $(".enrolled").on("change", function(){
   $("#expected_enrollment").slideUp();
 });
-
-
+$(".dept_select option").mousedown(function(e) {
+  e.preventDefault();
+  $(this).prop('selected', !$(this).prop('selected'));
+  return false;
+});
 
 });
 

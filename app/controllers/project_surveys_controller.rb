@@ -88,7 +88,9 @@ class ProjectSurveysController < ApplicationController
 
     positions.each do |position|
       position.research_user_id = @user.id
-      position.major = position.departments.first.name
+      if position.departments.first
+        position.major = position.departments.first.name
+      end
     end
 
 

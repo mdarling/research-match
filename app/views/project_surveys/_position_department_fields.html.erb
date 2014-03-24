@@ -1,5 +1,5 @@
     <fieldset>
-		<%= f.collection_select(:department_ids, Department.all, :id, :name)%> 
+		<%= f.collection_select(:department_ids, Department.all(:order => "name"), :id, :name)%> 
     </fieldset>
 
     

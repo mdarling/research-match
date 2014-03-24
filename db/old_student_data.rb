@@ -2,8 +2,8 @@ require 'json'
 
 #User.delete_all
 #StudentProfile.delete_all
-
-file = File.open("students.json", "r")
+def old_student
+file = File.open("#{File.dirname(__FILE__)}/students.json", "r")
 	json_string = file.read
 file.close
 
@@ -47,4 +47,4 @@ users.each do |user|
 	new_user.save
 	
 end# users each do
-
+end#function

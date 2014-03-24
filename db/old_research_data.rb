@@ -1,10 +1,11 @@
+
 require 'json'
 
 #ResearchUser.delete_all
 #ProjectSurvey.delete_all
 #Position.delete_all
-
-file = File.open("researchers.json", "r")
+def old_research
+file = File.open("#{File.dirname(__FILE__)}/researchers.json", "r")
 	json_string = file.read
 file.close
 
@@ -37,24 +38,21 @@ researchers.each do |researcher|
 		researcher["project_surveys"].each do |project|
 			new_project = research_user.project_surveys.new
 			
-			new_project.title = new_project = project["project_title"] 
-			new_project.description = project["project_description"] 
+			new_project.title = project["project_title"] 
+			new_project.description = project["project_description"]
 			new_project.email = project["email"] 
 			new_project.phone = project["phone"]
 			new_project.department = project["department"] 
-			new_project.research_area = project["research_area"] 
+			new_project.keywords = project["research_area"] 
 			new_project.created_at = project["created_at"] 
 			new_project.researcher = project["researcher"]  
-			new_project.unpaid_undergrads_needed = project["unpaid_undergrads_needed"] 
-			new_project.paid_undergrads_needed = project["paid_undergrads_needed"] 
-			new_project.unpaid_grads_needed = project["unpaid_grads_needed"] 
-			new_project.paid_grads_needed = project["paid_grads_needed"] 
-			new_project.lead_researcher = project["lead_researcher"]  
-			new_project.post_docs_needed = project["post_docs_needed"]  
+			new_project.researcher = project["lead_researcher"]  
 			new_project.department_id = project["department_id"] 
 			new_project.save
+			# puts researcher["project_surveys"].class
+			# puts '!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!'
 			
-			unless researcher["project_surveys"]["unpaid_grad_positions"][0]["desired_skills"].empty?
+			unless project["unpaid_grad_positions"][0]["desired_skills"].empty?
 				u_g_p = researcher["project_surveys"]["unpaid_grad_positions"][0]
 				position = new_project.positions.new
 				p_description = u_g_p["job_description"]
@@ -213,3 +211,4 @@ researchers.each do |researcher|
 			
 	end#unless researchers
 end# users each do
+end #function
