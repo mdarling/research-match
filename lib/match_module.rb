@@ -75,7 +75,7 @@
 
         else
           position.departments.each do |position_department|
-            potential_students += StudentProfile.where( :department => position_department )
+            potential_students += StudentProfile.where( :department => position_department.name )
           end #position departments each do
         end #positon.is_any_majot
   			
