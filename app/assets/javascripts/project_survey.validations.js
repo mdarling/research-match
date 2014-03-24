@@ -25,7 +25,7 @@ function validateForm()
 /*******************Project Validations***************************/
 
 	var x = document.forms[formName]			
-["project_survey_lead_researcher"].value;
+["project_survey_researcher"].value;
 		if( x == null || x == "" )
   	{
   		errorCount += 1;
@@ -33,7 +33,7 @@ function validateForm()
   	}
 
 	var x = document.forms[formName]			
-["project_survey_project_title"].value;
+["project_survey_title"].value;
 		if( x == null || x == "" )
   	{
   		errorCount += 1;

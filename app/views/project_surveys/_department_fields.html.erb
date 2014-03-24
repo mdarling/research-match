@@ -1,5 +1,5 @@
 
-		<%= f.collection_select(:department_ids, @departments, :id, :name,{:include_blank => 'Any'},{:multiple => true})%> 
+		<%= f.collection_select(:department_ids, Department.all(:order => "name"), :id, :name,{:include_blank => 'Any'},{:multiple => true})%> 
 		
 
 

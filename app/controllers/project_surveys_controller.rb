@@ -34,6 +34,7 @@ class ProjectSurveysController < ApplicationController
   def new
     if signed_in?
       @project_survey = ProjectSurvey.new
+      
       position = @project_survey.positions.build
 
       @departments = Department.all(:order => "name")
@@ -82,8 +83,6 @@ class ProjectSurveysController < ApplicationController
     @user = current_research_user
 
     @project_survey.research_user_id = @user.id
-    department = Department.where( :name => @project_survey.department )
-    @project_survey.department_id = department.first.id
 
     positions = @project_survey.positions
 

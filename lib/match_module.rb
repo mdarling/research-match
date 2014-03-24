@@ -1,4 +1,30 @@
-module MatchModule
+  module MatchModule
+
+  #This function looks in the matched students table for students that need to be emailed.
+  def email_students
+    puts "hello world"
+
+    students = StudentProfile.all
+
+    students.each do |student|
+
+      matches = student.matched_students.where( :student_was_emailed => false )
+
+      contactable_matches = []
+      non_contactable_matches = []
+
+      matches.each do |match|
+        if match.position.project_survey.is_contactable
+          contactable_matches << match
+        else
+          non_contactable_matches << match
+        end#end if contactable
+      end #end matches each do 
+
+      StudentMailer.students_notifiction(student, contactable_matches, non_contactable_matches).deliver
+
+    end #end students each do
+  end #email students function
 	
   #This function looks in the matched students table for users that need to be emailed.  This function is called by the heroku shceduler.
   def email_researchers
@@ -15,10 +41,10 @@ module MatchModule
         research_user_positions += project.positions #this array will be the collection of all positions that belong to a particular research user
 
         research_user_positions.each do |research_user_position|
-          student_matches += MatchedStudents.where( :position_id => research_user_position.id, :was_emailed => false ) #This array contains all the student matches that have positions that belong to this researcher
+          student_matches += MatchedStudents.where( :position_id => research_user_position.id, :researcher_was_emailed => false ) #This array contains all the student matches that have positions that belong to this researcher
 
           student_matches.each do |matched_student|
-            matched_student.was_emailed = true
+            matched_student.researcher_was_emailed = true
             matched_student.save
           end #end student matches each do
         end #end research_user_positions each do
@@ -26,6 +52,7 @@ module MatchModule
      
       if student_matches.any?
         ResearchererMailer.matched_students_notification(researcher, student_matches).deliver
+        
       end #if student_matches
     end#end researchers each do
   end#email_researchers function

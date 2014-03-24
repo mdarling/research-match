@@ -72,21 +72,21 @@
         <%= f.select :standing, options_for_select([["Select One", ""],"Freshman", "Sophomore", "Junior", "Senior"], @positions[@positions_index].standing) %>
         <% @positions_index = @positions_index + 1 %>
       <% else %>
-        <span style="font-size:15px;color:#b80030">*</span><%= f.label "Preferred standing for undergraduates" %><br>
+        <%= f.label "Preferred standing for undergraduates" %><br>
         <%= f.select :standing, options_for_select([["Select One", ""],"Freshman", "Sophomore", "Junior", "Senior"]) %>
       <% end%>
     </div>
       <div class="field">
-      <span style="font-size:15px;color:#b80030">*</span><%= f.label "When should this position be posted?" %><br>
-      <%= f.date_select :record_begin %>
+      <%= f.label "When should this position be posted?" %><br>
+      <%= f.date_select :record_begin, :start_year => Date.today.year  %>
     </div>
     <div class="field">
-     <span style="font-size:15px;color:#b80030">*</span> <%= f.label "When should this posting be removed?" %><br>
-      <%= f.date_select :record_end %>
+     <%= f.label "When should this posting be removed?" %><br>
+      <%= f.date_select :record_end, :start_year => Date.today.year, :default => 180.days.since(Date.today).to_date %>
     </div>  
 
     </div><!-- end sidebar div -->
-    <span style="color:#b80030;font-weight:bold;font-size:12px;">*denotes required field.</span>
+    
   </div><!-- end wrap div -->
 
 </fieldset>

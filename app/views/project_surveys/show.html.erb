@@ -19,6 +19,7 @@
   </div> <!-- End of projectMain div -->
   
   <div id="projectSidebar">
+  <% if @project_survey.is_contactable %>
     <div id="projectLeft">
       <p>
         
@@ -42,7 +43,9 @@
         <%= @project_survey.phone %>
         </p>
         <% end %>
-  </div>
+    </div>
+  <% end %>
+
   </div>    
   <div id="projectBottom">
     <b>Project Description: </b><br /><%= @project_survey.description %>

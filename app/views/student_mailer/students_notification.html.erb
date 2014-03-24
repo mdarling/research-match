@@ -1,0 +1,29 @@
+<link href="https://webcore.unm.edu/v1/css/styles.php" media="screen" rel="stylesheet" 			type="text/css" />
+
+<%= image_tag image_url('unm-logo.gif') %>
+<h1 style="margin-left:5em">Research-Match@UNM</h1>
+<br />
+<h3>Good morning <%= @contact %>,</h3>
+<h3>The following students are a match to your project(s):</h3>
+
+<table>
+	<tr>
+		<td><b>Project Title</b></td>
+		<td><b>Student Name</b></td>
+		<td><b>Student's Profile</b></td>
+	</tr>
+
+	<% @student_matches.each do |match| %>
+	<tr>
+		<% position = Position.find(match.position_id) %>
+		<% student = StudentProfile.find(match.student_profile_id) %>
+		<td><%= position.project_survey.title %></td>
+		<td><%= student.first_name + " " + student.last_name %></td>
+		<td> <%= link_to "Profile", student_profile_url(student) %></td>
+	</tr>
+	<% end %>
+</table>
+<br />
+<h4>Please contact these students if you're interested in hiring them.</h4>
+<br />
+<p style="font-size:X-small;">Note: This email was automatically generated. Please do not respond to this email address; if you have any questions, contact <a href="mailto:uresearch@unm.edu?Subject=Question About Research Matching System." target="_top">uresearch@unm.edu.</a></p>
