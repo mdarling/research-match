@@ -88,6 +88,7 @@ class ProjectSurveysController < ApplicationController
 
     positions.each do |position|
       position.research_user_id = @user.id
+      position.major = position.departments.first.name
     end
 
     respond_to do |format|
