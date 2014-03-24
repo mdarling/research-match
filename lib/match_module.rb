@@ -60,104 +60,91 @@
 
 
   #This function iterates over all projects and matches qualified students
+  #This function iterates over all projects and matches qualified students
   def student_match
 
-  	@projects = ProjectSurvey.all
-    @student_profiles = StudentProfile.where( "expected_graduation > ?", Date.today + 180.days )
-  	@projects.each do |project|
-  		positions = project.positions
+    @projects = ProjectSurvey.all
 
-  		positions.each do |position|
-        potential_students = []
+    @projects.each do |project|
+      positions = project.positions
 
-        if position.is_any_major
-          potential_students = @student_profiles
+      positions.each do |position|
 
-        else
-          position.departments.each do |position_department|
-            potential_students += StudentProfile.where( :department => position_department.name )
-          end #position departments each do
-        end #positon.is_any_majot
-  			
-  			#potential_students = Student.where("department = :current_dept AND gpa >= :current_gpa", {current_dept: position.major, current_gpa: postition.gpa}) 
-  			students = []
-  			
-  			if position.is_highschool
-  				# students += Student.where("academic_level = :current_academic_level AND gpa >= :current_gpa", {current_academic_level: "Highschool" current_gpa: postition.gpa}) 
-  				students += potential_students.where(academic_level: "Highschool" )
-  			end
-
-  			if position.is_postdoc
-  				students += potential_students.where(academic_level: "Postdoc" )
-  			end
-
-  			if position.is_grad
-  				students += potential_students.where(academic_level: ["Master's","PhD"] )
-  			end
-
-  			if position.is_undergrad
-  				students += potential_students.where(academic_level: ["Freshman", "Sophomore", "Junior", "Senior"] )
-  			end
-
-        if position.is_highschool == false && position.is_postdoc == false && position.is_grad == false && position.is_undergrad 
-          students += potential_students
+        potential_students = StudentProfile.where(department: position.major)
+        #potential_students = Student.where("department = :current_dept AND gpa >= :current_gpa", {current_dept: position.major, current_gpa: postition.gpa}) 
+        students = []
+        
+        if position.is_highschool
+          # students += Student.where("academic_level = :current_academic_level AND gpa >= :current_gpa", {current_academic_level: "Highschool" current_gpa: postition.gpa}) 
+          students += potential_students.where(academic_level: "Highschool" )
         end
 
-  			#Postdoc needs to ignore gpa and expected graduation
-  			#Here we need to put graduation date criteria
-  			#here is where we need to do keyword iteration
+        if position.is_postdoc
+          students += potential_students.where(academic_level: "Postdoc" )
+        end
 
-  			students.each_with_index do |student,index|
-  				if student.academic_level == "Postdoc" or (student.academic_level != "Postdoc" and student.gpa.to_f >= position.gpa.to_f )
-  					project_keywords = position.project_survey.keywords.split(',')
-  					student_keywords = student.interests.split(',')
-  					
-  					match = false
+        if position.is_grad
+          students += potential_students.where(academic_level: ["Master's","PhD"] )
+        end
 
-  					project_keywords.each do |project_keyword|
-  						
-  						project_keyword = project_keyword.gsub( /\W/, '' ).downcase
+        if position.is_undergrad
+          students += potential_students.where(academic_level: ["Freshman", "Sophomore", "Junior", "Senior"] )
+        end
 
-  						student_keywords.each do |student_keyword|
-  							student_keyword = student_keyword.gsub( /\W/, '' ).downcase
-  								
-  							if project_keyword == student_keyword
-  								puts "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!\n #{student_keyword} #{project_keyword}"
-  								match = true
-  							end # if project_keyword
-  						end #student_words each do
-  						
-  					end #project_keywords each do
+        #Postdoc needs to ignore gpa and expected graduation
+        #Here we need to put graduation date criteria
+        #here is where we need to do keyword iteration
 
-  					unless match
-  						students[index] = nil
-  					end
+        students.each_with_index do |student,index|
+          if student.academic_level == "Postdoc" or (student.academic_level != "Postdoc" and student.gpa.to_f >= position.gpa.to_f )
+            project_keywords = position.project_survey.keywords.split(',')
+            student_keywords = student.interests.split(',')
+            
+            match = false
 
-  				else #this means that the student's gpa is too low to match this position
-  					students[index] = nil
+            project_keywords.each do |project_keyword|
+              
+              project_keyword = project_keyword.gsub( /\W/, '' ).downcase
 
-  				end #student.academic_level
+              student_keywords.each do |student_keyword|
+                student_keyword = student_keyword.gsub( /\W/, '' ).downcase
+                  
+                if project_keyword == student_keyword
+                  puts "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!\n #{student_keyword} #{project_keyword}"
+                  match = true
+                end # if project_keyword
+              end #student_words each do
+              
+            end #project_keywords each do
 
-  			end #students.each do
+            unless match
+              students[index] = nil
+            end
 
-  			students.compact! #removes nil entries in array
+          else #this means that the student's gpa is too low to match this position
+            students[index] = nil
 
-  			students.each do |student|
+          end #student.academic_level
 
-  			if MatchedStudents.where( :position_id => position.id, :student_profile_id => student.id ).blank?
-  				match = MatchedStudents.new( position: position, student_profile: student ).save
-  				ProjectSurvey.email_researchers 
-          ProjectSurvey.email_students
-  			end
-  				
-  				#match.position = position
-  				#match.student = student
-  				#match.save
-  			end #end students each do
+        end #students.each do
 
-  		end #end position.each do
+        students.compact! #removes nil entries in array
 
-  	end #end project.each do
+        students.each do |student|
+
+        if MatchedStudents.where( :position_id => position.id, :student_profile_id => student.id ).blank?
+          match = MatchedStudents.new( position: position, student_profile: student ).save
+          email_researchers 
+        end
+          
+          #match.position = position
+          #match.student = student
+          #match.save
+        end #end students each do
+
+      end #end position.each do
+
+    end #end project.each do
 
   end #student_match method
 end #end module
