@@ -10,28 +10,30 @@
 	<table>
 		<tr>
 			<td><b>Project Title</b></td>
-			<td><b>Student Name</b></td>
-			<td><b>Student's Profile</b></td>
+			<td><b>Researcher Name</b></td>
+			<td><b>Project Information</b></td>
 		</tr>
 
-		<% @student_matches.each do |match| %>
+		<% @contactable_matches.each do |match| %>
 		<tr>
 			<% position = Position.find(match.position_id) %>
-			<% student = StudentProfile.find(match.student_profile_id) %>
-			<td><%= position.project_survey.title %></td>
-			<td><%= student.first_name + " " + student.last_name %></td>
-			<td> <%= link_to "Profile", student_profile_url(student) %></td>
+			<% project = position.project_survey %>
+			<td><%= project.title %></td>
+			<td><%= project.researcher %></td>
+			<td> <%= link_to "Project", project_survey_url(project) %></td>
 		</tr>
 		<% end %>
 	</table>
 	<br>
+	<h4>Please contact the respective hiring researchers if you're interested in working on their project.</h4>
+	<b>
 	<% unless @non_contactable_matches.empty? %>
-		In addition to the projects listed above, under consideration for <% @non_contactable_matches.size %> other projects.  You'll be contacted by the researchers of those projects if you're the right match.
+		In addition to the projects listed above, you're under consideration for <% @non_contactable_matches.size %> other projects.  You'll be contacted by the researchers of those projects if you're the right match.
 	<% end %>
 <% else %>
 		<% unless @non_contactable_matches.empty? %>
 			<h3>You profile matched to <% @non_contactable_matches.size %> project(s).</h3>
-			<p>Expected to be contacted by researchers of those projects if you're the right match.</p>
+			<p>Expect to be contacted by researchers of those projects if you're the right match.</p>
 		<% end %>
 	
 <% end %>
@@ -39,6 +41,5 @@
 Have a nice day,
 The UNM Research-Match System.
 <br />
-<h4>Please contact the respective hiring researchers if you're interested in working on their project.</h4>
 <br />
 <p style="font-size:X-small;">Note: This email was automatically generated. Please do not respond to this email address; if you have any questions, contact <a href="mailto:uresearch@unm.edu?Subject=Question About Research Matching System." target="_top">uresearch@unm.edu.</a></p>
