@@ -91,6 +91,7 @@ class ProjectSurveysController < ApplicationController
       position.major = position.departments.first.name
     end
 
+    ProjectSurvey.student_match
     respond_to do |format|
       if @project_survey.save
         format.html { redirect_to @project_survey, notice: 'Project survey was successfully created.' }
