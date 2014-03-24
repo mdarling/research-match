@@ -6,7 +6,7 @@ class StudentMailer < ActionMailer::Base
     @contactable_matches = contactable_matches
     @non_contactable_matches = non_contactable_matches
     @contact = student.first_name.titleize + " " + student.last_name.titleize
-
+    
 
     # if project_survey.contact != ""
     # 	@contact = project_survey.contact
