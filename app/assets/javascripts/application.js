@@ -68,6 +68,15 @@ $(function(){  // $(document).ready shorthand
 
   });
 
+$(".not_enrolled").on("change", function(){
+  $("#expected_enrollment").slideToggle();
+});
+
+$(".enrolled").on("change", function(){
+  $("#expected_enrollment").slideToggle();
+});
+
+
 
 });
 

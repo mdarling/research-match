@@ -79,15 +79,15 @@
 
     <div style="clear:both;"><span style="font-size:15px;color:#b80030;">*</span>Are you currently enrolled at UNM?</div>
     <div class="field">
-      <%= f.radio_button :is_enrolled, true, :checked => (@student_profile.is_enrolled == true), :value => true %>
+      <%= f.radio_button :is_enrolled, true, :checked => (@student_profile.is_enrolled == true), :value => true, :class => "enrolled"  %>
       <%= f.label :is_contactable, "Yes" %>
-      <%= f.radio_button :is_enrolled, false, :checked => (@student_profile.is_enrolled == false ), :value => false %>
+      <%= f.radio_button :is_enrolled, false, :checked => (@student_profile.is_enrolled == false ), :value => false, :class => "not_enrolled" %>
       <%= f.label :is_enrolled, "No" %>
     </div>
     <br>
-    <div class="field">
+    <div class="field" id = "expected_enrollment" style = "display:none;margin-left:1em;">
       <%= f.label "When do you expect to be enrolled?" %><br>
-      <%= f.date_select :expected_enrollment %>
+      <%= f.date_select :expected_enrollment, :default => 180.days.since(Date.today).to_date %>
     </div>  
     <div class="field">
       <span style="font-size:15px;color:#b80030">*</span>Expected Graduation<%= f.label " " %><br />
