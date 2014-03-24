@@ -6,7 +6,7 @@ class Position < ActiveRecord::Base
 
 	def is_any_major
 
-    	if major 
+    	if departments 
     		puts 'false'
     	else
     		puts 'true'

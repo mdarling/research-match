@@ -62,13 +62,22 @@
   def student_match
 
   	@projects = ProjectSurvey.all
-
+    @student_profiles = StudentProfile.where( "expected_graduation > ?", Date.today + 180.days )
   	@projects.each do |project|
   		positions = project.positions
 
   		positions.each do |position|
+        potential_students = []
 
-  			potential_students = StudentProfile.where(department: position.major)
+        if position.is_any_major
+          potential_students = @student_profiles
+
+        else
+          position.departments.each do |position_department|
+            potential_students += StudentProfile.where( :department => position_department )
+          end #position departments each do
+        end #positon.is_any_majot
+  			
   			#potential_students = Student.where("department = :current_dept AND gpa >= :current_gpa", {current_dept: position.major, current_gpa: postition.gpa}) 
   			students = []
   			
@@ -88,6 +97,10 @@
   			if position.is_undergrad
   				students += potential_students.where(academic_level: ["Freshman", "Sophomore", "Junior", "Senior"] )
   			end
+
+        if position.is_highschool == false && position.is_postdoc == false && position.is_grad == false && position.is_undergrad 
+          students += potential_students
+        end
 
   			#Postdoc needs to ignore gpa and expected graduation
   			#Here we need to put graduation date criteria
