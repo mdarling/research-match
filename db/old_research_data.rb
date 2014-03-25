@@ -54,6 +54,7 @@ researchers.each do |researcher|
 				end
 				
 				unless u_g_p["desired_classes"].empty?	
+							
 					p_description +="\nDesired Classes:\n" + u_g_p["desired_classes"] + "\n" 
 				end
 				
