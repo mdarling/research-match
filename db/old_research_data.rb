@@ -4,34 +4,26 @@ require 'json'
 #ResearchUser.delete_all
 #ProjectSurvey.delete_all
 #Position.delete_all
+
 def old_research
 file = File.open("#{File.dirname(__FILE__)}/researchers.json", "r")
 	json_string = file.read
 file.close
 
 researchers = JSON.parse(json_string)
-
+i = 0
 researchers.each do |researcher|
 	research_user = ResearchUser.new
+	research_user.skip_confirmation!
+  	
 
 	research_user.email = researcher["email"]  
+	research_user.password = researcher["encrypted_password"] 
+	research_user.password_confirmation = researcher["encrypted_password"] 
 	research_user.encrypted_password = researcher["encrypted_password"]  
-	research_user.reset_password_token = researcher["reset_password_token"]  
-	research_user.reset_password_sent_at = researcher["reset_password_sent_at"]  
-	research_user.remember_created_at = researcher["remember_created_at"] 
-	research_user.sign_in_count = researcher["sign_in_count"] 
-	research_user.current_sign_in_at = researcher["current_sign_in_at"] 
-	research_user.last_sign_in_at = researcher["last_sign_in_at"] 
-	research_user.current_sign_in_ip = researcher["current_sign_in_ip"] 
-	research_user.last_sign_in_ip = researcher["last_sign_in_ip"] 
-	research_user.created_at = researcher["created_at"] 
-	research_user.confirmation_token = researcher["confirmation_token"] 
-	research_user.confirmed_at = researcher["confirmed_at"] 
-	research_user.confirmation_sent_at = researcher["confirmation_sent_at"] 
-	research_user.unconfirmed_email = researcher["unconfirmed_email"] 
 	research_user.first_name = researcher["first_name"]  
 	research_user.last_name = researcher["last_name"] 
-	
+
 	new_project_surveys = []
 	unless researcher["project_surveys"].empty?
 		
@@ -53,20 +45,16 @@ researchers.each do |researcher|
 			# puts '!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!'
 			
 			unless project["unpaid_grad_positions"][0]["desired_skills"].empty?
-				u_g_p = researcher["project_surveys"]["unpaid_grad_positions"][0]
+				u_g_p = project["unpaid_grad_positions"][0]
 				position = new_project.positions.new
 				p_description = u_g_p["job_description"]
 				
 				unless u_g_p["weekly_time_commitment"].empty?	
-					p_description +="\nWeekly time commitment: " 
-				end
-				
-				unless u_g_p["deliverables"].empty?	
-					p_description +="\nDeliverables: " 
+					p_description +="\nWeekly time commitment:\n" + u_g_p["weekly_time_commitment"] + "\n" 
 				end
 				
 				unless u_g_p["desired_classes"].empty?	
-					p_description +="\nDesired Classes: " 
+					p_description +="\nDesired Classes:\n" + u_g_p["desired_classes"] + "\n" 
 				end
 				
 				position.description = p_description
@@ -88,21 +76,22 @@ researchers.each do |researcher|
                 
 			end #unless researcher["project_surveys"]["unpaid_grad_positions"][0]["desired_skills"].empty? 
 			
-			unless researcher["project_surveys"]["unpaid_undergrad_positions"][0]["desired_skills"].empty?
-				u_u_p = researcher["project_surveys"]["unpaid_undergrad_positions"][0]
+			unless project["unpaid_undergrad_positions"][0]["desired_skills"].empty?
+				u_u_p = project["unpaid_undergrad_positions"][0]
 				position = new_project.positions.new
 				p_description = u_u_p["job_description"]
 				
-				unless u_u_p["weekly_time_commitment"].empty?	
-					p_description +="\nWeekly time commitment: " 
-				end
 				
 				unless u_u_p["deliverables"].empty?	
-					p_description +="\nDeliverables: " 
+					p_description +="\nDeliverables:\n" + u_u_p["deliverables"] + "\n"
+				end
+				
+				unless u_u_p["weekly_time_commitment"].empty?	
+					p_description +="\nWeekly time commitment:\n" + u_u_p["weekly_time_commitment"] + "\n" 
 				end
 				
 				unless u_u_p["desired_classes"].empty?	
-					p_description +="\nDesired Classes: " 
+					p_description +="\nDesired Classes:\n" + u_u_p["desired_classes"] + "\n" 
 				end
 				
 				position.description = p_description
@@ -124,25 +113,23 @@ researchers.each do |researcher|
                
 			end #unless researcher["project_surveys"]["unpaid_undergrad_positions"][0]["desired_skills"].empty? 
 			
-			unless researcher["project_surveys"]["paid_grad_positions"][0]["desired_skills"].empty?
-				p_g_p = researcher["project_surveys"]["paid_grad_positions"][0]
+			unless project["paid_grad_positions"][0]["desired_skills"].empty?
+				p_g_p = project["paid_grad_positions"][0]
 				position = new_project.positions.new
-				p_description = u_g_p["job_description"]
+				p_description = p_g_p["job_description"]
 				
-				unless p_g_p["weekly_time_commitment"].empty?	
-					p_description +="\nWeekly time commitment: " 
-				end
-				
-				unless p_g_p["deliverables"].empty?	
-					p_description +="\nDeliverables: " 
-				end
-				
-				unless p_g_p["desired_classes"].empty?	
-					p_description +="\nDesired Classes: " 
-				end
 				
 				unless p_g_p["position_title"].empty?	
 					p_description +="\nPoisition Title: " 
+				end
+
+
+				unless p_g_p["weekly_time_commitment"].empty?	
+					p_description +="\nWeekly time commitment:\n" + p_g_p["weekly_time_commitment"] + "\n" 
+				end
+				
+				unless p_g_p["desired_classes"].empty?	
+					p_description +="\nDesired Classes:\n" + p_g_p["desired_classes"] + "\n" 
 				end
 				
 				position.description = p_description
@@ -162,27 +149,28 @@ researchers.each do |researcher|
 				position.major = new_project.department
 				position.research_user_id = research_user.id
   
-			end #unless researcher["project_surveys"]["paid_grad_positions"][0]["desired_skills"].empty?
+			end #unless project["paid_grad_positions"][0]["desired_skills"].empty?
 			
-			unless researcher["project_surveys"]["paid_undergrad_positions"][0]["desired_skills"].empty?
-				p_u_p = researcher["project_surveys"]["paid_undergrad_positions"][0]
+			unless project["paid_undergrad_positions"][0]["desired_skills"].empty?
+				p_u_p = project["paid_undergrad_positions"][0]
 				position = new_project.positions.new
-				p_description = u_g_p["job_description"]
+				p_description = p_u_p["job_description"]
+									   
 				
-				unless p_u_p["weekly_time_commitment"].empty?	
-					p_description +="\nWeekly time commitment: " 
+				unless p_u_p["position_title"].empty?	
+					p_description +="\nPoisition Title:\n" + p_u_p["position_title"] + "\n" 
+				end
+
+				unless p_u_p["deliverables"].empty?	
+					p_description +="\nDeliverables:\n" + p_u_p["deliverables"] + "\n"
 				end
 				
-				unless p_u_p["deliverables"].empty?	
-					p_description +="\nDeliverables: " 
+				unless p_u_p["weekly_time_commitment"].empty?	
+					p_description +="\nWeekly time commitment:\n" + p_u_p["weekly_time_commitment"] + "\n" 
 				end
 				
 				unless p_u_p["desired_classes"].empty?	
-					p_description +="\nDesired Classes: " 
-				end
-				
-				unless p_u_p["position_title"].empty?	
-					p_description +="\nPoisition Title: " 
+					p_description +="\nDesired Classes:\n" + p_u_p["desired_classes"] + "\n" 
 				end
 				
 				position.description = p_description
@@ -202,13 +190,15 @@ researchers.each do |researcher|
 				position.major = new_project.department
 				position.research_user_id = research_user.id
   
-			end #unless researcher["project_surveys"]["paid_undergrad_positions"][0]["desired_skills"].empty?
+			end #unless project["paid_undergrad_positions"][0]["desired_skills"].empty?
 			
 			
 			new_project.save
 			new_project_surveys << new_project
 		end #research[project] do
+
 			
 	end#unless researchers
+	research_user.save!
 end# users each do
 end #function

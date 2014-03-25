@@ -11,23 +11,17 @@ users = JSON.parse(json_string)
 
 users.each do |user|
 	new_user = User.new
-	new_profile = new_user.student_profile.new 
+
+	new_profile = StudentProfile.new
+	new_profile.user_id = new_user.id
 	
 	new_user.email = user["email"]
-	new_user.encrypted_password = user["encrypted_password"] 
-	new_user.reset_password_token = user["reset_password_token"] 
-	new_user.reset_password_sent_at = user["reset_password_sent_at"] 
-	new_user.remember_created_at = user["remember_created_at"] 
-	new_user.sign_in_count = user["sign_in_count"] 
-	new_user.current_sign_in_at = user["current_sign_in_at"] 
-	new_user.last_sign_in_at = user["last_sign_in_at"] 
-	new_user.current_sign_in_ip = user["current_sign_in_ip"] 
-	new_user.last_sign_in_ip = user["last_sign_in_ip"] 
-	new_user.created_at = user["created_at"] 
+	new_user.password = "password"
+	new_user.password_confirmation = "password"
 
-	unless user["student_profile"]["first_name"].empty?
+	unless user["student_profile"].empty?
 		new_profile.first_name = user["student_profile"]["first_name"] 
-		new_profile.last_name user["student_profile"]["last_name"] 
+		new_profile.last_name = user["student_profile"]["last_name"] 
 		new_profile.email = user["student_profile"]["email"] 
 		new_profile.academic_level = user["student_profile"]["academic_level"]  
 		new_profile.major = user["student_profile"]["major"] 
@@ -44,7 +38,7 @@ users.each do |user|
 	
 	new_user.student_profile = new_profile
 	new_profile.save
-	new_user.save
+	new_user.save!
 	
 end# users each do
 end#function
