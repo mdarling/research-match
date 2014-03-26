@@ -50,12 +50,12 @@ researchers.each do |researcher|
 				p_description = u_g_p["job_description"]
 				
 				unless u_g_p["weekly_time_commitment"].empty?	
-					p_description +="&lt;br&gt;Weekly time commitment:&lt;br&gt;" + u_g_p["weekly_time_commitment"] + "&lt;br&gt;" 
+					p_description +="<br>Weekly time commitment:<br>" + u_g_p["weekly_time_commitment"] + "<br>" 
 				end
 				
 				unless u_g_p["desired_classes"].empty?	
 
-					p_description +="&lt;br&gt;Desired Classes:&lt;br&gt;" + u_g_p["desired_classes"] + "&lt;br&gt;" 
+					p_description +="<br>Desired Classes:<br>" + u_g_p["desired_classes"] + "<br>" 
 				end
 				
 				position.description = p_description
@@ -84,15 +84,15 @@ researchers.each do |researcher|
 				
 				
 				unless u_u_p["deliverables"].empty?	
-					p_description +="&lt;br&gt;Deliverables:&lt;br&gt;" + u_u_p["deliverables"] + "&lt;br&gt;"
+					p_description +="<br>Deliverables:<br>" + u_u_p["deliverables"] + "<br>"
 				end
 				
 				unless u_u_p["weekly_time_commitment"].empty?	
-					p_description +="&lt;br&gt;Weekly time commitment:&lt;br&gt;" + u_u_p["weekly_time_commitment"] + "&lt;br&gt;" 
+					p_description +="<br>Weekly time commitment:<br>" + u_u_p["weekly_time_commitment"] + "<br>" 
 				end
 				
 				unless u_u_p["desired_classes"].empty?	
-					p_description +="&lt;br&gt;Desired Classes:&lt;br&gt;" + u_u_p["desired_classes"] + "&lt;br&gt;" 
+					p_description +="<br>Desired Classes:<br>" + u_u_p["desired_classes"] + "<br>" 
 				end
 				
 				position.description = p_description
@@ -121,16 +121,16 @@ researchers.each do |researcher|
 				
 				
 				unless p_g_p["position_title"].empty?	
-					p_description +="&lt;br&gt;Poisition Title: " 
+					p_description +="<br>Poisition Title: " 
 				end
 
 
 				unless p_g_p["weekly_time_commitment"].empty?	
-					p_description +="&lt;br&gt;Weekly time commitment:&lt;br&gt;" + p_g_p["weekly_time_commitment"] + "&lt;br&gt;" 
+					p_description +="<br>Weekly time commitment:<br>" + p_g_p["weekly_time_commitment"] + "<br>" 
 				end
 				
 				unless p_g_p["desired_classes"].empty?	
-					p_description +="&lt;br&gt;Desired Classes:&lt;br&gt;" + p_g_p["desired_classes"] + "&lt;br&gt;" 
+					p_description +="<br>Desired Classes:<br>" + p_g_p["desired_classes"] + "<br>" 
 				end
 				
 				position.description = p_description
@@ -159,19 +159,19 @@ researchers.each do |researcher|
 									   
 				
 				unless p_u_p["position_title"].empty?	
-					p_description +="&lt;br&gt;Poisition Title:&lt;br&gt;" + p_u_p["position_title"] + "&lt;br&gt;" 
+					p_description +="<br>Poisition Title:<br>" + p_u_p["position_title"] + "<br>" 
 				end
 
 				unless p_u_p["deliverables"].empty?	
-					p_description +="&lt;br&gt;Deliverables:&lt;br&gt;" + p_u_p["deliverables"] + "&lt;br&gt;"
+					p_description +="<br>Deliverables:<br>" + p_u_p["deliverables"] + "<br>"
 				end
 				
 				unless p_u_p["weekly_time_commitment"].empty?	
-					p_description +="&lt;br&gt;Weekly time commitment:&lt;br&gt;" + p_u_p["weekly_time_commitment"] + "&lt;br&gt;" 
+					p_description +="<br>Weekly time commitment:<br>" + p_u_p["weekly_time_commitment"] + "<br>" 
 				end
 				
 				unless p_u_p["desired_classes"].empty?	
-					p_description +="&lt;br&gt;Desired Classes:&lt;br&gt;" + p_u_p["desired_classes"] + "&lt;br&gt;" 
+					p_description +="<br>Desired Classes:<br>" + p_u_p["desired_classes"] + "<br>" 
 				end
 				
 				position.description = p_description
