@@ -3,7 +3,7 @@
 <%= image_tag image_url('unm-logo.gif') %>
 <h1 style="margin-left:5em">Research-Match@UNM</h1>
 <br />
-<h3>Welcome <%= @resource.first_name %> <%= @resource.last_name %>!</h3>
+<h3>Welcome!</h3>
 <p>You can confirm your account email through the link below:</p>
 
 	<p><%= link_to 'Confirm my account', research_user_confirmation_url(:confirmation_token => @token) %></p>
