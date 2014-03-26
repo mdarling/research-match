@@ -47,7 +47,7 @@ researchers.each do |researcher|
 			unless project["unpaid_grad_positions"][0]["desired_skills"].empty?
 				u_g_p = project["unpaid_grad_positions"][0]
 				position = new_project.positions.new
-				p_description = u_g_p["job_description"]
+				p_description = u_g_p["job_description"] + "<br>"
 				
 				unless u_g_p["weekly_time_commitment"].empty?	
 					p_description +="<br>Weekly time commitment:<br>" + u_g_p["weekly_time_commitment"] + "<br>" 
@@ -80,7 +80,7 @@ researchers.each do |researcher|
 			unless project["unpaid_undergrad_positions"][0]["desired_skills"].empty?
 				u_u_p = project["unpaid_undergrad_positions"][0]
 				position = new_project.positions.new
-				p_description = u_u_p["job_description"]
+				p_description = u_u_p["job_description"] + "<br>"
 				
 				
 				unless u_u_p["deliverables"].empty?	
@@ -117,7 +117,7 @@ researchers.each do |researcher|
 			unless project["paid_grad_positions"][0]["desired_skills"].empty?
 				p_g_p = project["paid_grad_positions"][0]
 				position = new_project.positions.new
-				p_description = p_g_p["job_description"]
+				p_description = p_g_p["job_description"] + "<br>"
 				
 				
 				unless p_g_p["position_title"].empty?	
@@ -155,7 +155,7 @@ researchers.each do |researcher|
 			unless project["paid_undergrad_positions"][0]["desired_skills"].empty?
 				p_u_p = project["paid_undergrad_positions"][0]
 				position = new_project.positions.new
-				p_description = p_u_p["job_description"]
+				p_description = p_u_p["job_description"] + "<br>"
 									   
 				
 				unless p_u_p["position_title"].empty?	
