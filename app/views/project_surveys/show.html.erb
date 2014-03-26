@@ -5,7 +5,7 @@
     <h1><%= @project_survey.title %></h1>
 
     <h3><%= @project_survey.department %></h3>
-        <% if research_user_signed_in? && @project_survey.research_user_id = current_research_user.id %>
+        <% if research_user_signed_in? && @project_survey.research_user_id == current_research_user.id %>
     <%= link_to 'Edit This Project', edit_project_survey_path(@project_survey) %>  
   <% end %>
   </div> <!-- End of nav div -->
@@ -81,7 +81,7 @@
 
         <% if position.standing != "" %>
           <p>  
-            Undergraduate students should be at least a <b><%= position.standing %></b> at the start of the work period.  
+            Students should be at least a <b><%= position.standing %></b> at the start of the work period.  
           </p>
         <% end %>    
 
