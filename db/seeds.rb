@@ -26,6 +26,8 @@ admins =
 User.delete_all
 ResearchUser.delete_all
 Admin.delete_all
+ProjectSurvey.delete_all
+StudentProfile.delete_all
 
 research_user_refs = {}
 researchers.each do |researcher|
