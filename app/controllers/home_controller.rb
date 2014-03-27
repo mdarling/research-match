@@ -14,7 +14,7 @@ class HomeController < ApplicationController
   
   def researchers
   	if admin_signed_in?
- 	 		@researchers = ResearchUser.all
+ 	 		@researchers = ResearchUser.all(:order => "last_name")
 		else
 			redirect_to :home, notice: 'Access Denied.' 
   	end
