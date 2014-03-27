@@ -23,7 +23,10 @@
         end#end if contactable
       end #end matches each do 
 
-      StudentMailer.students_notification(student, contactable_matches, non_contactable_matches).deliver
+      unless contactable_matches.empty? && non_contactable_matches.empty?
+        puts "non empty"
+        StudentMailer.students_notification(student, contactable_matches, non_contactable_matches).deliver
+      end #end empty?
                     
     end #end students each do
   end #email students function
