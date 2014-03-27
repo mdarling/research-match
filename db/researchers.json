@@ -153,28 +153,7 @@
 
     ]
   },
-  {
-    "email": "amrit914@unm.edu",
-    "encrypted_password": "$2a$10$Dl5vAVVhWDhVBsgm5IvngepdFDLtOMUohrlO0M3XqLqVF7VX/VByG",
-    "reset_password_token": "",
-    "reset_password_sent_at": "",
-    "remember_created_at": "",
-    "sign_in_count": "8",
-    "current_sign_in_at": "2014-01-30 18:54:59 UTC",
-    "last_sign_in_at": "2014-01-27 18:40:01 UTC",
-    "current_sign_in_ip": "129.24.29.26",
-    "last_sign_in_ip": "71.33.39.94",
-    "created_at": "2013-12-10 22:38:20 UTC",
-    "confirmation_token": "",
-    "confirmed_at": "2013-12-10 22:39:36 UTC",
-    "confirmation_sent_at": "2013-12-10 22:38:20 UTC",
-    "unconfirmed_email": "",
-    "first_name": "Michael",
-    "last_name": "Darling",
-    "project_surveys": [
 
-    ]
-  },
   {
     "email": "kgoodric@unm.edu",
     "encrypted_password": "$2a$10$3wg3pPC9R8uk.tpOOQwArutBbHvLgrVMez.pZdPkAEAvWnhQUWHoS",
