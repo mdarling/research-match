@@ -83,9 +83,10 @@ $(".dept_select option").mousedown(function(e) {
 
 
 
-if ( $('.alert').val() == 'Your account was successfully confirmed.' ) {
+if ( $('.alert').val() == 'Your account was successfully confirmed.' ) 
+{
      $('#researcher_steps').show();
-});
+}
 
 });
 
