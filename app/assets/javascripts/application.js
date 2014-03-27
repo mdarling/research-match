@@ -81,6 +81,12 @@ $(".dept_select option").mousedown(function(e) {
   return false;
 });
 
+
+
+if ( $('.alert').val() == 'Your account was successfully confirmed.' ) {
+     $('#researcher_steps').show();
+});
+
 });
 
 $(function(){  // $(document).ready shorthand 
