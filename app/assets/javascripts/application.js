@@ -13,7 +13,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require_tree .
-//= require project_survey.validations
+//= require project_validations
 //= require multistep
 //= require facebox
 

@@ -1,0 +1,87 @@
+
+
+function validateForm()
+{
+
+	var formName = "";
+	if( projectID == "new" )
+	{
+		formName = "new_project_survey";
+	}
+	else
+	{
+		formName = "edit_project_survey_" + projectID;
+	
+	}
+	var errors = "";
+	var errorDiv = document.getElementById('error_explanation');
+	//var submitNoticeDiv = document.getElementById('submit_notice');
+	var errorCount = 0;
+
+
+/*******************Project Validations***************************/
+
+	var x = document.forms[formName]			
+["project_survey_researcher"].value;
+		if( x == null || x == "" )
+  	{
+  		errorCount += 1;
+  		errors = errors.concat( "<li>'Lead Researcher' is a required field.</li>" );	  	 
+  	}
+
+	var x = document.forms[formName]			
+["project_survey_title"].value;
+		if( x == null || x == "" )
+  	{
+  		errorCount += 1;
+  		errors = errors.concat( "<li>'Project Title' is a required field.</li>" );	  	 
+  	}	
+  	
+  var x = document.forms[formName]			
+["project_survey_keywords"].value;
+		if( x == null || x == "" )
+  	{
+  		errorCount += 1;
+  		errors = errors.concat( "<li>'Keywords' is a required field.</li>" );	  	 
+  	}	
+  	
+   var x = document.forms[formName]			
+["project_survey_description"].value;
+		if( x == null || x == "" )
+  	{
+  		errorCount += 1;
+  		errors = errors.concat( "<li>'Project Description' is a required field.</li>" );	  	 
+  	}
+ 	
+ 		var x = document.forms[formName]			
+["project_survey_email"].value;
+		if( x == null || x == "" )
+  	{
+  		errorCount += 1;
+  		errors = errors.concat( "<li>'Email' is a required field.</li>" );	  	 
+  	}	
+  	
+ 		var x = document.forms[formName]			
+["project_survey_department"].value;
+		if( x == null || x == "" )
+  	{
+  		errorCount += 1;
+  		errors = errors.concat( "<li>'Department' is a required field.</li>" );	  	 
+  	}
+
+	if( errors != "" )
+  	{
+  	 	errorDiv.innerHTML = "<h2>" + errorCount + " problems need to be fixed before moving on.</h2> <ul>" + errors + "</ul>";
+  	 	
+
+  	 $('#error_explanation').slideDown(); 
+
+  	return false;
+  	}
+  else
+  {
+  	$('#error_explanation').hide();
+  	return true;
+  }	
+
+}

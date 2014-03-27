@@ -7,18 +7,18 @@ class Position < ActiveRecord::Base
 	def is_any_major
 
     	if departments 
-    		puts 'false'
+    		return false
     	else
-    		puts 'true'
+    		return true
     	end
   	end
 
   	def is_any_standing
 
     	if is_undergrad || is_grad || is_postdoc || is_highschool 
-    		puts 'false'
+    		return false
     	else
-    		puts 'true'
+    		return true
     	end
   	end
 end
