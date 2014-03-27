@@ -85,7 +85,7 @@ $(".dept_select option").mousedown(function(e) {
 
 if ( $('.alert').val() == 'Your account was successfully confirmed.' ) 
 {
-     $('#researcher_steps').show();
+    jQuery.facebox({ div: '#researcher_steps' })
 }
 
 });
