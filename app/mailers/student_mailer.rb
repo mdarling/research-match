@@ -8,12 +8,6 @@ class StudentMailer < ActionMailer::Base
     @contact = student.first_name.titleize + " " + student.last_name.titleize
     
 
-    # if project_survey.contact != ""
-    # 	@contact = project_survey.contact
-    # else
-    # 	@contact = project_survey.researcher
-    # end
-    # contact = @contact
     email = student.email
     #email = "amrit914@gmail.com"
     mail(:to => email, :subject => "Your Profile Matched To Research Project")
