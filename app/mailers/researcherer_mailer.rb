@@ -31,15 +31,15 @@ class ResearchererMailer < ActionMailer::Base
   end 
 
   def researcher_with_project
-    researchers = ResearchUser.all
+    #researchers = ResearchUser.all
 
-    researchers.each do |researcher|
-      unless researcher.project_surveys.empty?
-        email = researcher.email
-        @researcher = researcher
+    #researchers.each do |researcher|
+      # unless researcher.project_surveys.empty?
+      #   email = researcher.email
+      #   @researcher = researcher
         mail(:to => "amrit914@gmail.com", :subject => "UNM Research Match has Launched!")
-      end
-    end #end do
+    #   end
+    # end #end do
   end #end def
 
 end
