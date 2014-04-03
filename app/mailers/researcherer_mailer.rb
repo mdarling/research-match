@@ -25,7 +25,7 @@ class ResearchererMailer < ActionMailer::Base
       #   email = researcher.email
       #   @researcher = researcher
       @researcher = ResearchUser.find(395)
-        mail(:to => "ksimmons@unm.edu", :subject => "UNM Research Match has Launched!")
+        mail(:to => "amrit914@gmail.com", :subject => "UNM Research Match has Launched!")
     #   end
      end
   end 
