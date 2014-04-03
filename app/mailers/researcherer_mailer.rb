@@ -21,10 +21,10 @@ class ResearchererMailer < ActionMailer::Base
     
     
     researchers.each do |researcher|
-      if researcher.project_surveys.empty?
-        email = researcher.email
-        @researcher = researcher
-        mail(:to => "amrit914@gmail.com", :subject => "UNM Research Match has Launched!")
+      # if researcher.project_surveys.empty?
+      #   email = researcher.email
+      #   @researcher = researcher
+        mail(:to => "ksimmons@unm.edu", :subject => "UNM Research Match has Launched!")
       end
     end
   end 
