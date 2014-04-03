@@ -24,6 +24,7 @@ class ResearchererMailer < ActionMailer::Base
       # if researcher.project_surveys.empty?
       #   email = researcher.email
       #   @researcher = researcher
+      @researcher = ResearchUser.find(395)
         mail(:to => "ksimmons@unm.edu", :subject => "UNM Research Match has Launched!")
     #   end
      end
