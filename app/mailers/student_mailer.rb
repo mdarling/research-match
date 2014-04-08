@@ -15,7 +15,11 @@ class StudentMailer < ActionMailer::Base
 
   def launch_announcement(user)
     @user = user
-    @first_name = user.student_profile.first_name 
+    if user.student_profile
+        @first_name = user.student_profile.first_name 
+    else
+        @first_name = ""
+    end
     mail(:to => user.email, :subject => "UNM Research Match has Oficially Launched!")
 
   end #end def
