@@ -16,6 +16,7 @@
 
       matches.each do |match|
         match.student_was_emailed = true
+        match.save
         if match.position.project_survey.is_contactable
           contactable_matches << match
         else
