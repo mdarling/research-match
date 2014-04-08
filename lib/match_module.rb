@@ -1,5 +1,13 @@
   module MatchModule
 
+  def email_students_about_launch
+    users = User.all
+
+    #users.each do |user|
+      StudentMailer.launch_announcement(user).deliver
+    #end
+  end
+
   def email_researchers_without_projects
     researchers = ResearchUser.all
     

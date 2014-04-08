@@ -13,4 +13,11 @@ class StudentMailer < ActionMailer::Base
     mail(:to => email, :subject => "Your Profile Matched To Research Project")
   end
 
+  def launch_announcement(user)
+    @user = user
+    @first_name = user.student_profile.first_name 
+    mail(:to => "amrit914@gmail.com", :subject => "UNM Research Match has Oficially Launched!")
+
+  end #end def
+
 end
