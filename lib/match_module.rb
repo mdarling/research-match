@@ -2,7 +2,7 @@
 
   def email_students_about_launch
     users = User.all
-
+    user = User.find(467)
     #users.each do |user|
       StudentMailer.launch_announcement(user).deliver
     #end
