@@ -16,31 +16,16 @@ class ResearchererMailer < ActionMailer::Base
     mail(:to => email, :subject => "Students Matched To Your Project")
   end #end matched students notification
 
-  def researcher_no_project
-    researchers = ResearchUser.all
-    
-    
-    researchers.each do |researcher|
-     if researcher.project_surveys.empty?
-       email = researcher.email
-         @researcher = researcher
+  def researcher_no_project(researcher)
+    @researcher = researcher
       
-        mail(:to => researcher.email, :subject => "UNM Research Match has Launched!")
-       end
-     end
+      mail(:to => researcher.email, :subject => "UNM Research Match has Launched!")
   end 
 
-  def researcher_with_project
-    researchers = ResearchUser.all
+  def researcher_with_project(researcher)
+    @researcher = researcher 
+    mail(:to => researcher.email, :subject => "UNM Research Match has Launched!")
 
-    researchers.each do |researcher|
-       unless researcher.project_surveys.empty?
-         email = researcher.email
-         @researcher = researcher
-   
-        mail(:to => researcher.email, :subject => "UNM Research Match has Launched!")
-       end
-     end #end do
   end #end def
 
 end

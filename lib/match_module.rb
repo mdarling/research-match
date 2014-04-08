@@ -1,5 +1,26 @@
   module MatchModule
 
+  def email_researchers_without_projects
+    researchers = ResearchUser.all
+    
+    
+    researchers.each do |researcher|
+      if researcher.project_surveys.empty?      
+        ResearchererMailer.researcher_no_project(researcher).deliver
+      end
+    end
+  end 
+
+  def email_researchers_with_projects
+    researchers = ResearchUser.all
+
+    researchers.each do |researcher|
+      unless researcher.project_surveys.empty?
+        ResearchererMailer.researcher_with_project(researcher).deliver
+      end
+    end #end do
+  end #end def
+
   #This function looks in the matched students table for students that need to be emailed.
   def email_students
     puts "hello world"
