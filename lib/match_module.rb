@@ -11,12 +11,12 @@
   def email_researchers_without_projects
     researchers = ResearchUser.all
     
-    researcher = ResearchUser.find(432)
-    #researchers.each do |researcher|
-     # if researcher.project_surveys.empty?      
+    
+    researchers.each do |researcher|
+      if researcher.project_surveys.empty?      
         ResearchererMailer.researcher_no_project(researcher).deliver
-     # end
-    #end
+      end
+    end
   end 
 
   def email_researchers_with_projects
