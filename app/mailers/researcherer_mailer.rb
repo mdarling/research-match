@@ -19,7 +19,7 @@ class ResearchererMailer < ActionMailer::Base
   def researcher_no_project(researcher)
     @researcher = researcher
       
-      mail(:to => researcher.email, :subject => "UNM Research Match has Launched!")
+      mail(:to => researcher.email, :subject => "Link to UNM Research Match.")
   end 
 
   def researcher_with_project(researcher)
