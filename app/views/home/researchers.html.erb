@@ -1,10 +1,35 @@
-<% if @researchers %>
-				<h1>Researcher Accounts:</h1>
+<% unless @recent_researchers.empty? %>
+				<h1>Researchers who have signed up in the last 7 days:</h1>
 					<table>
 				<tr>
 					<th>First Name</th>
 					<th>Last Name</th>
-					<th>Number of Projects</th>
+					<th>Projects</th>
+					<th>Destroy</th>
+				</tr>
+
+			<% @recent_researchers.each do |researcher| %>
+				<tr>
+					<td><%= researcher.first_name %></td>
+					<td><%= researcher.last_name %></td>
+					<td><%= researcher.project_surveys.size %></td>
+					<td> <%= link_to "Destroy", research_user_registration_path(researcher), :confirm => "Are you sure?", :method => :delete %></td>
+				</tr>
+	<% end %>
+		</table>
+<% else %>
+	<h1>No Researchers have signed up in the last 7 days.</h1>
+<% end %><!-- If @ recent_researchers -->
+<br>
+<br>
+<br>	
+<% if @researchers %>
+				<h1>All Researcher Accounts:</h1>
+					<table>
+				<tr>
+					<th>First Name</th>
+					<th>Last Name</th>
+					<th>Projects</th>
 					<th>Destroy</th>
 				</tr>
 

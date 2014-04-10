@@ -1,5 +1,22 @@
 <% if @students %>
-				
+				<h1>Global Student Information</h1>
+				<table>
+				<tr>
+					<th>Total</th>
+					<th>Recent</th>
+					<th>Profiles</th>
+				</tr>
+
+				<tr>
+					<td><%= @students.size %></td>
+					<td><%= @recent_students.size %></td>
+					<td><%= @profiles.size %></td>
+
+				</tr>
+				</table>
+				<br>
+				<br>
+				<br>
 				<h1>Student Accounts:</h1>
 					<table>
 				<tr>

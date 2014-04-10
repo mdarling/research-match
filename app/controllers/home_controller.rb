@@ -15,6 +15,7 @@ class HomeController < ApplicationController
   def researchers
   	if admin_signed_in?
  	 		@researchers = ResearchUser.all(:order => "last_name")
+      @recent_researchers = ResearchUser.where("created_at >= ?", Time.zone.now.beginning_of_day - 7.days)
 		else
 			redirect_to :home, notice: 'Access Denied.' 
   	end
@@ -23,6 +24,8 @@ class HomeController < ApplicationController
 	def students
   	if admin_signed_in?
  	 		@students = User.all
+      @recent_students = User.where("created_at >= ?", Time.zone.now.beginning_of_day - 7.days)
+      @profiles = StudentProfile.all
 		else
 			redirect_to :home, notice: 'Access Denied.' 
   	end
@@ -31,6 +34,9 @@ class HomeController < ApplicationController
 	def projects
   	if admin_signed_in?
  	 		@projects = ProjectSurvey.all
+      @recent_projects = ProjectSurvey.where("created_at >= ?", Time.zone.now.beginning_of_day - 7.days)
+      @positions = Position.all
+      @recent_positions = Position.where("created_at >= ?", Time.zone.now.beginning_of_day - 7.days)
 		else
 			redirect_to :home, notice: 'Access Denied.' 
   	end

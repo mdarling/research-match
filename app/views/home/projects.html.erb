@@ -1,7 +1,26 @@
 <% if @projects %>
-				
-				<h1>Projects:</h1>
-					<table>
+
+				<h1>Global Project Information</h1>
+				<table>
+				<tr>
+					<th>Total Projects</th>
+					<th>Recent Projects</th>
+					<th>Total Positions</th>
+					<th>Recent Positions</th>
+				</tr>
+
+				<tr>
+					<td><%= @projects.size %></td>
+					<td><%= @recent_projects.size %></td>
+					<td><%= @positions.size %></td>
+					<td><%= @recent_positions.size %></td>
+				</tr>
+				</table>
+				<br>
+				<br>
+				<br>
+				<h1>Project Table:</h1>
+				<table>
 				<tr>
 					<th>Lead Researcher</th>
 					<th>Department</th>
@@ -11,7 +30,7 @@
 
 			<% @projects.each do |project| %>
 				<tr>
-					<td><%= project.lead_researcher %></td>
+					<td><%= project.researcher %></td>
 					<td><%= project.department %></td>
 					<td><%= link_to 'Project',project_survey_path(project) %></td>
 					<td> <%= link_to "Destroy", project_survey_path(project), :confirm => "Are you sure?", :method => :delete %></td>
