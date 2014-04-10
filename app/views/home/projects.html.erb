@@ -19,6 +19,30 @@
 				<br>
 				<br>
 				<br>
+
+
+				<% unless @recent_projects.empty? %>
+								<h1>Recently Registered Projects</h1>
+				<table>
+				<tr>
+					<th>Lead Researcher</th>
+					<th>Department</th>
+					<th>View Project</th>
+					<th>Destroy</th>
+				</tr>
+				<% @recent_projects.each do |project| %>
+				<tr>
+					<td><%= project.researcher %></td>
+					<td><%= project.department %></td>
+					<td><%= link_to 'Project',project_survey_path(project) %></td>
+					<td> <%= link_to "Destroy", project_survey_path(project), :confirm => "Are you sure?", :method => :delete %></td>
+				</tr>
+				<% end %>
+				</table>
+				<br>
+				<br>
+				<br>
+				<% end %>
 				<h1>Project Table:</h1>
 				<table>
 				<tr>
