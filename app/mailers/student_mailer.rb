@@ -20,7 +20,7 @@ class StudentMailer < ActionMailer::Base
     else
         @first_name = ""
     end
-    mail(:to => user.email, :subject => "UNM Research Match has Oficially Launched!")
+    mail(:to => user.email, :subject => "UNM Research Match has Officially Launched!")
 
   end #end def
 

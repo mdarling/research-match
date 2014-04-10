@@ -68,6 +68,14 @@ $(function(){  // $(document).ready shorthand
 
   });
 
+  $("#info_button").click(function(event) {
+     event.preventDefault();
+    $('.info_index').toggle();
+    $('.blank_space').toggle();
+
+
+  });
+
 $(".not_enrolled").on("change", function(){
   $("#expected_enrollment").slideDown();
 });

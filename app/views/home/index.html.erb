@@ -184,15 +184,32 @@
 		</p>
 		<hr>
 		<div id="lcell">
-		<%= button_to "Researcher Sign Up", new_research_user_registration_path, :method => "get", :style => width %>
+			<div id = "info_button" >
+			<%= button_to "How It Works", "#", :method => "get", :style => width  %>
+
+                    <div class="info_index" style="display:none;padding-left:10px;">
+                      <p>&#8226; <%= link_to "If you're a student", "#student_steps", :rel => "facebox" %></p>
+                        <div id="student_steps" style="display:none;"><%= render 'home/student_steps' %></div>
+                     <p>&#8226; <%= link_to "If you're a researcher", "#researcher_steps", :rel => "facebox" %></p>
+                        <div id="researcher_steps" style="display:none;"><%= render 'home/researcher_steps' %></div>
+                      <div style="margin-left:5em;"><a href=" " id = "dead_link"><%=image_tag('up.png') %></a></div>
+                    </div>
+            </div>
+			<%= button_to "Researcher Sign Up", new_research_user_registration_path, :method => "get", :style => width %>
 			<%= button_to "Student Sign Up", new_user_registration_path, :method => "get", :style => width %>
 			<%= button_to "View Projects", project_surveys_path, :method => "get", :style => width %>
 		</div>
 				
 		<div id="rcell">
 			<p>
-			<h5>Add your projects to the database.</h5> 	
+			<h5>Research-Match Information.</h5> 	
 			</p>
+			<div class="blank_space" style="display:none">
+				<%= image_tag "blank_80px.png" %>
+			</div>
+			<div id = "row">
+			<h5>Add your projects to the database.</h5> 	
+			</div>
 			<div id="row">
 				<h5>Sign up to add your profile to the database.</h5>
 			</div>
