@@ -37,6 +37,7 @@ class HomeController < ApplicationController
       @recent_projects = ProjectSurvey.where("created_at >= ?", Time.zone.now.beginning_of_day - 7.days)
       @positions = Position.all
       @recent_positions = Position.where("created_at >= ?", Time.zone.now.beginning_of_day - 7.days)
+      @matches = MatchedStudents.where( :position_id => @positions )
 		else
 			redirect_to :home, notice: 'Access Denied.' 
   	end
