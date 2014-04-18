@@ -17,11 +17,13 @@
 				<br>
 				<br>
 				<br>
-				<h1>Student Accounts:</h1>
+				<h1>Student Profiles:</h1>
 					<table>
 				<tr>
 					<th>First Name</th>
 					<th>Last Name</th>
+					<th>Email</th>
+					<th>Department</th>
 					<th>View Profile</th>
 					<th>Destroy</th>
 				</tr>
@@ -32,6 +34,8 @@
 				<tr>
 					<td><%= profile.first_name %></td>
 					<td><%= profile.last_name %></td>
+					<td><%= mail_to profile.email %></td>
+					<td><%= profile.department %></td>
 					<td><%= link_to 'Profile',student_profile_path(profile) %></td>
 					<td> <%= link_to "Destroy", user_registration_path(student), :confirm => "Are you sure?", :method => :delete %></td>
 				</tr>
