@@ -52,7 +52,11 @@
     <br />
     <div class="field">
       <span style="font-size:15px;color:#b80030">*</span><%= f.label "Lead Researcher" %><br />
-      <%= f.text_field :researcher, :class => 'textField', :value => current_research_user.first_name + " " + current_research_user.last_name%>
+      <% if admin_signed_in? %>
+        <%= f.text_field :researcher, :class => 'textField' %>
+       <% else %> 
+          <%= f.text_field :researcher, :class => 'textField', :value => current_research_user.first_name + " " + current_research_user.last_name%>
+      <% end %>
     </div>
     
     <div class="field">
@@ -78,7 +82,11 @@
     </div>
     <div class="field">
       <span style="font-size:15px;color:#b80030">*</span><%= f.label "Email address" %><br />
-      <%= f.text_field :email, :class => 'textField', :value => current_research_user.email %>
+      <% if admin_signed_in? %>
+        <%= f.text_field :email, :class => 'textField' %>
+      <% else %>
+        <%= f.text_field :email, :class => 'textField', :value => current_research_user.email %>
+      <% end %>
     </div>
     <div class="field">
       <%= f.label "Phone Number (optional)" %><br />

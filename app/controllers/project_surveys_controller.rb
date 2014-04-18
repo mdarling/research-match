@@ -67,10 +67,12 @@ class ProjectSurveysController < ApplicationController
     end
 
     @positions_index = -1
-    if research_user_signed_in? || admin_signed_in?
+    if research_user_signed_in? 
       if !current_research_user.project_surveys.include?(@project_survey)
         redirect_to :home, notice: 'Access Denied.' 
       end
+    elsif admin_signed_in?
+
     else
       redirect_to :home, notice: 'Access Denied.' 
     end
