@@ -37,7 +37,7 @@
 					<td><%= mail_to profile.email %></td>
 					<td><%= profile.department %></td>
 					<td><%= link_to 'Profile',student_profile_path(profile) %></td>
-					<td> <%= link_to "Destroy", user_registration_path(student), :confirm => "Are you sure?", :method => :delete %></td>
+					<td><%= link_to "Destroy", user_registration_path(student), :confirm => "Are you sure?", :method => :delete %></td>
 				</tr>
 				<% end %>	
 	<% end %>
