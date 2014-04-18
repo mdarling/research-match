@@ -14,6 +14,7 @@
 					<td><%= researcher.first_name %></td>
 					<td><%= researcher.last_name %></td>
 					<td><%= researcher.project_surveys.size %></td>
+					<td><%= researcher.created_at.to_date %></td>
 					<td> <%= link_to "Destroy", research_user_registration_path(researcher), :confirm => "Are you sure?", :method => :delete %></td>
 				</tr>
 	<% end %>

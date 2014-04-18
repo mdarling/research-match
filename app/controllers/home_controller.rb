@@ -11,6 +11,27 @@ class HomeController < ApplicationController
   		redirect_to :home, notice: 'Access Denied.' 
   	end
   end
+
+  def match_table
+    if admin_signed_in?
+      @projects = ProjectSurvey.all
+      @recent_matches = MatchedStudents.where("created_at >= ?", Time.zone.now.beginning_of_day - 7.days)
+
+    else
+      redirect_to :home, notice: 'Access Denied.' 
+    end
+  end
+
+  def project_matches
+    if admin_signed_in?
+
+      @matches = MatchedStudents.find(params[:matches])
+      @project = ProjectSurvey.find(params[:project])
+
+    else
+      redirect_to :home, notice: 'Access Denied.' 
+    end
+  end
   
   def researchers
   	if admin_signed_in?

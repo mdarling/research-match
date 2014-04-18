@@ -1,0 +1,28 @@
+
+				<h1>Matches</h1>
+				<table>
+				<tr>
+					<th>Researcher</th>
+					<th>Project</th>
+					<th>Students</th>
+					<th>Hired</th>
+				</tr>
+				<% @projects.each do |project| %>
+					<% positions = project.positions %>
+					<% matches = [] %>
+					<% positions.each do |position| %>
+						<% matches += MatchedStudents.where(:position_id => position.id ) %>
+
+					<% end %>
+						<% unless matches.empty? %>
+							<tr>
+								<td><%= project.researcher %></td>
+								<td><%= project.title %></td>
+								<td><%= link_to "#{matches.size}", home_project_matches_path(:project => project, :matches => matches)  %></td>
+								<td> not yet set up</td>
+							</tr>
+						<% end %>
+				<% end %>
+			</table>
+
+	

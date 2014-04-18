@@ -29,6 +29,10 @@ Matcher::Application.routes.draw do
 
   get "home/researcher_steps"
 
+  get "home/match_table"
+
+  get "home/project_matches"
+
   resources :matched_students do
     get 'reject', :on => :collection
   end
