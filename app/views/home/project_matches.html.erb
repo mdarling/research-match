@@ -9,6 +9,7 @@
 	<th>Standing</th>
 	<th>GPA</th>
 	<th>Interests</th>
+	<th>Date Matched</th>
 	<th>Profile</th>
 </tr>
 <% @matches.each do |match| %>
@@ -19,6 +20,7 @@
 		<td><%= student.academic_level %></td>
 		<td><%= student.gpa %></td>
 		<td><%= student.interests %></td>
+		<td><%= match.created_at.to_date %></td>
 		<td><%= link_to "View", student_profile_path(student) %></td>
 
 	</tr>
