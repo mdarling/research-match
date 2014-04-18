@@ -4,6 +4,8 @@
 				<tr>
 					<th>First Name</th>
 					<th>Last Name</th>
+					<th>Email</th>
+					<th>Department</th>
 					<th>Projects</th>
 					<th>Joined On</th>
 					<th>Destroy</th>
@@ -13,6 +15,12 @@
 				<tr>
 					<td><%= researcher.first_name %></td>
 					<td><%= researcher.last_name %></td>
+					<td><%= mail_to( researcher.email ) %>
+					<td><% if researcher.project_surveys.first %>
+						<%= researcher.project_surveys.first.department %>
+					<% else %>
+						Unknown
+					<% end %></td>
 					<td><%= researcher.project_surveys.size %></td>
 					<td><%= researcher.created_at.to_date %></td>
 					<td> <%= link_to "Destroy", research_user_registration_path(researcher), :confirm => "Are you sure?", :method => :delete %></td>
@@ -31,6 +39,8 @@
 				<tr>
 					<th>First Name</th>
 					<th>Last Name</th>
+					<th>Email</th>
+					<th>Department</th>
 					<th>Projects</th>
 					<th>Joined On</th>
 					<th>Destroy</th>
@@ -40,6 +50,12 @@
 				<tr>
 					<td><%= researcher.first_name %></td>
 					<td><%= researcher.last_name %></td>
+					<td><%= mail_to( researcher.email ) %>
+					<td><% if researcher.project_surveys.first %>
+						<%= researcher.project_surveys.first.department %>
+					<% else %>
+						Unknown
+					<% end %></td>
 					<td><%= researcher.project_surveys.size %></td>
 					<td><%= researcher.created_at.to_date %></td>
 					<td> <%= link_to "Destroy", research_user_registration_path(researcher), :confirm => "Are you sure?", :method => :delete %></td>
