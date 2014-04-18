@@ -28,6 +28,7 @@
 					<th>Lead Researcher</th>
 					<th>Department</th>
 					<th>View Project</th>
+					<th>Created On</th>
 					<th>Destroy</th>
 				</tr>
 				<% @recent_projects.each do |project| %>
@@ -35,6 +36,7 @@
 					<td><%= project.researcher %></td>
 					<td><%= project.department %></td>
 					<td><%= link_to 'Project',project_survey_path(project) %></td>
+					<td><%= project.created_at.to_date %></td>
 					<td> <%= link_to "Destroy", project_survey_path(project), :confirm => "Are you sure?", :method => :delete %></td>
 				</tr>
 				<% end %>
@@ -49,6 +51,7 @@
 					<th>Lead Researcher</th>
 					<th>Department</th>
 					<th>View Project</th>
+					<th>Created On</th>
 					<th>Destroy</th>
 				</tr>
 
@@ -57,6 +60,7 @@
 					<td><%= project.researcher %></td>
 					<td><%= project.department %></td>
 					<td><%= link_to 'Project',project_survey_path(project) %></td>
+					<td><%= project.created_at.to_date %></td>
 					<td> <%= link_to "Destroy", project_survey_path(project), :confirm => "Are you sure?", :method => :delete %></td>
 				</tr>
 	<% end %>
