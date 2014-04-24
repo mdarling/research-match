@@ -37,6 +37,17 @@ Matcher::Application.routes.draw do
     get 'reject', :on => :collection
   end
 
+  resources :project_surveys do
+    #get 'disable/:id', :on => :collection
+    #get 'disable/:id' => "project_surveys#disable"
+  end
+
+  get 'project_surveys/disable/:id' => "project_surveys#disable"
+
+  resources :project_surveys do
+    get 'enable', :on => :collection
+  end
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

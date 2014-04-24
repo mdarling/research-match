@@ -11,4 +11,24 @@ class ProjectSurvey < ActiveRecord::Base
 	after_save do
     	ProjectSurvey.student_match
   	end
+
+  	def is_enabled
+
+  		positions = self.positions
+
+  		positions_expired = false
+
+  		positions.each do |position|
+  			unless position.record_end > Time.zone.now.beginning_of_day 
+  				positions_expired = true
+  			end
+  		end
+
+  		if @is_disabled == true || positions_expired == true
+  			return false
+  		else
+  			return true
+  		end
+
+  	end
 end

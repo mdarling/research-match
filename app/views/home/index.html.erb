@@ -56,7 +56,7 @@
 
 					<th>Show</th>
 					<th>Edit</th>
-					<th>Destroy</th>
+					<th>Disable</th>
 				</tr>
 
 			<% @project_surveys.each do |project_survey| %>
@@ -65,7 +65,7 @@
 					<td><%= project_survey.description %></td>
 					<td><%= link_to 'Show', project_survey_path(project_survey) %></td>
 					<td><%= link_to 'Edit', edit_project_survey_path(project_survey) %></td>
-					<td>Disable</td>
+					<td><%= link_to 'Disable', "/project_surveys/disable/#{project_survey.id}" %> </td>
 				</tr>
 			<% end %>
 			</table>
