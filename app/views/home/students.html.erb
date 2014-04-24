@@ -17,8 +17,8 @@
 				<br>
 				<br>
 				<br>
-				<% unless @recent_students.empty? 	%>
-					<h1>Students who have signed up in the last 7 days</h1>
+				<% unless @recent_profiles.empty? 	%>
+					<h1><%= @recent_profiles.size %> students have created profiles in the last 7 days</h1>
 					<table>
 					<tr>
 						<th>First Name</th>
@@ -46,12 +46,12 @@
 					<% end %>
 				</table>
 				<% else %>
-				<h1> No Students have signed up in the last 7 days </h1>
+				<h1> No Students have created profiles in the last 7 days.</h1>
 				<% end %> <!-- if @ recent students > 0  -->
 				<br>
 				<br>
 				<br>
-				<h1>Student Profiles:</h1>
+				<h1>All Student Profiles</h1>
 					<table>
 				<tr>
 					<th>First Name</th>

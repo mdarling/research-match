@@ -46,6 +46,7 @@ class HomeController < ApplicationController
   	if admin_signed_in?
  	 		@students = User.all
       @recent_students = User.where("created_at >= ?", Time.zone.now.beginning_of_day - 7.days)
+      @recent_profiles = StudentProfile.where("created_at >= ?", Time.zone.now.beginning_of_day - 7.days)
       @profiles = StudentProfile.all
 		else
 			redirect_to :home, notice: 'Access Denied.' 
