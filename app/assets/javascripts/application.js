@@ -130,6 +130,17 @@ $(function(){  // $(document).ready shorthand
     
   });
 
+  $('.hire_match').click(function(event)
+  {
+
+    $(this).closest('tr').fadeTo( 1000 , 0.50 )
+    $(this).closest('tr').css( "background-color", "#F8F8F0" );
+
+    
+    $(this).parent().parent().children( ":last-child" ).html("");
+    $(this).closest('td').html("<b>Hired</b>");
+  });
+
 });
 
 
