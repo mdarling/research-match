@@ -8,7 +8,7 @@ class ResearchUser < ActiveRecord::Base
   # :first_name, :last_name
   # # attr_accessible :title, :body
   
-  validates :first_name, :last_name, :presence => true
+  validates :first_name, :last_name, :department, :presence => true
   
   validates_format_of :email, :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+unm.edu)|unm.edu\Z/i, :message => "must be a valid UNM address."
     

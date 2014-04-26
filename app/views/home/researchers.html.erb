@@ -16,7 +16,9 @@
 					<td><%= researcher.first_name %></td>
 					<td><%= researcher.last_name %></td>
 					<td><%= mail_to( researcher.email ) %>
-					<td><% if researcher.project_surveys.first %>
+					<td><% if researcher.department  %>
+							<%= researcher.department %>
+					<% elsif researcher.project_surveys.first %>
 						<%= researcher.project_surveys.first.department %>
 					<% else %>
 						Unknown
@@ -51,7 +53,9 @@
 					<td><%= researcher.first_name %></td>
 					<td><%= researcher.last_name %></td>
 					<td><%= mail_to( researcher.email ) %>
-					<td><% if researcher.project_surveys.first %>
+					<td><% if researcher.department  %>
+							<%= researcher.department %>
+					<% elsif researcher.project_surveys.first %>
 						<%= researcher.project_surveys.first.department %>
 					<% else %>
 						Unknown
