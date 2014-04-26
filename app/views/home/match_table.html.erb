@@ -5,6 +5,7 @@
 					<th>Researcher</th>
 					<th>Project</th>
 					<th>Students</th>
+					<th>Rejected</th>
 					<th>Hired</th>
 				</tr>
 				<% @projects.each do |project| %>
@@ -15,11 +16,22 @@
 
 					<% end %>
 						<% unless matches.empty? %>
+							<% num_hired = 0 %>
+							<% num_rejected = 0 %>
+							<% matches.each do |match| %>
+								<% if match.hired == true %>
+									<% num_hired = num_hired + 1 %>
+								<% end %>
+								<% if match.is_rejected == true %>
+									<% num_rejected = num_rejected + 1 %>
+								<% end %>
+							<% end %>
 							<tr>
 								<td><%= project.researcher %></td>
 								<td><%= project.title %></td>
 								<td><%= link_to "#{matches.size}", home_project_matches_path(:project => project, :matches => matches)  %></td>
-								<td> not yet set up</td>
+								<td><%= num_rejected %></td>
+								<td><%= num_hired %></td>
 							</tr>
 						<% end %>
 				<% end %>

@@ -19,10 +19,11 @@
 						<th>GPA</th>
 						<th>Interests</th>
 						<th>View Profile</th>
-						<th>Hired<%= link_to image_tag('question.png'), '#keyword_help', :rel => "facebox"  %><br>
-      <div id="keyword_help" style="display:none;"><h4>Hired?</h4>If you have hired this student please click "yes" (this is for our record keeping to track hired students).  To hire the student, please contact the student useing their email.</div>
+						<th>Hired<%= link_to image_tag('question.png'), '#hired_help', :rel => "facebox"  %><br>
+      <div id="hired_help" style="display:none;"><h4>Hired?</h4>If you have hired this student please click "yes" (this is for our record keeping to track hired students).  To hire the student, please contact the student useing their email.</div>
      </th>	
-						<th>Reject</th>
+						<th>Reject<%= link_to image_tag('question.png'), '#reject_help', :rel => "facebox"  %><br>
+      <div id="reject_help" style="display:none;"><h4>Reject</h4>If you click 'reject' this student will no longer appear in this table and won't be matched to this position again.</div></th>
 					</tr>
 					
 				<% end %> <!-- if positions each do -->

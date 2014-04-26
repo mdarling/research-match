@@ -16,6 +16,8 @@
 //= require project_validations
 //= require multistep
 //= require facebox
+//=effects.core.js
+//=effects.highlight.js
 
 $(function(){  // $(document).ready shorthand
 	
@@ -133,12 +135,21 @@ $(function(){  // $(document).ready shorthand
   $('.hire_match').click(function(event)
   {
 
-    $(this).closest('tr').fadeTo( 1000 , 0.50 )
+    
     $(this).closest('tr').css( "background-color", "#F8F8F0" );
 
     
-    $(this).parent().parent().children( ":last-child" ).html("");
+    var row = $(this).parent().parent();
+    row.children( ":last-child" ).html("");
+    table = row.parent();
+    $(this).closest('tr').fadeTo( 1000 , 0.50 )
+    table.append(row);
     $(this).closest('td').html("<b>Hired</b>");
+    row.effect("highlight", {}, 1500);
+    
+
+
+    
   });
 
 });
