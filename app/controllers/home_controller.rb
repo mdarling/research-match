@@ -25,9 +25,20 @@ class HomeController < ApplicationController
   def project_matches
     if admin_signed_in?
 
+
       @matches = MatchedStudents.find(params[:matches])
       @project = ProjectSurvey.find(params[:project])
 
+    else
+      redirect_to :home, notice: 'Access Denied.' 
+    end
+  end
+
+  def researcher_projects
+    if admin_signed_in?
+
+      @researcher = ResearchUser.find(params[:researcher])
+      @projects = @researcher.project_surveys
     else
       redirect_to :home, notice: 'Access Denied.' 
     end

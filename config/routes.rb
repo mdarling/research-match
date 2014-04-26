@@ -33,6 +33,8 @@ Matcher::Application.routes.draw do
 
   get "home/project_matches"
 
+  get "home/researcher_projects"
+
   resources :matched_students do
     get 'reject', :on => :collection
     get 'hire', :on => :collection

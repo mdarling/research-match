@@ -28,7 +28,7 @@
 							<% end %>
 							<tr>
 								<td><%= project.researcher %></td>
-								<td><%= project.title %></td>
+								<td><%= link_to "#{project.title}", project_survey_path(project) %></td>
 								<td><%= link_to "#{matches.size}", home_project_matches_path(:project => project, :matches => matches)  %></td>
 								<td><%= num_rejected %></td>
 								<td><%= num_hired %></td>
