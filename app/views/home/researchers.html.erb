@@ -21,7 +21,7 @@
 					<% else %>
 						Unknown
 					<% end %></td>
-					<td><%= researcher.project_surveys.size %></td>
+					<td><%= link_to "#{researcher.project_surveys.size}", home_researcher_projects_path( :researcher => researcher ) %></td>
 					<td><%= researcher.created_at.to_date %></td>
 					<td> <%= link_to "Destroy", research_user_registration_path(researcher), :confirm => "Are you sure?", :method => :delete %></td>
 				</tr>
