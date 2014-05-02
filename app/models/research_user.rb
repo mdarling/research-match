@@ -1,8 +1,8 @@
 class ResearchUser < ActiveRecord::Base
   # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable and :omniauthable
+  # :confirmable, :lockable, :timeoutable and :omniauthable, :confirmable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :confirmable, :validatable
+         :recoverable, :rememberable, :trackable, :validatable
 
   # attr_accessible :email, :password, :password_confirmation, :remember_me,
   # :first_name, :last_name
