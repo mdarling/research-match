@@ -120,13 +120,13 @@
         </p>
         <% end %>
 
-        <% if position.payment != "" %>
+        <% if position.payment != "" && position.payment != nil %>
         <p>
           <b>Compensation:</b> <%= position.payment %>
         </p>
         <% end %>
 
-        <% if position.credit != "" %>
+        <% if position.credit != "" && position.credit != nil %>
         <p>
           <b>Academic Credit:</b> <%= position.credit %>
         </p>
