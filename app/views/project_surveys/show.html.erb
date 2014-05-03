@@ -84,11 +84,20 @@
             Students should have a standing of at least <b><%= position.standing %></b> at the start of the work period.  
           </p>
         <% end %>    
+        <% unless position.departments.empty? %>
+          <p>Seeking students who are currently enrolled, or interested in enrolling in:<br>
+            <% position.departments.each do |department| %>
+              &#8226; <b><%= department.name %></b><br />
+            <% end %>
+          </p>
 
-               <p>
-          Seeking students who are currently enrolled, or interested in enrolling in <b><%= position.major %>.</b>
-        </p>
-
+        <% else %>
+          <% if position.major != nil %>
+          <p>
+            Seeking students who are currently enrolled, or interested in enrolling in <b><%= position.major %></b>.</b>
+          </p>
+          <% end %>
+        <% end %>
         <% if position.work_period != "" %>
           <p>  
             <b>Work Period:</b>
