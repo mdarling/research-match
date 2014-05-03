@@ -6,10 +6,10 @@ class Position < ActiveRecord::Base
 
 	def is_any_major
 
-    	unless departments.empty? 
-    		return false
-    	else
+    	if departments.empty? && (major == nil || major == "" )
     		return true
+    	else
+    		return false
     	end
   	end
 
