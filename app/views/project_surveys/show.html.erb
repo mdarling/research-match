@@ -79,7 +79,7 @@
 
         </p>  
 
-        <% if position.standing != "" %>
+        <% if position.standing != "" && position.is_undergrad %>
           <p>  
             Students should have a standing of at least <b><%= position.standing %></b> at the start of the work period.  
           </p>
@@ -126,7 +126,13 @@
         </p>
         <% end %>
 
-        <% if position.payment != "" %>
+        <% if position.credit != "" %>
+        <p>
+          <b>Academic Credit:</b> <%= position.payment %>
+        </p>
+        <% end %>
+
+        <% if position.record_end != "" %>
         <p>
           <b>Application Deadline:</b> <%= position.record_end %>
         </p>
