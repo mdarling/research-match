@@ -6,7 +6,7 @@ class Position < ActiveRecord::Base
 
 	def is_any_major
 
-    	if departments.empty? 
+    	unless departments.empty? 
     		return false
     	else
     		return true
