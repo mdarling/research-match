@@ -20,7 +20,7 @@
 						<th>Interests</th>
 						<th>View Profile</th>
 						<th>Hired<%= link_to image_tag('question.png'), '#hired_help', :rel => "facebox"  %><br>
-      <div id="hired_help" style="display:none;"><h4>Hired?</h4>If you have hired this student please click "yes" (this is for our record keeping to track hired students).  To hire the student, please contact the student useing their email.</div>
+      <div id="hired_help" style="display:none;"><h4>Hired?</h4>If you have hired this student please click "yes" (this is for our record keeping to track hired students).  To hire the student, please contact the student using their email.</div>
      </th>	
 						<th>Reject<%= link_to image_tag('question.png'), '#reject_help', :rel => "facebox"  %><br>
       <div id="reject_help" style="display:none;"><h4>Reject</h4>If you click 'reject' this student will no longer appear in this table and won't be matched to this position again.</div></th>
@@ -40,8 +40,13 @@
 									<td><%= student.gpa %></td>
 									<td><%= student.interests %></td>
 									<td><%= link_to 'Profile', student_profile_path(student) %></td>
-									<td><%= link_to 'Yes', hire_matched_students_path(:id => matched_student.id), remote: true, :class => "hire_match" %> </td> 
-									<td><%= link_to 'Reject', reject_matched_students_path(:id => matched_student.id), remote: true, :class => "remove_match" %> </td> 
+									<td class = "hire_undo_td"></td>
+									<td><%= link_to 'Yes', hire_matched_students_path(:id => matched_student.id), remote: true, :class => "hire_match" %> </td>
+									<td class = "hire_undo_td"><%= link_to 'Undo', undo_hire_matched_students_path(:id => matched_student.id), remote: true, :class => "hire_undo"%> </td> 
+									<td><%= link_to 'Reject', reject_matched_students_path(:id => matched_student.id), remote: true, :class => "remove_match" %> </td>
+									<td class = "undo_reject_td"><%= link_to 'Undo', undo_reject_matched_students_path(:id => matched_student.id), remote: true, :class => "undo_reject" %> </td>
+									<td class="last_td"></td> 
+									
 								</tr>
 						<% else %> <!-- if student hired = true  -->
 								<% student = StudentProfile.find(matched_student.student_profile_id)%>

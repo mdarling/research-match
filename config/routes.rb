@@ -37,7 +37,9 @@ Matcher::Application.routes.draw do
 
   resources :matched_students do
     get 'reject', :on => :collection
+    get 'undo_reject', :on => :collection
     get 'hire', :on => :collection
+    get 'undo_hire', :on => :collection
   end
 
   resources :project_surveys do

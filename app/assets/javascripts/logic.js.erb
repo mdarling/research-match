@@ -1,0 +1,198 @@
+$(function(){  // $(document).ready shorthand
+	
+	contentFadeIn();
+	//$("#project_survey_unpaid_undergrads_needed").attr("checked",true);
+  //$('#content').css('visibility','visible').hide().fadeIn('slow');
+
+ //$("#project_survey_paid_undergrads_needed").attr('checked', false)
+
+ $("#project_survey_unpaid_undergrads_needed").change(function()
+  {
+ 		this.checked ? $('#unpaidUnderGrad').slideDown() : $('#unpaidUnderGrad').slideUp();
+  });
+  
+  $("#project_survey_paid_undergrads_needed").change(function()
+  {
+ 		this.checked ? $('#paidUnderGrad').slideDown() : $('#paidUnderGrad').slideUp();
+  });
+  
+  $("#project_survey_unpaid_grads_needed").change(function()
+  {
+ 		this.checked ? $('#unpaidGrad').slideDown() : $('#unpaidGrad').slideUp();
+  });
+  
+  $("#project_survey_paid_grads_needed").change(function()
+  {
+ 		this.checked ? $('#paidGrad').slideDown() : $('#paidGrad').slideUp();
+  });
+  
+   $("#project_survey_post_docs_needed").change(function()
+  {
+ 		this.checked ? $('#postdoc').slideDown() : $('#postdoc').slideUp();
+  });
+  
+	
+  $('.projectTitle').click(function() {
+    $('.editProjectSurvey').slideToggle();
+	});
+
+ $('a[rel*=facebox]').facebox()
+
+  $('#how_this_works').click(function(event) {
+    event.preventDefault();
+
+    $('#howItWorks').slideToggle();
+  });
+
+  $(".dead_link").click(function(event) {
+    event.preventDefault();
+
+  });
+
+  $("#info_button").click(function(event) {
+     event.preventDefault();
+    $('.info_index').toggle();
+    $('.blank_space').toggle();
+
+
+  });
+
+$(".not_enrolled").on("change", function(){
+  $("#expected_enrollment").slideDown();
+});
+
+$(".enrolled").on("change", function(){
+  $("#expected_enrollment").slideUp();
+});
+$(".dept_select option").mousedown(function(e) {
+  e.preventDefault();
+  $(this).prop('selected', !$(this).prop('selected'));
+  return false;
+});
+
+
+
+if ( $('.alert').val() == 'Your account was successfully confirmed.' ) 
+{
+    jQuery.facebox({ div: '#researcher_steps' })
+}
+
+});
+
+$(function(){  // $(document).ready shorthand 
+ 
+ 
+  $('.remove_fields').click(function(event)
+  {
+    $(this).prev('input[type=hidden]').val('1')
+    $(this).closest('fieldset').hide()
+    event.preventDefault();
+  });
+  
+  $('.add_fields').click(function(event)
+  {
+    time = new Date().getTime();
+    regexp = new RegExp($(this).data('id'), 'g');
+    $(this).before($(this).data('fields').replace(regexp, time));
+    event.preventDefault();
+
+    $('.remove_fields').click(function(event)
+    {
+      $(this).prev('input[type=hidden]').val('1')
+      $(this).closest('fieldset').hide()
+      event.preventDefault();
+    });
+  });
+  
+  $('.remove_match').click(function(event)
+  {
+
+        
+    $(this).closest('tr').css( "background-color", "#F8F8F0" );
+
+    
+    var row = $(this).parent().parent();
+    $(this).closest('tr').fadeTo( 1000 , 0.50 );
+    row.children( ":nth-last-child(5)" ).hide();
+    row.children( ":nth-last-child(6)" ).fadeIn();
+    row.children( ":nth-last-child(3)" ).hide();
+
+    row.children( ":nth-last-child(2)" ).fadeIn();
+
+    
+  });
+
+    $('.undo_reject').click(function(event)
+  {
+
+        
+    $(this).closest('tr').css( "background-color", "#FFFFFF" );
+
+    
+    var row = $(this).parent().parent();
+    $(this).closest('tr').fadeTo( 1000 , 1 );
+    row.children( ":nth-last-child(3)" ).fadeIn();
+
+    row.children( ":nth-last-child(2)" ).hide();
+    row.children( ":nth-last-child(6)" ).hide();
+    row.children( ":last-child" ).hide();
+  
+    row.children( ":nth-last-child(4)" ).hide();
+        row.children( ":nth-last-child(5)" ).fadeIn();
+    
+    
+  });
+
+  $('.hire_match').click(function(event)
+  {
+
+    
+    $(this).closest('tr').css( "background-color", "#F8F8F0" );
+
+    
+    var row = $(this).parent().parent();
+
+    table = row.parent();
+    row.children( ":nth-last-child(4)" ).fadeIn();
+    row.children( ":nth-last-child(5)" ).hide();
+    row.children( ":nth-last-child(3)" ).hide();
+    row.children( ":last-child" ).fadeIn();
+    $(this).closest('tr').fadeTo( 1000 , 0.50 )
+
+
+    
+    
+    
+    
+  });
+
+  $('.hire_undo').click(function(event)
+  {
+
+    
+    $(this).closest('tr').css( "background-color", "#FFFFFF" );
+
+    
+    var row = $(this).parent().parent();
+
+    table = row.parent();
+    row.children( ":nth-last-child(4)" ).hide();
+    row.children( ":nth-last-child(5)" ).fadeIn();
+    row.children( ":nth-last-child(3)" ).fadeIn();
+    row.children( ":last-child" ).hide();
+    $(this).closest('tr').fadeTo( 1000 , 1 )
+
+
+    
+  });
+
+});
+
+
+$(document).on('page:load', contentFadeIn); //This makes turbo links runs the function when the page is loaded
+
+function contentFadeIn()
+{
+  $('#content').animate({opacity: 1}, 1000);
+
+}
