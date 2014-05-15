@@ -50,7 +50,7 @@
   <div id="projectBottom">
     <b>Project Description: </b><br /><%= @project_survey.description %><br />
  
-    <% if @project_survey.link != nil && @project_survey.link != "" %><br><b>Additional Information:</b><br><%= link_to @project_survey.link, @project_survey.link %><% end %> 
+    <% if @project_survey.link != nil && @project_survey.link != "" %><br><b>Additional Information:</b><br><%= link_to @project_survey.link, @project_survey.link, :target => "_blank" %><% end %> 
   </div>
 
 </div><br />
