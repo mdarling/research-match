@@ -43,7 +43,9 @@
         <b>Project Description:</b>
         <%= project_survey.description %>
       </p>
-        
+      <p>
+      <% if project_survey.is_contactable %><% if project_survey.link != nil && project_survey.link != "" %><b>Additional Information: <%= link_to project_survey.link, project_survey.link, :target => "_blank" %> <% end %> <% end %>
+    </p>
       <% if user_signed_in? || admin_signed_in? || research_user_signed_in? %>
         <% if project_survey.positions %>
 
