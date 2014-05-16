@@ -56,16 +56,27 @@
 
 					<th>Show</th>
 					<th>Edit</th>
-					<th>Disable</th>
+					<th>Disable<%= link_to image_tag('question.png'), '#disable_help', :rel => "facebox"  %><br>
+      <div id="disable_help" style="display:none;"><h4>Disable</h4>If you disable your project, no students will be matched to your project until it is enabled again.</div></th>
 				</tr>
 
 			<% @project_surveys.each do |project_survey| %>
-				<tr>
+				<% if project_survey.is_disabled %>
+					<tr class = "disabled_project" >
+				<% else %>
+					<tr>
+				<% end %>
 					<td><%= project_survey.title %></td>
 					<td><%= project_survey.description %></td>
 					<td><%= link_to 'Show', project_survey_path(project_survey) %></td>
 					<td><%= link_to 'Edit', edit_project_survey_path(project_survey) %></td>
-					<td>Disable</td>
+					<% if project_survey.is_disabled %>
+						<td><%= link_to 'Enable', enable_project_home_index_path(:project => project_survey), :remote => true, :class => "enable_project" %></td>
+						<td class = "hidden"><%= link_to 'Disable', disable_project_home_index_path(:project => project_survey), :remote => true, :class => "disable_project" %></td>
+					<% else %>						
+						<td class = "hidden"><%= link_to 'Enable', enable_project_home_index_path(:project => project_survey), :remote => true, :class => "enable_project"  %></td>
+						<td><%= link_to 'Disable', disable_project_home_index_path(:project => project_survey), :remote => true, :class => "disable_project" %></td>
+					<% end %>
 				</tr>
 			<% end %>
 			</table>

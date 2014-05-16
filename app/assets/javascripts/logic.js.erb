@@ -157,12 +157,7 @@ $(function(){  // $(document).ready shorthand
     row.children( ":nth-last-child(5)" ).hide();
     row.children( ":nth-last-child(3)" ).hide();
     row.children( ":last-child" ).fadeIn();
-    $(this).closest('tr').fadeTo( 1000 , 0.50 )
-
-
-    
-    
-    
+    $(this).closest('tr').fadeTo( 1000 , 0.50 ) 
     
   });
 
@@ -180,6 +175,40 @@ $(function(){  // $(document).ready shorthand
     row.children( ":nth-last-child(5)" ).fadeIn();
     row.children( ":nth-last-child(3)" ).fadeIn();
     row.children( ":last-child" ).hide();
+    $(this).closest('tr').fadeTo( 1000 , 1 )
+
+
+    
+  });
+
+  $('.disable_project').click(function(event)
+  {
+
+    
+    $(this).closest('tr').css( "background-color", "#F8F8F0" );
+
+    
+    var row = $(this).parent().parent();
+
+    row.children( ":nth-last-child(2)" ).fadeIn();
+    $(this).closest('td').hide();
+    $(this).closest('tr').fadeTo( 1000 , 0.5 )
+
+
+    
+  });
+
+  $('.enable_project').click(function(event)
+  {
+
+    
+    $(this).closest('tr').css( "background-color", "#FFFFFF" );
+
+    
+    var row = $(this).parent().parent();
+
+    $(this).closest('td').hide();
+    row.children( ":last-child" ).fadeIn();
     $(this).closest('tr').fadeTo( 1000 , 1 )
 
 

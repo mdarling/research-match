@@ -8,7 +8,9 @@ class ProjectSurvey < ActiveRecord::Base
 
 	validates :department, :email, :description, :title, :keywords, :researcher, presence: true
 
-	
+	after_save do
+    	ProjectSurvey.student_match
+  	end
 
   	def is_enabled
 

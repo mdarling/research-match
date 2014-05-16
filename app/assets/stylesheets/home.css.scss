@@ -2,6 +2,15 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+.disabled_project
+{
+	opacity:0.5;
+	background-color:#F8F8F0;
+}
+.hidden
+{
+	display:none;
+}
 
 #lcell
 {

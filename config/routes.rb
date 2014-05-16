@@ -35,6 +35,11 @@ Matcher::Application.routes.draw do
 
   get "home/researcher_projects"
 
+  resources :home do
+    get 'enable_project', :on => :collection
+    get 'disable_project', :on => :collection
+  end
+
   resources :matched_students do
     get 'reject', :on => :collection
     get 'undo_reject', :on => :collection

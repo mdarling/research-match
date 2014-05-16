@@ -98,6 +98,15 @@
   def student_match
 
     @projects = ProjectSurvey.all
+    @enabled_projects = []
+
+    @project.each do |a_project|
+      if a_project.is_enabled
+        @enabled_projects += a_project
+      end
+    end
+
+    @projetcs = @enabled_projects
 
     @projects.each do |project|
       positions = project.positions
@@ -187,7 +196,15 @@
   #This function iterates over all projects and matches qualified students
   def student_match_any_department
 
-    @projects = ProjectSurvey.all
+    @enabled_projects = []
+
+    @project.each do |a_project|
+      if a_project.is_enabled
+        @enabled_projects += a_project
+      end
+    end
+
+    @projetcs = @enabled_projects
 
     @projects.each do |project|
       positions = project.positions

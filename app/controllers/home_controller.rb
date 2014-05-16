@@ -1,4 +1,15 @@
 class HomeController < ApplicationController
+  def disable_project
+    @project = ProjectSurvey.find(params[:project])
+    @project.is_disabled = true
+    @project.save
+  end
+  def enable_project
+    @project = ProjectSurvey.find(params[:project])
+    @project.is_disabled = false
+    @project.save
+
+  end
   def index
   	@project_surveys = ProjectSurvey.where( :research_user_id => current_research_user )
 
