@@ -177,8 +177,8 @@
 
         if MatchedStudents.where( :position_id => position.id, :student_profile_id => student.id ).blank?
           match = MatchedStudents.new( position: position, student_profile: student ).save
-          #ProjectSurvey.email_researchers 
-          #ProjectSurvey.email_students
+          ProjectSurvey.email_researchers 
+          ProjectSurvey.email_students
         end
           
           #match.position = position
@@ -276,8 +276,8 @@
 
           if MatchedStudents.where( :position_id => position.id, :student_profile_id => student.id ).blank?
             match = MatchedStudents.new( position: position, student_profile: student ).save
-            #ProjectSurvey.email_researchers 
-            #ProjectSurvey.email_students
+            ProjectSurvey.email_researchers 
+            ProjectSurvey.email_students
           end
             
             #match.position = position
