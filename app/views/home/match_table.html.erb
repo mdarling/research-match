@@ -1,3 +1,24 @@
+				<h1>Global Matching Information</h1>
+				<table>
+				<tr>
+					<th>Total</th>
+					<th>Recent</th>
+					<th>Rejections</th>
+					<th>Hires</th>
+				</tr>
+
+				<tr>
+					<td><%= @all_matches.size %></td>
+					<td><%= @recent_matches.size %></td>
+					<td><%= @rejections %></td>
+					<td><%= @hires %></td>
+
+				</tr>
+				</table>
+				<br>
+				<br>
+				<br>
+
 <% unless @recent_matches.empty? %>
 				<h1>Matches made in the last 7 days.</h1>
 				<table>

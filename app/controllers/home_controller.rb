@@ -26,6 +26,18 @@ class HomeController < ApplicationController
   def match_table
     if admin_signed_in?
       @projects = ProjectSurvey.all
+      @all_matches = MatchedStudents.all
+      @rejections = 0
+      @hires = 0
+      @all_matches.each do |match|
+        if match.is_rejected
+          @rejections = @rejections + 1
+        end
+
+        if match.hired
+          @hires = @hires + 1
+        end
+      end
       @recent_matches = MatchedStudents.where("created_at >= ?", Time.zone.now.beginning_of_day - 7.days)
 
     else
