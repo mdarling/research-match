@@ -98,6 +98,15 @@
   def student_match
 
     @projects = ProjectSurvey.all
+    @enabled_projects = []
+
+    @projects.each do |a_project|
+      if a_project.is_enabled
+        @enabled_projects << a_project
+      end
+    end
+
+    @projetcs = @enabled_projects
 
     @projects.each do |project|
       positions = project.positions
@@ -168,8 +177,8 @@
 
         if MatchedStudents.where( :position_id => position.id, :student_profile_id => student.id ).blank?
           match = MatchedStudents.new( position: position, student_profile: student ).save
-          ProjectSurvey.email_researchers 
-          ProjectSurvey.email_students
+          #ProjectSurvey.email_researchers 
+          #ProjectSurvey.email_students
         end
           
           #match.position = position
@@ -188,6 +197,15 @@
   def student_match_any_department
 
     @projects = ProjectSurvey.all
+    @enabled_projects = []
+
+    @projects.each do |a_project|
+      if a_project.is_enabled
+        @enabled_projects << a_project
+      end
+    end
+
+    @projetcs = @enabled_projects
 
     @projects.each do |project|
       positions = project.positions
@@ -258,8 +276,8 @@
 
           if MatchedStudents.where( :position_id => position.id, :student_profile_id => student.id ).blank?
             match = MatchedStudents.new( position: position, student_profile: student ).save
-            ProjectSurvey.email_researchers 
-            ProjectSurvey.email_students
+            #ProjectSurvey.email_researchers 
+            #ProjectSurvey.email_students
           end
             
             #match.position = position
