@@ -1,21 +1,6 @@
 class ProjectSurveysController < ApplicationController
   before_action :set_project_survey, only: [:show, :edit, :update, :destroy]
 
-  def disable #this allows researcher to turn project off from matching and display
-    @project = ProjectSurvey.find( params[:id] )
-    @project.is_disabled = true
-    @project.save
-
-    redirect_to home_matches_path, notice: '#{@project.title} was disabled.' 
-  end #end disable
-
-  def enable #this allows researcher to turn project on for matching and display
-    @project = ProjectSurvey.find( params[:id] )
-    @project.is_disabled = false
-    @project.save
-
-    redirect_to home_matches_path, notice: '#{@project.title} was enabled.' 
-  end #end disable
 
   # GET /project_surveys
   # GET /project_surveys.json

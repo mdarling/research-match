@@ -47,11 +47,6 @@ Matcher::Application.routes.draw do
     get 'undo_hire', :on => :collection
   end
 
-  resources :project_surveys do
-    #get 'disable/:id', :on => :collection
-    #get 'disable/:id' => "project_surveys#disable"
-  end
-
   get 'project_surveys/disable/:id' => "project_surveys#disable"
 
   resources :project_surveys do
