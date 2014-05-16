@@ -98,15 +98,6 @@
   def student_match
 
     @projects = ProjectSurvey.all
-    @enabled_projects = []
-
-    @projects.each do |a_project|
-      if a_project.is_enabled
-        @enabled_projects += a_project
-      end
-    end
-
-    @projetcs = @enabled_projects
 
     @projects.each do |project|
       positions = project.positions
@@ -197,15 +188,6 @@
   def student_match_any_department
 
     @projects = ProjectSurvey.all
-    @enabled_projects = []
-
-    @projects.each do |a_project|
-      if a_project.is_enabled
-        @enabled_projects += a_project
-      end
-    end
-
-    @projetcs = @enabled_projects
 
     @projects.each do |project|
       positions = project.positions
