@@ -100,7 +100,7 @@
     @projects = ProjectSurvey.all
     @enabled_projects = []
 
-    @project.each do |a_project|
+    @projects.each do |a_project|
       if a_project.is_enabled
         @enabled_projects += a_project
       end
@@ -196,9 +196,10 @@
   #This function iterates over all projects and matches qualified students
   def student_match_any_department
 
+    @projects = ProjectSurvey.all
     @enabled_projects = []
 
-    @project.each do |a_project|
+    @projects.each do |a_project|
       if a_project.is_enabled
         @enabled_projects += a_project
       end
