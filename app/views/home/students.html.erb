@@ -40,7 +40,7 @@
 							<td><%= profile.department %></td>
 							<td><%= student.created_at.to_date %></td>
 							<td><%= link_to 'Profile',student_profile_path(profile) %></td>
-							<td><%= link_to "Destroy", user_registration_path(student), :confirm => "Are you sure?", :method => :delete %></td>
+							<td> <%= link_to "Destroy", destroy_student_home_index_path(:id => profile.id), :confirm => "Are you sure you want to destroy #{profile.first_name} #{profile.last_name}?" %></td>
 						</tr>
 						<% end %>	
 					<% end %>
@@ -73,7 +73,7 @@
 					<td><%= profile.department %></td>
 					<td><%= student.created_at.to_date %></td>
 					<td><%= link_to 'Profile',student_profile_path(profile) %></td>
-					<td><%= link_to "Destroy", user_registration_path(student), :confirm => "Are you sure?", :method => :delete %></td>
+					<td> <%= link_to "Destroy", destroy_student_home_index_path(:id => profile.id), :confirm => "Are you sure you want to destroy #{profile.first_name} #{profile.last_name}?" %></td>
 				</tr>
 				<% end %>	
 	<% end %>

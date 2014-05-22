@@ -38,6 +38,9 @@ Matcher::Application.routes.draw do
   resources :home do
     get 'enable_project', :on => :collection
     get 'disable_project', :on => :collection
+    get 'destroy_researcher', :on => :collection 
+    get 'destroy_student', :on => :collection 
+    get 'destroy_project', :on => :collection 
   end
 
   resources :matched_students do

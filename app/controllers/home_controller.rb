@@ -1,4 +1,32 @@
 class HomeController < ApplicationController
+
+  def destroy_researcher
+    researcher = ResearchUser.find(params[:id])
+    first = researcher.first_name
+    last = researcher.last_name
+    ResearchUser.find(params[:id]).destroy
+
+    redirect_to home_researchers_path, notice: "The target, #{first} #{last}, has been destroyed."
+  end
+
+  def destroy_student
+    student = StudentProfile.find(params[:id])
+    first = student.first_name
+    last = student.last_name
+    student.user.destroy
+    StudentProfile.find(params[:id]).destroy
+
+    redirect_to home_students_path, notice: "The target, #{first} #{last}, has been destroyed."
+  end
+
+  def destroy_project
+    project = ProjectSurvey.find(params[:id])
+    title = project.title
+    ProjectSurvey.find(params[:id]).destroy
+
+    redirect_to home_projects_path, notice: "The target, #{title}, has been destroyed."
+  end
+
   def disable_project
     @project = ProjectSurvey.find(params[:project])
     @project.is_disabled = true

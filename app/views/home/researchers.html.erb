@@ -1,4 +1,4 @@
-<% unless @recent_researchers.empty? %>
+<% unless @recent_researchers.empty?	%>
 				<h1>Researchers who have signed up in the last 7 days:</h1>
 					<table>
 				<tr>
@@ -25,7 +25,7 @@
 					<% end %></td>
 					<td><%= link_to "#{researcher.project_surveys.size}", home_researcher_projects_path( :researcher => researcher ) %></td>
 					<td><%= researcher.created_at.to_date %></td>
-					<td> <%= link_to "Destroy", research_user_registration_path(researcher), :confirm => "Are you sure?", :method => :delete %></td>
+					<td> <%= link_to "Destroy", destroy_researcher_home_index_path( :id => researcher.id), :confirm => "Are you sure you want to destroy #{researcher.first_name} #{researcher.last_name}?" %></td>
 				</tr>
 	<% end %>
 		</table>
@@ -62,7 +62,7 @@
 					<% end %></td>
 					<td><%= link_to "#{researcher.project_surveys.size}", home_researcher_projects_path( :researcher => researcher ) %></td>
 					<td><%= researcher.created_at.to_date %></td>
-					<td> <%= link_to "Destroy", research_user_registration_path(researcher), :confirm => "Are you sure?", :method => :delete %></td>
+					<td> <%= link_to "Destroy", destroy_researcher_home_index_path( :id => researcher.id), :confirm => "Are you sure you want to destroy #{researcher.first_name} #{researcher.last_name}?" %></td>
 				</tr>
 	<% end %>
 		</table>
