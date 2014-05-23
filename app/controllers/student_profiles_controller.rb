@@ -7,7 +7,7 @@ class StudentProfilesController < ApplicationController
     @student_profiles = StudentProfile.all
         @search = StudentProfile.search(params[:q])
     @results = @search.result
-    @student_profiles = @results #.where( ['expected_graduation > ?', DateTime.now] )
+    @student_profiles = @results.where( ['expected_graduation > ?', DateTime.now] )
     if params[:q]
       @searched = params[:q]["department_cont"]
     end

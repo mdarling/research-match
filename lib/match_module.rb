@@ -46,11 +46,13 @@
       matches.each do |match|
         match.student_was_emailed = true
         match.save
-        if match.position.project_survey.is_contactable
-          contactable_matches << match
-        else
-          non_contactable_matches << match
-        end#end if contactable
+        if match.position.project_survey
+          if match.position.project_survey.is_contactable
+            contactable_matches << match
+          else
+            non_contactable_matches << match
+          end#end if contactable
+        end#end if position.project_survey
       end #end matches each do 
 
       unless contactable_matches.empty? && non_contactable_matches.empty?
@@ -113,7 +115,7 @@
 
       positions.each do |position|
 
-        potential_students = StudentProfile.where(department: position.major)
+        potential_students = StudentProfile.where(department: position.major )
         #potential_students = Student.where("department = :current_dept AND gpa >= :current_gpa", {current_dept: position.major, current_gpa: postition.gpa}) 
         students = []
         
@@ -212,7 +214,7 @@
 
       positions.each do |position|
       if position.is_any_major  
-          potential_students = StudentProfile.all
+          potential_students = StudentProfile.where(['expected_graduation > ?', DateTime.now] )
           #potential_students = Student.where("department = :current_dept AND gpa >= :current_gpa", {current_dept: position.major, current_gpa: postition.gpa}) 
           students = []
           
