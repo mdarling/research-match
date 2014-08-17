@@ -36,6 +36,7 @@ class StudentMailer < ActionMailer::Base
       mail(:to => "amrit914@gmail.com", :subject => "Update Your UNM Research-Match Profile.")
     else
       mail(:to => "amrit914@gmail.com", :subject => "Create a UNM Research-Match Profile to start your research career!")
+    end
 
   end #end def
 
