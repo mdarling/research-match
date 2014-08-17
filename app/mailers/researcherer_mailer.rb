@@ -28,4 +28,14 @@ class ResearchererMailer < ActionMailer::Base
 
   end #end def
 
+  def update_reminder_semester_beginning(user)
+    @user = user
+    if user.project_surveys.empty?
+      mail(:to => "amrit914@gmail.com", :subject => "Add your research project to UNM Research-Match!")
+    else
+      mail(:to => "amrit914@gmail.com", :subject => "Update your research project on UNM Research-Match!")
+    end
+
+  end #end def
+
 end
