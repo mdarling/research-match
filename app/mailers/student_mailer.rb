@@ -24,4 +24,15 @@ class StudentMailer < ActionMailer::Base
 
   end #end def
 
+  def update_reminder_semester_beginning(user)
+    @user = user
+    if user.student_profile
+        @first_name = user.student_profile.first_name 
+    else
+        @first_name = ""
+    end
+    mail(:to => "amrit914@gmail.com", :subject => "Update Your UNM Research-Match Profile.")
+
+  end #end def
+
 end

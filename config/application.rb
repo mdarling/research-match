@@ -1,3 +1,4 @@
+
 require File.expand_path('../boot', __FILE__)
 
 require 'rails/all'
@@ -22,6 +23,9 @@ module Matcher
 
     #This is to add lib folder to autoload path (I need this for the StudentMatch module)
     config.autoload_paths += %W(#{config.root}/lib)
+
+    #To compile assets on heroku
+    config.assets.initialize_on_precompile = false
   end
 
 

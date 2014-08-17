@@ -1,0 +1,1 @@
+require_relative 'Descriptions/SOE/Electrical_Engineering_BS_UndergradProgram_Description_Seeds.rb'
