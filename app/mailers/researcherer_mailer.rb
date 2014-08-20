@@ -1,3 +1,4 @@
+
 class ResearchererMailer < ActionMailer::Base
   default :from => "researchmatch@unm.edu"
 

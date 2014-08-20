@@ -4,28 +4,30 @@
 	<%= image_tag image_url('unm-logo.gif') %>
 	<h1 style="margin-left:5em">ResearchMatch@UNM</h1>
 	<br />
-	<h3>Hello,</h3>
-	<br>
 
-	<h4>We noticed that you signed up for an account for Research-Match but didn't register a project.  <a href="http://research-match.unm.edu/">Click here to log in.</a>  If you've forgotten your password don't worry, you can recover it. If you have any questions, please contact us at <a href="mailto:researchmatch@unm.edu?Subject=Question About Research Matching System." target="_top">researchmatch@unm.edu</a>.</h4>
+	<h4><% if @user.last_name %> 
+			Dear Dr. <%= @user.last_name %>,<br>
+		<% else %>
+			Dear <%= @user.email %>,<br>
+		<% end %>
+		We noticed that you signed up for an account for Research-Match, but have not submitted a research project yet. If you have any research projects and/or positions available for students, please <a href = "http://research-match.unm.edu/">log in here and submit your project</a>. If you have any questions, please contact us at <a href="mailto:researchmatch@unm.edu?Subject=Question About Research Matching System." target="_top">researchmatch@unm.edu</a>.</h4>
+		
+		<h4>Sincerely,<br>
+		The UNM Research-Match Team</h4>
 
-	<br />
-	<br />
-	<br>
-	<h4>Have a nice day,<br>
-	The UNM Research-Match Team.</h4>
 <% else %>
 	<%= image_tag image_url('unm-logo.gif') %>
 	<h1 style="margin-left:5em">ResearchMatch@UNM</h1>
 	<br />
-	<h3>Welcome Back!</h3>
-	<br>
+	<h4><% if @user.last_name %> 
+		Dear Dr. <%= @user.last_name %>,<br>
+	<% else %>
+		Dear <%= @user.email %>,<br>
+	<% end %>
+	Welcome back! This is a reminder to update your research projects on the Research-Match system. If you need to make any changes, please  <a href = "http://research-match.unm.edu/">log in here and submit your project</a> and update the information. If you have any questions, please contact us at <a href="mailto:researchmatch@unm.edu?Subject=Question About Research Matching System." target="_top">researchmatch@unm.edu</a>.</h4>
 
+	<h4>Sincerely,<br>
+	The UNM Research-Match Team</h4>
 
-	<h4>Welcome Back!  Good luck with the upcoming semester.  Don't forget to update your Research-Match projects.  <a href="http://research-match.unm.edu/">Click here to log on.</a>   If you have any questions, please contact us at <a href="mailto:researchmatch@unm.edu?Subject=Question About Research Matching System." target="_top">researchmatch@unm.edu</a>.</h4>
-
-	<br>
-	<h4>Have a nice day,<br>
-	The UNM Research-Match Team.</h4>
 <% end %>
 
