@@ -1,5 +1,25 @@
   module MatchModule
 
+  def beginning_of_semester_student_reminder
+    users = User.all
+
+    users.each do |user|
+      StudentMailer.update_reminder_semester_beginning(user).deliver
+    end
+  end
+
+  def beginning_of_semester_researcher_reminder
+    researchers = ResearchUser.all
+    
+    
+    researchers.each do |researcher|
+    
+        ResearchererMailer.update_reminder_semester_beginning(researcher).deliver
+
+    end
+  end 
+
+
   def email_students_about_launch
     users = User.all
 

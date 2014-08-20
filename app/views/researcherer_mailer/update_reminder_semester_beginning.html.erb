@@ -6,9 +6,9 @@
 	<br />
 
 	<h4><% if @user.last_name %> 
-			Dear Dr. <%= @user.last_name %>,<br>
+			Dear Dr. <%= @user.last_name %>,<br><br>
 		<% else %>
-			Dear <%= @user.email %>,<br>
+			Dear <%= @user.email %>,<br><br>
 		<% end %>
 		We noticed that you signed up for an account for Research-Match, but have not submitted a research project yet. If you have any research projects and/or positions available for students, please <a href = "http://research-match.unm.edu/">log in here and submit your project</a>. If you have any questions, please contact us at <a href="mailto:researchmatch@unm.edu?Subject=Question About Research Matching System." target="_top">researchmatch@unm.edu</a>.</h4>
 		
