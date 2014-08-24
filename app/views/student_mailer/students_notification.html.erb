@@ -5,7 +5,7 @@
 <br />
 <h3>Dear <%= @contact %>,</h3>
 <% unless @contactable_matches.empty? %>
-	<h3>You profile matched to the following project(s):</h3>
+	<h3>Your profile matched to the following project(s):</h3>
 
 	<table>
 		<tr>
@@ -32,7 +32,7 @@
 	<% end %>
 <% else %>
 		<% unless @non_contactable_matches.empty? %>
-			<h3>You profile matched to <% @non_contactable_matches.size %> project(s).</h3>
+			<h3>Your profile matched to <% @non_contactable_matches.size %> project(s).</h3>
 			<p>Expect to be contacted by researchers of those projects if you're the right match.</p>
 		<% end %>
 	
